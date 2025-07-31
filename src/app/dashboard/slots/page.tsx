@@ -1,4 +1,4 @@
-"use client";
+              "use client";
 
 import useFetch from "@/hooks/useFetch";
 import { endpoints } from "@/data/endpoints";
@@ -8,43 +8,42 @@ import Wrapper from "@/components/common/Wrapper";
 import TableComponent from "@/components/common/Table";
 
 const columns = [
-  { key: "_id", label: "User ID" },
-  { key: "username", label: "Full Name", sortable: true },
-  { key: "email", label: "Email", sortable: true },
-  {
-    key: "status",
-    label: "Account Status",
-    sortable: true,
-    isMultiPurpose: true,
-    multiPurposeProps: { type: "label" },
-  },
+  { key: "_id", label: "User ID", sortable: true },
+  { key: "firstName", label: "First Name", sortable: true },
+  { key: "lastName", label: "Last Name", sortable: true },
+  { key: "email", label: "Email Address", sortable: true },
+  { key: "phoneNumber", label: "Phone Number", sortable: true },
+  { key: "upiId", label: "UPI ID", sortable: true },
+  { key: "dateOfBirth", label: "Date Of Birth", sortable: true, isDate: true },
+  { key: "points", sortable: true, label: "Current Points" },
   {
     key: "createdAt",
-    label: "Date of Registration",
+    label: "Registration Date",
     sortable: true,
     isDateTime: true,
   },
   {
     key: "updatedAt",
-    label: "Last Modified",
+    label: "Last Updated",
     sortable: true,
     isDateTime: true,
   },
 ];
 
 const filterOptions = [
+  { label: "Emp. ID", value: "_id" },
   { label: "Name", value: "username" },
   { label: "Email", value: "email" },
-  { label: "Status", value: "status" },
+  { label: "Role", value: "role" },
 ];
 
 const Page: React.FC = () => {
-  const formType = "Employee";
+  const formType = "Slots";
   const { data, loading, error } = useFetch(endpoints[formType]?.url);
   const updatedData = data?.data?.result;
   const paginationData = data?.data?.pagination;
   let operationsAllowed = endpoints[formType]?.operations;
-  operationsAllowed = { ...operationsAllowed, create: false, delete: false };
+  operationsAllowed = { ...operationsAllowed, delete: false, update: false, create: false };
 
   if (loading && !updatedData && !error) return <Loader />;
 

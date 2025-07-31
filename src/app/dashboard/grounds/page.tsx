@@ -7,42 +7,46 @@ import Loader from "@/components/common/Loader";
 import Wrapper from "@/components/common/Wrapper";
 import TableComponent from "@/components/common/Table";
 
-const columns = [
-  { key: "_id", label: "User ID", sortable: true },
-  { key: "firstName", label: "First Name", sortable: true },
-  { key: "lastName", label: "Last Name", sortable: true },
-  { key: "email", label: "Email Address", sortable: true },
-  { key: "phoneNumber", label: "Phone Number", sortable: true },
-  { key: "dateOfBirth", label: "Date Of Birth", sortable: true, isDate: true },
+const columns = 
+  [
+  { key: "_id", label: "Ground ID", sortable: true },
+  { key: "name", label: "Ground Name", sortable: true },
+  { key: "address", label: "Location", sortable: true },
+  { key: "email", label: "Registered Email", sortable: true },
+  { key: "mobile", label: "Contact Number", sortable: true },
+  {
+    key: "status",
+    label: "Current Status",
+    sortable: true,
+    isMultiPurpose: true,
+    multiPurposeProps: { type: "label" }
+  },
+  { key: "pricePerHour", label: "Hourly Price (₹)", sortable: true },
   {
     key: "createdAt",
-    label: "Registration Date",
+    label: "Date of Registration",
     sortable: true,
-    isDateTime: true,
+    isDateTime: true
   },
   {
     key: "updatedAt",
-    label: "Last Updated",
+    label: "Last Modified",
     sortable: true,
-    isDateTime: true,
-  },
-  {
-    key: "status",
-    sortable: true,
-    label: "Active Status",
-    isMultiPurpose: true,
-    multiPurposeProps: { type: "label" },
-  },
+    isDateTime: true
+  }
 ];
 
+
 const filterOptions = [
-  { label: "Name", value: "firstName" },
+  { label: "Emp. ID", value: "_id" },
+  { label: "Name", value: "username" },
   { label: "Email", value: "email" },
-  { label: "Mobile", value: "phoneNumber" },
+  { label: "Phone Number", value: "mobile" },
+  {label: "Address", value: "address"},
 ];
 
 const Page: React.FC = () => {
-  const formType = "User";
+  const formType = "Ground Listing";
   const { data, loading, error } = useFetch(endpoints[formType]?.url);
   const updatedData = data?.data?.result;
   const paginationData = data?.data?.pagination;

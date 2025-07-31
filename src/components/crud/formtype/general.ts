@@ -22,7 +22,7 @@ export const bannerFormFields: FormField[] = [
     label: "Is Active?",
   },
   {
-    rows: 1,
+    rows: 7,
     type: "textarea",
     name: "description",
     label: "Description",
@@ -190,5 +190,47 @@ export const queryField: FormField[] = [
     type: "textarea",
     label: "Add a Response",
     placeholder: "Provide a short response about the ",
+  },
+];
+export const testimonialField: FormField[] = [
+  {
+    name: "name",
+    label: "Testimonial",
+    type: "text",
+    required: true,
+    placeholder: "Enter Testimonial",
+  },
+  {
+    type: "textarea",
+    rows: 1,
+    name: "feedback",
+    label: "Feedback",
+    required: true,
+    placeholder: "Enter Feedback",
+  },
+  {
+    type: "number",
+    name: "rating",
+    label: "Rating",
+    required: true,
+    placeholder: "Provide Rating",
+    min: 1,
+    max: 5,
+  },
+  {
+    type: "choose",
+    name: "isActive",
+    label: "Is Active?",
+  },
+  {
+    type: "choose",
+    name: "isVerified",
+    label: "Is Verified?",
+  },
+  {
+    type: "file",
+    name: "image",
+    label: "Image",
+    placeholder: "Enter Image",
   },
 ];

@@ -7,6 +7,7 @@ import VideoForm from "../crud/forms/VideoForm";
 import BannerForm from "../crud/forms/BannerForm";
 import CountryForm from "../crud/forms/CountryForm";
 import PaymentForm from "../crud/forms/PaymentForm";
+import TestimonialForm from "../crud/forms/TestimonialForm";
 
 interface FormRendererProps {
   data: any;
@@ -34,6 +35,8 @@ const FormRenderer: React.FC<FormRendererProps> = (props: any) => {
       return <PaymentForm {...props} />;
     case "Customer Support":
       return <QueryForm {...props} />;
+    case "Testimonials":
+      return <TestimonialForm {...props} />;
     default:
       return <NoFormFallback />;
   }

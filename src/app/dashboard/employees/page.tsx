@@ -9,11 +9,10 @@ import TableComponent from "@/components/common/Table";
 
 const columns = [
   { key: "_id", label: "User ID", sortable: true },
-  { key: "firstName", label: "First Name", sortable: true },
-  { key: "lastName", label: "Last Name", sortable: true },
+  { key: "username", label: "User Name", sortable: true },
   { key: "email", label: "Email Address", sortable: true },
-  { key: "phoneNumber", label: "Phone Number", sortable: true },
-  { key: "dateOfBirth", label: "Date Of Birth", sortable: true, isDate: true },
+  {key: "status", label: "Status", sortable :true, isMultiPurpose: true, multiPurposeProps: { type: "label" }} ,
+  
   {
     key: "createdAt",
     label: "Registration Date",
@@ -26,23 +25,15 @@ const columns = [
     sortable: true,
     isDateTime: true,
   },
-  {
-    key: "status",
-    sortable: true,
-    label: "Active Status",
-    isMultiPurpose: true,
-    multiPurposeProps: { type: "label" },
-  },
 ];
 
 const filterOptions = [
-  { label: "Name", value: "firstName" },
+  { label: " User Name", value: "username" },
   { label: "Email", value: "email" },
-  { label: "Mobile", value: "phoneNumber" },
 ];
 
 const Page: React.FC = () => {
-  const formType = "User";
+  const formType = "Employee";
   const { data, loading, error } = useFetch(endpoints[formType]?.url);
   const updatedData = data?.data?.result;
   const paginationData = data?.data?.pagination;

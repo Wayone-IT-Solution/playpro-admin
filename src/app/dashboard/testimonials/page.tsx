@@ -8,15 +8,27 @@ import Wrapper from "@/components/common/Wrapper";
 import TableComponent from "@/components/common/Table";
 
 const columns = [
-  { key: "_id", label: "User ID", sortable: true },
-  { key: "firstName", label: "First Name", sortable: true },
-  { key: "lastName", label: "Last Name", sortable: true },
-  { key: "email", label: "Email Address", sortable: true },
-  { key: "phoneNumber", label: "Phone Number", sortable: true },
-  { key: "dateOfBirth", label: "Date Of Birth", sortable: true, isDate: true },
+  { key: "_id", label: "Testimonial ID", sortable: true },
+  { key: "name", label: "Name", sortable: true },
+  { key: "feedback", label: "Feedback", sortable: false },
+  { key: "rating", label: "Rating", sortable: true },
+  {
+    key: "isVerified",
+    label: "Verified",
+    sortable: true,
+    isMultiPurpose: true,
+    multiPurposeProps: { type: "label" },
+  },
+  {
+    key: "isActive",
+    label: "Active",
+    sortable: true,
+    isMultiPurpose: true,
+    multiPurposeProps: { type: "label" },
+  },
   {
     key: "createdAt",
-    label: "Registration Date",
+    label: "Submitted At",
     sortable: true,
     isDateTime: true,
   },
@@ -26,33 +38,19 @@ const columns = [
     sortable: true,
     isDateTime: true,
   },
-  {
-    key: "status",
-    sortable: true,
-    label: "Active Status",
-    isMultiPurpose: true,
-    multiPurposeProps: { type: "label" },
-  },
 ];
 
 const filterOptions = [
-  { label: "Name", value: "firstName" },
-  { label: "Email", value: "email" },
-  { label: "Mobile", value: "phoneNumber" },
+  { label: "Emp. ID", value: "_id" },
+  { label: "Name", value: "username" },
 ];
 
 const Page: React.FC = () => {
-  const formType = "User";
+  const formType = "Testimonials";
   const { data, loading, error } = useFetch(endpoints[formType]?.url);
   const updatedData = data?.data?.result;
   const paginationData = data?.data?.pagination;
-  let operationsAllowed = endpoints[formType]?.operations;
-  operationsAllowed = {
-    ...operationsAllowed,
-    delete: false,
-    update: false,
-    create: false,
-  };
+  const operationsAllowed = endpoints[formType]?.operations;
 
   if (loading && !updatedData && !error) return <Loader />;
 

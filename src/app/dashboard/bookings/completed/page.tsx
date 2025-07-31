@@ -8,15 +8,38 @@ import Wrapper from "@/components/common/Wrapper";
 import TableComponent from "@/components/common/Table";
 
 const columns = [
-  { key: "_id", label: "User ID", sortable: true },
-  { key: "firstName", label: "First Name", sortable: true },
-  { key: "lastName", label: "Last Name", sortable: true },
-  { key: "email", label: "Email Address", sortable: true },
-  { key: "phoneNumber", label: "Phone Number", sortable: true },
-  { key: "dateOfBirth", label: "Date Of Birth", sortable: true, isDate: true },
+  { key: "_id", label: "Booking ID", sortable: true },
+  { key: "userFirstName", label: "User First Name", sortable: true },
+  { key: "userLastName", label: "User Last Name", sortable: true },
+  { key: "userEmail", label: "User Email", sortable: true },
+  { key: "userPhoneNumber", label: "User Phone Number", sortable: true },
+  { key: "groundName", label: "Ground Name", sortable: true },
+  { key: "groundAddress", label: "Ground Address", sortable: true },
   {
+    key: "groundLocation.coordinates",
+    label: "Ground Coordinates (Lng, Lat)",
+    sortable: false, // optional: sorting may not make sense here
+  },
+  { key: "numberOfGuests", label: "No. of Guests", sortable: true },
+  { key: "totalAmount", label: "Total Amount (₹)", sortable: true },
+  { key: "finalAmount", label: "Final Amount (₹)", sortable: true },
+  {
+    key: "status",
+    label: "Booking Status",
+    sortable: true,
+    isMultiPurpose: true,
+    multiPurposeProps: { type: "label" },
+  },
+  {
+    key: "paymentStatus",
+    label: "Payment Status",
+    sortable: true,
+    isMultiPurpose: true,
+    multiPurposeProps: { type: "label" },
+  },
+   {
     key: "createdAt",
-    label: "Registration Date",
+    label: "Submitted On",
     sortable: true,
     isDateTime: true,
   },
@@ -26,23 +49,18 @@ const columns = [
     sortable: true,
     isDateTime: true,
   },
-  {
-    key: "status",
-    sortable: true,
-    label: "Active Status",
-    isMultiPurpose: true,
-    multiPurposeProps: { type: "label" },
-  },
 ];
 
+
 const filterOptions = [
-  { label: "Name", value: "firstName" },
+  { label: "Emp. ID", value: "_id" },
+  { label: "Name", value: "username" },
   { label: "Email", value: "email" },
-  { label: "Mobile", value: "phoneNumber" },
+  { label: "Role", value: "role" },
 ];
 
 const Page: React.FC = () => {
-  const formType = "User";
+  const formType = "Completed Bookings";
   const { data, loading, error } = useFetch(endpoints[formType]?.url);
   const updatedData = data?.data?.result;
   const paginationData = data?.data?.pagination;

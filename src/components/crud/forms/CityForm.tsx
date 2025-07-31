@@ -21,7 +21,7 @@ interface CityFormProps {
   setFilteredData?: any;
 }
 
-const disabled = ["countryId", "stateId"]
+const disabled = ["countryId", "stateId"];
 
 const CityForm: React.FC<CityFormProps> = (props: any) => {
   const data = props.data;
@@ -34,16 +34,26 @@ const CityForm: React.FC<CityFormProps> = (props: any) => {
   );
 
   const [formData, setFormData] = useState<any>(
-    data._id ? populateFormData(cityFormField, flattenOneLevelPreserveKeys(data)) : {}
+    data._id
+      ? populateFormData(cityFormField, flattenOneLevelPreserveKeys(data))
+      : {}
   );
 
   // Fetch country and state dropdown options (especially for edit mode)
   useEffect(() => {
     const fetchInitialOptions = async () => {
       try {
-        const countryUrl = "/api/statecity/country";
-        const countryRes: any = await Fetch(countryUrl, { limit: 300, page: 1 }, 5000, true, false);
-        const countryOptions = getSelectFormattedData(countryRes?.data?.result || []);
+        const countryUrl = "/api/location/country";
+        const countryRes: any = await Fetch(
+          countryUrl,
+          { limit: 300, page: 1 },
+          5000,
+          true,
+          false
+        );
+        const countryOptions = getSelectFormattedData(
+          countryRes?.data?.result || []
+        );
 
         let updatedFields = formField.map((obj: any) =>
           obj.name === "countryId" ? { ...obj, options: countryOptions } : obj
@@ -51,10 +61,18 @@ const CityForm: React.FC<CityFormProps> = (props: any) => {
 
         // Also load state list if editing and countryId exists
         if (data?._id && data.countryId) {
-          const stateUrl = "/api/statecity/state";
-          const stateRes: any = await Fetch(stateUrl, { limit: 1000, page: 1, countryId: data.countryId }, 5000, true, false);
+          const stateUrl = "/api/location/state";
+          const stateRes: any = await Fetch(
+            stateUrl,
+            { limit: 1000, page: 1, countryId: data.countryId },
+            5000,
+            true,
+            false
+          );
           const stateOptions = getSelectFormattedData(
-            [...(stateRes?.data?.result || [])].sort((a, b) => a.name.localeCompare(b.name))
+            [...(stateRes?.data?.result || [])].sort((a, b) =>
+              a.name.localeCompare(b.name)
+            )
           );
 
           updatedFields = updatedFields.map((obj: any) =>
@@ -78,12 +96,14 @@ const CityForm: React.FC<CityFormProps> = (props: any) => {
   useEffect(() => {
     const fetchStates = async () => {
       try {
-        const url = "/api/statecity/state";
+        const url = "/api/location/state";
         const params = { limit: 1000, page: 1, countryId: formData.countryId };
         const response: any = await Fetch(url, params, 5000, true, false);
         if (response.success) {
           const selectData = getSelectFormattedData(
-            [...response?.data?.result].sort((a, b) => a.name.localeCompare(b.name))
+            [...response?.data?.result].sort((a, b) =>
+              a.name.localeCompare(b.name)
+            )
           );
 
           const updatedFormField = formField.map((obj: any) =>
@@ -103,7 +123,9 @@ const CityForm: React.FC<CityFormProps> = (props: any) => {
 
   const makeApiCall = async (updatedData: any) => {
     try {
-      const url = `${endpoints[formType].url}${!data._id ? "" : "/" + data._id}`;
+      const url = `${endpoints[formType].url}${
+        !data._id ? "" : "/" + data._id
+      }`;
       setSubmitting(true);
 
       const response: any = data._id

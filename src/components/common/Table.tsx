@@ -242,9 +242,7 @@ const TableComponent = <T extends { [key: string]: any }>({
         )}
       </Modal>
 
-      {type === "Agent" && user?.role === "admin" && (
-        <TicketStatusSummary />
-      )}
+      {type === "Agent" && user?.role === "admin" && <TicketStatusSummary />}
 
       {type === "Job Application" && user?.role === "admin" && (
         <div className="mb-3">

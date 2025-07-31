@@ -42,7 +42,7 @@ const filterOptions = [
 ];
 
 const Page: React.FC = () => {
-  const formType = "User";
+  const formType = "Property Owner";
   const { data, loading, error } = useFetch(endpoints[formType]?.url);
   const updatedData = data?.data?.result;
   const paginationData = data?.data?.pagination;
