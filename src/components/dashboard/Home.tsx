@@ -12,9 +12,12 @@ import { formatCompactNumber, formatIndianCurrency } from "@/hooks/general";
 const LineGraph = dynamic(() => import("@/components/chart/Linegraph"), {
   ssr: false, // 🚫 Disable Server Side Rendering for this component
 });
-const BarChartWithNegativePositiveXAxis = dynamic(() => import("@/components/chart/BarChartWithNegativePositiveXAxis"), {
-  ssr: false, // 🚫 Disable Server Side Rendering for this component
-});
+const BarChartWithNegativePositiveXAxis = dynamic(
+  () => import("@/components/chart/BarChartWithNegativePositiveXAxis"),
+  {
+    ssr: false, // 🚫 Disable Server Side Rendering for this component
+  }
+);
 
 import isToday from "dayjs/plugin/isToday";
 dayjs.extend(isToday);
@@ -60,7 +63,7 @@ const Home: FC = () => {
       };
       try {
         const response: any = await Fetch(
-          "/api/dashboard",
+          "/api/revenue/stats",
           params,
           5000,
           true,
@@ -78,24 +81,21 @@ const Home: FC = () => {
     fetchData({});
   }, [fetchData]);
 
-  const fetchYearlyData = useCallback(
-    async () => {
-      const params = { year: selectedYear };
-      try {
-        const response: any = await Fetch(
-          "/api/dashboard/revenue-stats",
-          params,
-          5000,
-          true,
-          false
-        );
-        if (response?.success) setYearlyData(response?.data);
-      } catch (error) {
-        console.log("fetchSale error:", error);
-      }
-    },
-    [selectedYear]
-  );
+  const fetchYearlyData = useCallback(async () => {
+    const params = { year: selectedYear };
+    try {
+      const response: any = await Fetch(
+        "/api/revenue",
+        params,
+        5000,
+        true,
+        false
+      );
+      if (response?.success) setYearlyData(response?.data);
+    } catch (error) {
+      console.log("fetchSale error:", error);
+    }
+  }, [selectedYear]);
 
   useEffect(() => {
     fetchYearlyData();
@@ -136,7 +136,8 @@ const Home: FC = () => {
                 {renderIcon(data["revenue"]?.percentageChange)}
               </p>
               <h3 className="text-[10px] font-semibold text-iconBlack">
-                from last period ({formatIndianCurrency(data["revenue"]?.totalPrevious)})
+                from last period (
+                {formatIndianCurrency(data["revenue"]?.totalPrevious)})
               </h3>
               {data && data?.["revenue"] && (
                 <LineGraph
@@ -196,15 +197,15 @@ const Home: FC = () => {
           <div className="p-2 flex gap-2 bg-whiteBg rounded-xl">
             <div className="w-[55%]">
               <p className="text-sm inline-flex items-center text-iconBlack font-bold">
-                {data && data["pendingTransactions"]?.percentageChange}%{" "}
-                {renderIcon(data["pendingTransactions"]?.percentageChange)}
+                {data && data["activeGroundOwners"]?.percentageChange}%{" "}
+                {renderIcon(data["activeGroundOwners"]?.percentageChange)}
               </p>
               <h3 className="text-[10px] font-semibold text-iconBlack">
-                from last period ({data["pendingTransactions"]?.totalPrevious})
+                from last period ({data["activeGroundOwners"]?.totalPrevious})
               </h3>
-              {data && data?.["pendingTransactions"] && (
+              {data && data?.["activeGroundOwners"] && (
                 <LineGraph
-                  data={data["pendingTransactions"]?.chartData}
+                  data={data["activeGroundOwners"]?.chartData}
                   borderColor="rgba(255, 0, 0, 1)"
                 />
               )}
@@ -217,10 +218,12 @@ const Home: FC = () => {
               </div>
               <div>
                 <p className="text-base font-bold text-iconBlack">
-                  {formatCompactNumber(data["pendingTransactions"]?.totalCurrent)}
+                  {formatCompactNumber(
+                    data["activeGroundOwners"]?.totalCurrent
+                  )}
                 </p>
                 <h3 className="text-[10px] text-gray-500 font-semibold">
-                  Pending Applications
+                  Ground Owner Registered
                 </h3>
               </div>
             </div>
@@ -228,15 +231,15 @@ const Home: FC = () => {
           <div className="p-2 flex gap-2 bg-whiteBg rounded-xl">
             <div className="w-[55%]">
               <p className="text-sm inline-flex items-center text-iconBlack font-bold">
-                {data && data["totalBillAdded"]?.percentageChange}%
-                {renderIcon(data["totalBillAdded"]?.percentageChange)}
+                {data && data["activeGrounds"]?.percentageChange}%
+                {renderIcon(data["activeGrounds"]?.percentageChange)}
               </p>
               <h3 className="text-[10px] font-semibold text-iconBlack">
-                from last period ({data["totalBillAdded"]?.totalPrevious})
+                from last period ({data["activeGrounds"]?.totalPrevious})
               </h3>
-              {data && data?.["totalBillAdded"] && (
+              {data && data?.["activeGrounds"] && (
                 <LineGraph
-                  data={data["totalBillAdded"]?.chartData}
+                  data={data["activeGrounds"]?.chartData}
                   borderColor="rgba(128, 128, 128, 1)"
                 />
               )}
@@ -249,10 +252,10 @@ const Home: FC = () => {
               </div>
               <div>
                 <p className="text-base font-bold text-iconBlack">
-                  {formatCompactNumber(data["totalBillAdded"]?.totalCurrent)}
+                  {formatCompactNumber(data["activeGrounds"]?.totalCurrent)}
                 </p>
                 <h3 className="text-[10px] text-gray-500 font-semibold">
-                  Total Bill Added
+                  Total Active Grounds
                 </h3>
               </div>
             </div>
@@ -287,21 +290,21 @@ const Home: FC = () => {
                     Current Revenue
                     <br />
                     <span className="text-base font-extrabold text-iconBlack">
-                      {formatIndianCurrency(yearData?.totals?.current?.transactions)}
+                      {formatIndianCurrency(yearData?.totalCurrent)}
                     </span>
                   </div>
                   <div className="text-center text-xs text-iconBlack font-semibold">
                     Previous Revenue
                     <br />
                     <span className="text-base font-extrabold text-iconBlack">
-                      {formatIndianCurrency(yearData?.totals?.previous?.transactions)}
+                      {formatIndianCurrency(yearData?.totalPrevious)}
                     </span>
                   </div>
                   <div className="text-center text-xs text-iconBlack font-semibold">
                     Change (%)
                     <br />
                     <span className="text-base font-extrabold text-iconBlack">
-                      {yearData?.percentage?.transactions}%
+                      {yearData?.percentageChange}%
                     </span>
                   </div>
                 </div>

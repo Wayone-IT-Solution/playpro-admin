@@ -11,6 +11,7 @@ import Password from "../input/Password";
 import TextArea from "../input/TextArea";
 import { FormField } from "@/hooks/types";
 import ToggleButton from "../input/Toggle";
+import RichTextEditor from "./RichTextEditor";
 import DynamicStringInput from "./DynamicStringInput";
 import NumericStringInput from "../input/NumericString";
 import SingleImageUploader from "../input/ImageUploader";
@@ -65,7 +66,6 @@ const DynamicForm: React.FC<DynamicFormProps> = ({
   const validateForm = () => {
     let valid = true;
     const newErrors: { [key: string]: string | null } = {};
-
     if (!fields) return;
 
     fields.forEach((field) => {
@@ -200,6 +200,13 @@ const DynamicForm: React.FC<DynamicFormProps> = ({
                 text={field.label}
                 type="button"
                 classes="bg-red-500 w-1/5 text-white rounded-xl hover:bg-red-700"
+              />
+            )}
+
+            {field?.type === "richTextEditor" && (
+              <RichTextEditor
+                data={formData[field?.name] || ""}
+                setData={setFormData}
               />
             )}
 

@@ -8,9 +8,9 @@ interface Option {
 
 interface SelectProps {
   field: {
-    value?: any;
     name?: string;
     label?: string;
+    value?: string;
     required?: boolean;
     options?: Option[];
     placeholder?: string;
@@ -40,8 +40,9 @@ const Select: FC<SelectProps> = ({ field, handleInputChange, className }) => {
         multiple={field.isMultiple}
         onChange={handleInputChange}
         value={field.options && field.options.length > 0 ? field?.value : ""}
-        className={`border border-gray-300 rounded-lg p-2.5 w-full text-black placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent ${className} ${field?.isMultiple && "h-48"
-          }`}
+        className={`border border-gray-300 rounded-lg p-2.5 w-full text-black placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent ${className} ${
+          field?.isMultiple && "h-36"
+        }`}
       >
         {field.placeholder && field.options && field.options.length > 0 && (
           <option value="">{field.placeholder}</option>

@@ -234,3 +234,150 @@ export const testimonialField: FormField[] = [
     placeholder: "Enter Image",
   },
 ];
+
+export const blogField: FormField[] = [
+  {
+    type: "text",
+    name: "title",
+    label: "Title",
+    required: true,
+    placeholder: "Enter Title",
+  },
+  {
+    options: [],
+    required: true,
+    type: "select",
+    name: "categoryId",
+    label: "Select category",
+    placeholder: "Select Category",
+  },
+  {
+    type: "choose",
+    name: "isActive",
+    label: "Active",
+  },
+  {
+    rows: 7,
+    type: "textarea",
+    name: "short_description",
+    label: "Short Description",
+    placeholder: "Enter short description",
+    required: true,
+  },
+  {
+    type: "file",
+    required: true,
+    name: "imageUrl",
+    label: "Upload Blog Cover Image",
+  },
+  {
+    rows: 1,
+    required: true,
+    widthFull: true,
+    name: "description",
+    label: "Description",
+    type: "richTextEditor",
+  },
+];
+export const categoryField: FormField[] = [
+  {
+    name: "name",
+    label: "Name",
+    type: "text",
+    required: true,
+    maxLength: 50,
+    minLength: 2,
+    placeholder: "Enter Name",
+  },
+  {
+    name: "type",
+    label: "Type",
+    type: "text",
+    required: true,
+    placeholder: "Enter any type",
+  },
+  {
+    type: "choose",
+    name: "isActive",
+    label: "Active",
+  },
+  {
+    rows: 1,
+    widthFull: true,
+    name: "description",
+    label: "Description",
+    type: "textarea",
+    maxLength: 200,
+    placeholder: "Enter Description",
+  },
+];
+
+export const groundField: FormField[] = [
+  {
+    options: [],
+    name: "userId",
+    label: "Owner",
+    type: "select",
+    required: true,
+    placeholder: "Select Property Owner",
+  },
+  {
+    name: "name",
+    label: "Ground Name",
+    type: "text",
+    required: true,
+    placeholder: "Enter Ground Name",
+  },
+  {
+    name: "status",
+    label: "Status",
+    type: "select",
+    required: true,
+    options: [
+      { label: "Active", value: "active" },
+      { label: "Inactive", value: "inactive" },
+    ],
+  },
+  {
+    name: "address",
+    label: "Address",
+    type: "text",
+    required: true,
+    placeholder: "Enter Address",
+  },
+
+  {
+    name: "pricePerHour",
+    label: "Price per Hour (₹)",
+    type: "number",
+    required: true,
+    placeholder: "Enter price",
+  },
+
+  {
+    name: "description",
+    label: "Description",
+    type: "textarea",
+    required: false,
+    placeholder: "Optional description",
+  },
+  {
+    name: "images",
+    label: "Images",
+    type: "file",
+    required: false,
+    multiple: true,
+  },
+  {
+    name: "facilities",
+    label: "Facilities",
+    type: "select",
+    required: false,
+    options: [
+      { label: "Parking", value: "parking" },
+      { label: "Washroom", value: "washroom" },
+      { label: "Lights", value: "lights" },
+      { label: "Seating", value: "seating" },
+    ],
+  },
+];

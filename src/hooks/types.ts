@@ -112,6 +112,7 @@ export interface FormField {
   name: string;
   label: string;
   type:
+  "boolean"
   | "text"
   | "label"
   | "br"
@@ -149,6 +150,7 @@ export interface FormField {
   currentDate?: any;
   maxSizeMB?: number;
   maxLength?: number;
+  minLength?:number;
   multiple?: boolean;
   isVideo?: boolean;
   required?: boolean;

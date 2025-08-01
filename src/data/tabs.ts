@@ -10,8 +10,8 @@ import {
 import {
   RiKey2Line,
   RiAdminFill,
-  RiVideoAddFill,
-  RiFileUploadFill,
+// RiVideoAddFill,
+  // RiFileUploadFill,
   RiSecurePaymentFill,
 } from "react-icons/ri";
 import { FiBell } from "react-icons/fi";

@@ -108,14 +108,14 @@ export const populateFormFields = (
           : field.isDisabled;
       return product.hasOwnProperty(field.name)
         ? {
-          ...field,
-          value: product[field.name],
-          isDisabled,
-        }
+            ...field,
+            value: product[field.name],
+            isDisabled,
+          }
         : {
-          ...field,
-          isDisabled,
-        };
+            ...field,
+            isDisabled,
+          };
     });
 };
 
@@ -130,7 +130,7 @@ export const flattenOneLevelPreserveKeys = (obj: Record<string, any>) => {
     }
   }
   return result;
-}
+};
 
 export const populateFormData = (fields: any, product: any) => {
   const object = {};
@@ -161,7 +161,7 @@ export const updateFormData = (
 export const getSelectFormattedData = (data: any) => {
   const response = data.map((option: any) => ({
     label: option?._id,
-    value: option?.name || option?.type,
+    value: option?.name || option?.firstName + option?.lastName || option?.type,
     email: option?.email,
   }));
   return response;
@@ -262,10 +262,10 @@ export const formatIndianCurrency = (amount: number) => {
 export const formatCurrency = (value: number | undefined) =>
   value && !isNaN(value)
     ? new Intl.NumberFormat("en-IN", {
-      style: "currency",
-      currency: "INR",
-      minimumFractionDigits: 2,
-    }).format(value)
+        style: "currency",
+        currency: "INR",
+        minimumFractionDigits: 2,
+      }).format(value)
     : "₹0.00";
 
 export const convertTo24Hour = (time: string): string => {
