@@ -353,8 +353,22 @@ export const groundField: FormField[] = [
     required: true,
     placeholder: "Enter price",
   },
-
   {
+    name: "latitude",
+    label: "Latitude",
+    type: "text",
+    required: true,
+    placeholder: "Enter latitude",
+  },
+  {
+    name: "longitude",
+    label: "Longitude",
+    type: "text",
+    required: true,
+    placeholder: "Enter longitude",
+  },
+  {
+    rows: 1,
     name: "description",
     label: "Description",
     type: "textarea",
@@ -362,16 +376,10 @@ export const groundField: FormField[] = [
     placeholder: "Optional description",
   },
   {
-    name: "images",
-    label: "Images",
-    type: "file",
-    required: false,
-    multiple: true,
-  },
-  {
     name: "facilities",
     label: "Facilities",
     type: "select",
+    isMultiple: true,
     required: false,
     options: [
       { label: "Parking", value: "parking" },
@@ -379,5 +387,13 @@ export const groundField: FormField[] = [
       { label: "Lights", value: "lights" },
       { label: "Seating", value: "seating" },
     ],
+  },
+  {
+    name: "images",
+    label: "Images",
+    type: "file",
+    widthFull: true,
+    required: false,
+    multiple: true,
   },
 ];

@@ -13,11 +13,10 @@ const columns = [
   { key: "groundName", label: "Ground Name", sortable: true },
   { key: "userName", label: "User Name", sortable: true },
   { key: "userEmail", label: "User Email", sortable: true },
-  {
-    key: "paymentDetails",
-    label: "Payment Details",
+{
+    key: "paymentDetails.paymentId",
+    label: "Transaction ID",
     sortable: true,
-    isDate: true,
   },
   {
     key: "createdAt",

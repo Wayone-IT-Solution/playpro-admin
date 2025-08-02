@@ -62,7 +62,7 @@ const GroundForm: React.FC<GroundFormProps> = (props: any) => {
 
   const makeApiCall = async (updatedData: any) => {
     try {
-      const url = `${endpoints[formType].url}${
+      const url = `${endpoints[formType].url}/admin${
         !data._id ? "" : "/" + data._id
       }`;
 
