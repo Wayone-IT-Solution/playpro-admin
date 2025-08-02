@@ -190,7 +190,7 @@ const ResetPassword: React.FC = () => {
           </div>
           <Link href="">
             <Image
-              src={"/assets/logo/logo.jpg"}
+              src={"/assets/logo/logo.jpeg"}
               alt="logo"
               width={85}
               height={75}

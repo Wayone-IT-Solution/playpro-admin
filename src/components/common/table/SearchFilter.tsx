@@ -69,7 +69,7 @@ const SearchFilter: React.FC<SearchFilterProps> = ({
         />
         <button
           type="button"
-          className="px-3 ml-2 text-xs py-2 rounded-lg hover:scale-110 transition duration-200 bg-secondary text-iconBlack"
+          className="px-3 ml-2 text-xs py-2 rounded-lg hover:scale-110 transition duration-200 bg-secondary text-white"
           onClick={debounce(handleSearchClick, 1000)}
         >
           Search

@@ -39,7 +39,7 @@ const Login: React.FC = () => {
         <div className="bg-[url('/assets/bg/bg.jpg')] bg-cover min-h-screen flex justify-center items-center">
           <div className="w-full bg-white backdrop-blur-2xl bg-opacity-30 p-6 mx-4 rounded-2xl md:max-w-sm md:mx-auto">
             <Image
-              src="/assets/logo/logo.jpg"
+              src="/assets/logo/logo.jpeg"
               alt="Icon"
               width={200}
               height={100}

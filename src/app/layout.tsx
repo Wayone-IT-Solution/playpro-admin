@@ -8,11 +8,10 @@ import { AuthProvider } from "@/context/AuthContext";
 import ToastProvider from "@/components/common/ToastProvider";
 
 export const metadata: Metadata = {
-  title: "Billleyo - Scan, Save & Earn with Every Bill",
+  title: "PlayPro - Book Grounds, Join Matches, and Play Football",
   description:
-    "Billleyo rewards you for uploading your bills and receipts. Simply scan your bill, earn points, and redeem exciting rewards. Start saving and earning effortlessly with Billeyo today!",
+    "PlayPro is your ultimate football companion. Discover and book football grounds, join local matches, and connect with players near you. Whether you're a casual kicker or a pro striker, PlayPro gets you on the field faster.",
 };
-
 
 const lato = Lato({
   subsets: ["latin"], // Specify the subset

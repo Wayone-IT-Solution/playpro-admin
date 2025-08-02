@@ -33,7 +33,7 @@ const GenerateExcelButton = ({ data }: { data: any }) => {
   return (
     <button
       onClick={handleGenerateExcel}
-      className={`flex items-center gap-2 px-4 py-2 text-xs font-medium text-iconBlack ${
+      className={`flex items-center gap-2 px-4 py-2 text-xs font-medium text-white ${
         isDarkMode ? "bg-infobg" : "bg-primary"
       } rounded-lg transition hover:opacity-90`}
     >

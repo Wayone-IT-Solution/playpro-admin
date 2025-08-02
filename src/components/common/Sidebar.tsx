@@ -29,8 +29,10 @@ const Sidebar: React.FC = () => {
             width={200}
             unoptimized
             height={100}
-            src={isDarkMode ? "/assets/logo/logo.jpg" : "/assets/logo/logo.jpg"}
-            className={`mx-auto object-contain w-12 py-2`}
+            src={
+              isDarkMode ? "/assets/logo/logo.jpeg" : "/assets/logo/logo.jpeg"
+            }
+            className={`mx-auto object-contain w-16`}
           />
         </div>
         <nav className="flex flex-col backdrop-blur-sm gap-1 pt-3 pb-40">
@@ -62,7 +64,7 @@ const Sidebar: React.FC = () => {
                     className={`py-2 pl-2 mr-auto w-[90%] mx-auto rounded-lg text-sm pr-2 cursor-pointer transition flex justify-between gap-2 items-center border-primary hover:bg-infobg hover:text-iconBlack ${
                       pathname === tab?.href
                         ? "text-iconBlack bg-infobg font-semibold"
-                        : "text-iconBlack"
+                        : "text-white"
                     }`}
                   >
                     <span className="flex gap-2 text-[11px] items-center">
@@ -92,7 +94,7 @@ const Sidebar: React.FC = () => {
                             className={`w-full text-xs text-iconBlack pl-10 gap-2 py-2 flex items-center hover:bg-infobg hover:text-iconBlack ${
                               pathname === tab?.href
                                 ? "text-iconBlack bg-infobg font-semibold"
-                                : "text-iconBlack"
+                                : "text-white"
                             }`}
                           >
                             <Icon size={14} /> {tabChild?.label}

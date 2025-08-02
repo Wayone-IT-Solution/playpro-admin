@@ -6,7 +6,7 @@ import {
 import { useState } from "react";
 import Modal from "./common/Modal";
 import LogoutModal from "./crud/LogoutModal";
-import { FaUserShield } from "react-icons/fa";
+// import { FaUserShield } from "react-icons/fa";
 import { useAuth } from "@/context/AuthContext";
 import { MdOutlineArrowDropDown } from "react-icons/md";
 
@@ -54,9 +54,6 @@ const Profile = () => {
               <p className="text-sm font-semibold">{user?.username}</p>
               <p className="text-xs flex items-center gap-1">
                 <IoMailOutline className="text-sm" /> {user?.email}
-              </p>
-              <p className="text-[11px] flex items-center gap-1">
-                <FaUserShield className="text-xs" /> {user?.role?.toUpperCase()}
               </p>
             </div>
           </div>

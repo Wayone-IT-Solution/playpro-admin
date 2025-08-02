@@ -51,7 +51,7 @@ const Header: React.FC<HeaderProps> = ({
         <button
           type="button"
           onClick={debounce(handleReset, 1000)}
-          className={`flex items-center gap-2 px-4 py-2 text-xs text-iconBlack ${
+          className={`flex items-center gap-2 px-4 py-2 text-xs text-white ${
             isDarkMode ? "bg-infobg" : "bg-primary"
           } rounded-lg transition hover:opacity-90`}
         >
@@ -64,7 +64,7 @@ const Header: React.FC<HeaderProps> = ({
           <button
             type="button"
             onClick={handleAdd}
-            className={`flex items-center gap-2 px-4 py-2 text-xs text-iconBlack ${
+            className={`flex items-center gap-2 px-4 py-2 text-xs text-white ${
               isDarkMode ? "bg-infobg" : "bg-primary"
             } rounded-lg transition hover:opacity-90`}
           >

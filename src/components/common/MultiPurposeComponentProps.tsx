@@ -123,7 +123,7 @@ const colorMapping: Record<string, string> = {
 
   // Access Types
   Free: "bg-green-400",
-  Paid: "bg-yellow-600",
+  Paid: "bg-green-500",
   Premium: "bg-purple-600",
 
   // Fallback
@@ -150,8 +150,9 @@ const MultiPurposeComponent: React.FC<MultiPurposeComponentProps> = ({
     case "label":
       return (
         <span
-          className={`${commonStyles} ${colorMapping[capitalize(text)] || colorMapping["Default"]
-            }`}
+          className={`${commonStyles} ${
+            colorMapping[capitalize(text)] || colorMapping["Default"]
+          }`}
         >
           {text.split("_").join(" ")}
         </span>
@@ -160,8 +161,9 @@ const MultiPurposeComponent: React.FC<MultiPurposeComponentProps> = ({
     case "button":
       return (
         <button
-          className={`${commonStyles} ${colorMapping[text] || colorMapping["Default"]
-            } cursor-pointer hover:opacity-90`}
+          className={`${commonStyles} ${
+            colorMapping[text] || colorMapping["Default"]
+          } cursor-pointer hover:opacity-90`}
           onClick={() => onClick({ _id: _id })}
         >
           {text}
@@ -173,8 +175,9 @@ const MultiPurposeComponent: React.FC<MultiPurposeComponentProps> = ({
         <div className="relative w-full">
           <select
             value={selectValue}
-            className={`${commonStyles} min-w-full appearance-none outline-none relative pr-8 ${colorMapping[capitalize(text)] || colorMapping["Default"]
-              } text-black`}
+            className={`${commonStyles} min-w-full appearance-none outline-none relative pr-8 ${
+              colorMapping[capitalize(text)] || colorMapping["Default"]
+            } text-black`}
             onChange={(e) =>
               onSelectChange &&
               onSelectChange({ _id: _id, status: e.target.value })

@@ -25,6 +25,22 @@ export const endpoints: any = {
     url: "api/booking/confirmed",
     operations: operations,
   },
+  Transaction: {
+    url: "api/booking/transactions",
+    operations: operations,
+  },
+   "Paid Transaction": {
+    url: "api/booking/transactions/paid",
+    operations: operations,
+  },
+   "Pending Transaction": {
+    url: "api/booking/transactions/pending",
+    operations: operations,
+  },
+   "Failed Transaction": {
+    url: "api/booking/transactions/failed",
+    operations: operations,
+  },
   "Ground Listing": { url: "api/ground", operations: operations },
   Reviews: { url: "api/review", operations: operations },
   Slots: { url: "api/slot", operations: operations },
