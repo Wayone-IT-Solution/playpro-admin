@@ -13,32 +13,35 @@ export const endpoints: any = {
   Employee: { url: "api/admin", operations: operations },
   Bookings: { url: "api/booking", operations: operations },
   "Completed Bookings": {
-    url: "api/booking/completed",
+    url: "api/booking?status=completed",
     operations: operations,
   },
-  "Pending Bookings": { url: "api/booking/pending", operations: operations },
+  "Pending Bookings": {
+    url: "api/booking?status=pending",
+    operations: operations,
+  },
   "Rescheduled Bookings": {
-    url: "api/booking/rescheduled",
+    url: "api/booking?status=rescheduled",
     operations: operations,
   },
   "Confirmed Bookings": {
-    url: "api/booking/confirmed",
+    url: "api/booking?status=confirmed",
     operations: operations,
   },
   Transaction: {
     url: "api/booking/transactions",
     operations: operations,
   },
-   "Paid Transaction": {
-    url: "api/booking/transactions/paid",
+  "Paid Transaction": {
+    url: "api/booking/transactions?paymentStatus=paid",
     operations: operations,
   },
-   "Pending Transaction": {
-    url: "api/booking/transactions/pending",
+  "Pending Transaction": {
+    url: "api/booking/transactions?paymentStatus=pending",
     operations: operations,
   },
-   "Failed Transaction": {
-    url: "api/booking/transactions/failed",
+  "Failed Transaction": {
+    url: "api/booking/transactions?paymentStatus=failed",
     operations: operations,
   },
   "Ground Listing": { url: "api/ground", operations: operations },
