@@ -11,6 +11,7 @@ export const endpoints: any = {
   Blog: { url: "api/blog", operations: operations },
   Banner: { url: "api/banner", operations: operations },
   Employee: { url: "api/admin", operations: operations },
+  Contact: { url: "api/contact", operations: { ...operations, create: false } },
   Bookings: { url: "api/booking", operations: operations },
   "Completed Bookings": {
     url: "api/booking?status=completed",

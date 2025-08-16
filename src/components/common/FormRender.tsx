@@ -11,6 +11,7 @@ import TestimonialForm from "../crud/forms/TestimonialForm";
 import BlogForm from "../crud/forms/BlogForm";
 import CategoryForm from "../crud/forms/CategoryForm";
 import GroundForm from "../crud/forms/GroundForm";
+import ContactUsForm from "../crud/forms/ContactUs";
 
 interface FormRendererProps {
   data: any;
@@ -42,12 +43,12 @@ const FormRenderer: React.FC<FormRendererProps> = (props: any) => {
       return <TestimonialForm {...props} />;
     case "Blog":
       return <BlogForm {...props} />;
-      case "Blog Category":
-        return <CategoryForm{...props}/>;
-        
-      case "Ground Listing":
-        return <GroundForm {...props}/>;
-        
+    case "Blog Category":
+      return <CategoryForm {...props} />;
+    case "Ground Listing":
+      return <GroundForm {...props} />;
+    case "Contact":
+      return <ContactUsForm {...props} />;
     default:
       return <NoFormFallback />;
   }
