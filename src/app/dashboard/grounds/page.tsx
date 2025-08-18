@@ -8,10 +8,10 @@ import Wrapper from "@/components/common/Wrapper";
 import TableComponent from "@/components/common/Table";
 
 const columns = [
-  { key: "_id", label: "Ground ID", sortable: true },
-  { key: "name", label: "Ground Name", sortable: true },
+  { key: "name", label: "Ground Name", sortable: true, image: true, imageWithKey: "images[0]" },
   { key: "address", label: "Location", sortable: true },
-  { key: "email", label: "Registered Email", sortable: true },
+  { key: "firstName", label: "Owner Name", sortable: true },
+  { key: "email", label: "Owner Email", sortable: true },
   { key: "mobile", label: "Contact Number", sortable: true },
   {
     key: "status",
@@ -20,7 +20,7 @@ const columns = [
     isMultiPurpose: true,
     multiPurposeProps: { type: "label" },
   },
-  { key: "pricePerHour", label: "Hourly Price (₹)", sortable: true },
+  { key: "pricePerHour", label: "Hourly Price ($)", sortable: true },
   {
     key: "createdAt",
     label: "Date of Registration",

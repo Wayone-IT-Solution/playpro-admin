@@ -4,6 +4,7 @@ import Image from "next/image";
 import { toast } from "react-toastify";
 import { useState, useRef } from "react";
 import { IoCloudUpload } from "react-icons/io5";
+import { Delete } from "@/hooks/apiUtils";
 
 interface ImageData {
   url: string;
@@ -11,6 +12,7 @@ interface ImageData {
 }
 
 interface MultipleImageUploadProps {
+  id: any;
   field: {
     value: any;
     name: string;
@@ -25,6 +27,7 @@ interface MultipleImageUploadProps {
 }
 
 const MultipleImageUpload: React.FC<MultipleImageUploadProps> = ({
+  id,
   field,
   setFormData,
   maxImages = 5,
@@ -33,10 +36,8 @@ const MultipleImageUpload: React.FC<MultipleImageUploadProps> = ({
   const fieldname = field.name;
   const fileInputRef = useRef<HTMLInputElement | null>(null);
 
-  console.log(field?.value);
-
   const initialImages: ImageData[] = Array.isArray(field?.value)
-    ? field.value.map((url: any) => ({ url: url?.url, file: null }))
+    ? field.value.map((url: any) => ({ url: url, file: null }))
     : [];
 
   const [selectedImages, setSelectedImages] = useState<ImageData[]>(initialImages);
@@ -46,7 +47,7 @@ const MultipleImageUpload: React.FC<MultipleImageUploadProps> = ({
     if (!files) return;
 
     const allowedTypes = ["image/jpeg", "image/png", "image/jpg"];
-    const maxSizeMB = 1;
+    const maxSizeMB = 5;
     const remainingSlots = maxImages - selectedImages.length;
 
     const validNewFiles: File[] = [];
@@ -81,13 +82,22 @@ const MultipleImageUpload: React.FC<MultipleImageUploadProps> = ({
     }));
   };
 
-  const handleRemoveImage = async (url: string) => {
-    const updated = selectedImages.filter((img) => img.url !== url);
-    setSelectedImages(updated);
-    setFormData((prev: any) => ({
-      ...prev,
-      [fieldname]: updated.map((img) => img.file || img.url),
-    }));
+  const handleRemoveImage = async (url: any) => {
+    try {
+      if (url.includes("http")) {
+        const s3Key = url.split(".com/")[1];
+        const data = { groundId: id, key: s3Key }
+        await Delete("/api/ground/image", data);
+      }
+      const updated = selectedImages.filter((img) => img.url !== url);
+      setSelectedImages(updated);
+      setFormData((prev: any) => ({
+        ...prev,
+        [fieldname]: updated.map((img) => img.file || img.url),
+      }));
+    } catch (error) {
+      console.log("Error: ", error)
+    }
   };
 
   return (
@@ -114,7 +124,7 @@ const MultipleImageUpload: React.FC<MultipleImageUploadProps> = ({
           <div className="flex flex-col justify-center items-center h-full text-gray-500">
             <h2 className="font-bold text-black">Files Types We Accept</h2>
             <p className="text-gray-600 text-xs py-2">
-              JPG, JPEG, PNG (Max file size: 1MB)
+              JPG, JPEG, PNG (Max file size: 5MB)
             </p>
             <IoCloudUpload size={50} className="text-gray-500" />
             <span>{uploadBoxMessage}</span>
@@ -133,6 +143,7 @@ const MultipleImageUpload: React.FC<MultipleImageUploadProps> = ({
               className="w-full h-full object-cover rounded-lg border border-primary"
             />
             <button
+              type="button"
               onClick={(e) => {
                 e.stopPropagation();
                 handleRemoveImage(image.url);

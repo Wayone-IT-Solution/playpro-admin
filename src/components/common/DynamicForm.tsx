@@ -114,9 +114,8 @@ const DynamicForm: React.FC<DynamicFormProps> = ({
         fields.map((field: FormField) => (
           <div
             key={field.name}
-            className={`flex flex-col ${field?.widthFull && "col-span-3"} ${
-              field?.type === "textarea" && "col-span-2"
-            } ${field?.type === "password" && "col-span-2"}`}
+            className={`flex flex-col ${field?.widthFull && "col-span-3"} ${field?.type === "textarea" && "col-span-2"
+              } ${field?.type === "password" && "col-span-2"}`}
           >
             {field.type === "br" && (
               <h2 className="text-base my-3 py-1 bg-primary text-white font-bold text-center">
@@ -249,6 +248,7 @@ const DynamicForm: React.FC<DynamicFormProps> = ({
 
             {field.type === "file" && field.multiple && !field?.isVideo && (
               <MultipleImageUpload
+                id={id}
                 setFormData={setFormData}
                 field={{ ...field, value: formData[field?.name] }}
               />
