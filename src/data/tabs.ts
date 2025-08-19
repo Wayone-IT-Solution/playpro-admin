@@ -3,27 +3,28 @@ import {
   MdCampaign,
   MdOutlineMap,
   MdLibraryBooks,
+  MdContactPhone,
   MdManageAccounts,
   MdOutlineWorkOutline,
   MdOutlineSupportAgent,
-  MdContactPhone, // 👈 Contact ke liye add kiya
 } from "react-icons/md";
 import {
   RiKey2Line,
   RiAdminFill,
-  RiSecurePaymentFill,
-  RiFileList2Line,
-  RiErrorWarningLine,
   RiTimeLine,
   RiCurrencyFill,
   RiBankCardLine,
+  RiFileList2Line,
   RiCalendar2Line,
   RiCheckDoubleLine,
-  RiCheckboxCircleLine,
+  RiErrorWarningLine,
   RiCalendarCheckLine,
+  RiSecurePaymentFill,
+  RiCheckboxCircleLine,
 } from "react-icons/ri";
 import { FaHome } from "react-icons/fa";
 import { BiCategory } from "react-icons/bi";
+import { GoTasklist } from "react-icons/go";
 import { GiEarthAsiaOceania } from "react-icons/gi";
 import { HiOutlineBuildingOffice2 } from "react-icons/hi2";
 
@@ -78,6 +79,15 @@ export const tabs = [
     href: "/dashboard/grounds",
     pageTitle: "Available Grounds",
     permission: "Manage Grounds",
+    tabs: [],
+  },
+  {
+    id: 104,
+    icon: GoTasklist,
+    label: "Ground Slots Management",
+    href: "/dashboard/tasks",
+    pageTitle: "Tasks",
+    permission: "tasks",
     tabs: [],
   },
   {
