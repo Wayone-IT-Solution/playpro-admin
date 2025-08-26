@@ -361,7 +361,7 @@ export const groundField: FormField[] = [
   },
   {
     name: "pricePerHour",
-    label: "Rental Price (₹/hour)",
+    label: "Rental Price (SAR/hour)",
     type: "number",
     required: true,
     placeholder: "Enter price per hour",

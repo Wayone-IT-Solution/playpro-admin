@@ -103,7 +103,7 @@ const Home: FC = () => {
 
   const renderIcon = (value: any) => {
     return value > 0 ? (
-      <FaArrowUp className="text-primary" />
+      <FaArrowUp className="text-green-500" />
     ) : (
       <FaArrowDown className="text-red-500" />
     );
@@ -129,134 +129,170 @@ const Home: FC = () => {
           />
         </div>
         <div className="grid grid-cols-2 gap-3 mt-3 md:grid-cols-4">
-          <div className="p-2 flex gap-2 bg-whiteBg rounded-xl">
-            <div className="w-[55%]">
-              <p className="text-sm inline-flex items-center text-iconBlack font-bold">
-                {data && data["revenue"]?.percentageChange}%{" "}
-                {renderIcon(data["revenue"]?.percentageChange)}
-              </p>
-              <h3 className="text-[10px] font-semibold text-iconBlack">
-                from last period (
-                {formatIndianCurrency(data["revenue"]?.totalPrevious)})
-              </h3>
-              {data && data?.["revenue"] && (
-                <LineGraph
-                  data={data["revenue"]?.chartData}
-                  borderColor="rgba(0, 123, 255, 1)"
-                />
-              )}
-            </div>
-            <div className="w-[45%] flex flex-col justify-end items-end text-right gap-3">
-              <div className="bg-blue-200 p-1.5 w-fit rounded-full">
-                <div className="bg-blue-500 w-fit p-1.5 rounded-full">
-                  <IoStatsChart className="text-white text-base" />
-                </div>
-              </div>
-              <div>
-                <p className="text-base font-bold text-iconBlack">
-                  {formatIndianCurrency(data["revenue"]?.totalCurrent)}
+          <div title="Total revenue generated from all active listings"
+            className="p-2 flex flex-col gap-2 cursor-pointer bg-whiteBg rounded-xl">
+            {/* Title */}
+            <h2 className="text-sm font-bold text-gray-700">Revenue Overview</h2>
+
+            <div className="flex gap-2">
+              {/* Left Side (Stats + Graph) */}
+              <div className="w-[55%]">
+                <p className="text-sm inline-flex items-center text-iconBlack font-bold">
+                  {data && data["revenue"]?.percentageChange}%{" "}
+                  {renderIcon(data["revenue"]?.percentageChange)}
                 </p>
-                <h3 className="text-[10px] text-gray-500 font-semibold">
-                  Redeem Overview
+                <h3 className="text-[10px] font-semibold text-iconBlack">
+                  from last period (
+                  {formatIndianCurrency(data["revenue"]?.totalPrevious)})
                 </h3>
+                {data && data?.["revenue"] && (
+                  <LineGraph
+                    data={data["revenue"]?.chartData}
+                    borderColor="rgba(0, 123, 255, 1)"
+                  />
+                )}
+              </div>
+
+              {/* Right Side (Icon + Total) */}
+              <div className="w-[45%] flex flex-col justify-end items-end text-right gap-3">
+                <div className="bg-blue-200 p-1.5 w-fit rounded-full">
+                  <div className="bg-blue-500 w-fit p-1.5 rounded-full">
+                    <IoStatsChart className="text-white text-base" />
+                  </div>
+                </div>
+                <div>
+                  <p className="text-base font-bold text-iconBlack">
+                    {formatIndianCurrency(data["revenue"]?.totalCurrent)}
+                  </p>
+                  <h3 className="text-[10px] text-gray-500 font-semibold">
+                    Total Redeemed
+                  </h3>
+                </div>
               </div>
             </div>
           </div>
-          <div className="p-2 flex gap-2 bg-whiteBg rounded-xl">
-            <div className="w-[55%]">
-              <p className="text-sm inline-flex items-center text-iconBlack font-bold">
-                {data && data["activeUsers"]?.percentageChange}%{" "}
-                {renderIcon(data["activeUsers"]?.percentageChange)}
-              </p>
-              <h3 className="text-[10px] font-semibold text-iconBlack">
-                from last period ({data["activeUsers"]?.totalPrevious})
-              </h3>
-              {data && data?.["activeUsers"] && (
-                <LineGraph
-                  data={data["activeUsers"]?.chartData}
-                  borderColor="rgba(255, 165, 0, 1)"
-                />
-              )}
-            </div>
-            <div className="w-[45%] flex flex-col justify-end items-end text-right gap-3">
-              <div className="bg-orange-200 p-1.5 w-fit rounded-full">
-                <div className="bg-orange-500 w-fit p-1.5 rounded-full">
-                  <IoStatsChart className="text-white text-base" />
-                </div>
-              </div>
-              <div>
-                <p className="text-base font-bold text-iconBlack">
-                  {formatCompactNumber(data["activeUsers"]?.totalCurrent)}
+
+          <div
+            title="Number of users currently active and engaging with the platform"
+            className="p-2 flex flex-col gap-2 cursor-pointer bg-whiteBg rounded-xl">
+            {/* Title */}
+            <h2 className="text-sm font-bold text-gray-700">Active Users Overview</h2>
+
+            <div className="flex gap-2">
+              {/* Left Side (Stats + Graph) */}
+              <div className="w-[55%]">
+                <p className="text-sm inline-flex items-center text-iconBlack font-bold">
+                  {data && data["activeUsers"]?.percentageChange}%{" "}
+                  {renderIcon(data["activeUsers"]?.percentageChange)}
                 </p>
-                <h3 className="text-[10px] text-gray-500 font-semibold">
-                  User Activity Overview
+                <h3 className="text-[10px] font-semibold text-iconBlack">
+                  from last period ({data["activeUsers"]?.totalPrevious})
                 </h3>
+                {data && data?.["activeUsers"] && (
+                  <LineGraph
+                    data={data["activeUsers"]?.chartData}
+                    borderColor="rgba(255, 165, 0, 1)"
+                  />
+                )}
+              </div>
+
+              {/* Right Side (Icon + Total) */}
+              <div className="w-[45%] flex flex-col justify-end items-end text-right gap-3">
+                <div className="bg-orange-200 p-1.5 w-fit rounded-full">
+                  <div className="bg-orange-500 w-fit p-1.5 rounded-full">
+                    <IoStatsChart className="text-white text-base" />
+                  </div>
+                </div>
+                <div>
+                  <p className="text-base font-bold text-iconBlack">
+                    {formatCompactNumber(data["activeUsers"]?.totalCurrent)}
+                  </p>
+                  <h3 className="text-[10px] text-gray-500 font-semibold">
+                    User Activity Overview
+                  </h3>
+                </div>
               </div>
             </div>
           </div>
-          <div className="p-2 flex gap-2 bg-whiteBg rounded-xl">
-            <div className="w-[55%]">
-              <p className="text-sm inline-flex items-center text-iconBlack font-bold">
-                {data && data["activeGroundOwners"]?.percentageChange}%{" "}
-                {renderIcon(data["activeGroundOwners"]?.percentageChange)}
-              </p>
-              <h3 className="text-[10px] font-semibold text-iconBlack">
-                from last period ({data["activeGroundOwners"]?.totalPrevious})
-              </h3>
-              {data && data?.["activeGroundOwners"] && (
-                <LineGraph
-                  data={data["activeGroundOwners"]?.chartData}
-                  borderColor="rgba(255, 0, 0, 1)"
-                />
-              )}
-            </div>
-            <div className="w-[45%] flex flex-col justify-end items-end text-right gap-3">
-              <div className="bg-red-200 p-1.5 w-fit rounded-full">
-                <div className="bg-red-500 w-fit p-1.5 rounded-full">
-                  <IoStatsChart className="text-white text-base" />
-                </div>
-              </div>
-              <div>
-                <p className="text-base font-bold text-iconBlack">
-                  {formatCompactNumber(
-                    data["activeGroundOwners"]?.totalCurrent
-                  )}
+
+          <div className="p-2 flex flex-col gap-2 bg-whiteBg rounded-xl">
+            {/* 🔹 Descriptive Title */}
+            <h2 className="text-sm font-bold text-gray-700">Ground Owners Overview</h2>
+
+            <div className="flex gap-2">
+              {/* Left Side (Stats + Graph) */}
+              <div className="w-[55%]">
+                <p className="text-sm inline-flex items-center text-iconBlack font-bold">
+                  {data && data["activeGroundOwners"]?.percentageChange}%{" "}
+                  {renderIcon(data["activeGroundOwners"]?.percentageChange)}
                 </p>
-                <h3 className="text-[10px] text-gray-500 font-semibold">
-                  Ground Owner Registered
+                <h3 className="text-[10px] font-semibold text-iconBlack">
+                  from last period ({data["activeGroundOwners"]?.totalPrevious})
                 </h3>
+                {data && data?.["activeGroundOwners"] && (
+                  <LineGraph
+                    data={data["activeGroundOwners"]?.chartData}
+                    borderColor="rgba(255, 0, 0, 1)"
+                  />
+                )}
+              </div>
+
+              {/* Right Side (Icon + Total) */}
+              <div className="w-[45%] flex flex-col justify-end items-end text-right gap-3">
+                <div className="bg-red-200 p-1.5 w-fit rounded-full">
+                  <div className="bg-red-500 w-fit p-1.5 rounded-full">
+                    <IoStatsChart className="text-white text-base" />
+                  </div>
+                </div>
+                <div>
+                  <p className="text-base font-bold text-iconBlack">
+                    {formatCompactNumber(data["activeGroundOwners"]?.totalCurrent)}
+                  </p>
+                  <h3 className="text-[10px] text-gray-500 font-semibold">
+                    Ground Owners Registered
+                  </h3>
+                </div>
               </div>
             </div>
           </div>
-          <div className="p-2 flex gap-2 bg-whiteBg rounded-xl">
-            <div className="w-[55%]">
-              <p className="text-sm inline-flex items-center text-iconBlack font-bold">
-                {data && data["activeGrounds"]?.percentageChange}%
-                {renderIcon(data["activeGrounds"]?.percentageChange)}
-              </p>
-              <h3 className="text-[10px] font-semibold text-iconBlack">
-                from last period ({data["activeGrounds"]?.totalPrevious})
-              </h3>
-              {data && data?.["activeGrounds"] && (
-                <LineGraph
-                  data={data["activeGrounds"]?.chartData}
-                  borderColor="rgba(128, 128, 128, 1)"
-                />
-              )}
-            </div>
-            <div className="w-[45%] flex flex-col justify-end items-end text-right gap-3">
-              <div className="bg-purple-200 p-1.5 w-fit rounded-full">
-                <div className="bg-purple-500 w-fit p-1.5 rounded-full">
-                  <IoStatsChart className="text-white text-base" />
-                </div>
-              </div>
-              <div>
-                <p className="text-base font-bold text-iconBlack">
-                  {formatCompactNumber(data["activeGrounds"]?.totalCurrent)}
+
+          <div className="p-2 flex flex-col gap-2 bg-whiteBg rounded-xl">
+            {/* 🔹 Descriptive Title */}
+            <h2 className="text-sm font-bold text-gray-700">Active Grounds Overview</h2>
+
+            <div className="flex gap-2">
+              {/* Left Side (Stats + Graph) */}
+              <div className="w-[55%]">
+                <p className="text-sm inline-flex items-center text-iconBlack font-bold">
+                  {data && data["activeGrounds"]?.percentageChange}%
+                  {renderIcon(data["activeGrounds"]?.percentageChange)}
                 </p>
-                <h3 className="text-[10px] text-gray-500 font-semibold">
-                  Total Active Grounds
+                <h3 className="text-[10px] font-semibold text-iconBlack">
+                  from last period ({data["activeGrounds"]?.totalPrevious})
                 </h3>
+                {data && data?.["activeGrounds"] && (
+                  <LineGraph
+                    data={data["activeGrounds"]?.chartData}
+                    borderColor="rgba(128, 128, 128, 1)"
+                  />
+                )}
+              </div>
+
+              {/* Right Side (Icon + Total) */}
+              <div className="w-[45%] flex flex-col justify-end items-end text-right gap-3">
+                <div className="bg-purple-200 p-1.5 w-fit rounded-full">
+                  <div className="bg-purple-500 w-fit p-1.5 rounded-full">
+                    <IoStatsChart className="text-white text-base" />
+                  </div>
+                </div>
+                <div>
+                  <p className="text-base font-bold text-iconBlack">
+                    {formatCompactNumber(data["activeGrounds"]?.totalCurrent)}
+                  </p>
+                  <h3 className="text-[10px] text-gray-500 font-semibold">
+                    Total Active Grounds
+                  </h3>
+                </div>
               </div>
             </div>
           </div>
@@ -297,7 +333,7 @@ const Home: FC = () => {
                     Previous Revenue
                     <br />
                     <span className="text-base font-extrabold text-iconBlack">
-                      {formatIndianCurrency(yearData?.totalPrevious)}
+                      {yearData?.totalPrevious ? formatIndianCurrency(yearData?.totalPrevious) : "No Data available for comparison"}
                     </span>
                   </div>
                   <div className="text-center text-xs text-iconBlack font-semibold">

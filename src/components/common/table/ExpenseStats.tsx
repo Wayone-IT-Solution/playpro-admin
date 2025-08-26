@@ -87,13 +87,12 @@ const ExpenseStats = ({
             <div className="flex flex-col items-center text-center">
               <p className="text-base font-semibold">{label}</p>
               <p className="text-xl font-bold">
-                ₹{value?.toLocaleString() ?? "-"}
+                SAR{value?.toLocaleString() ?? "-"}
               </p>
               {percentChange !== null && (
                 <p
-                  className={`flex items-center gap-1 text-xs font-medium ${
-                    isPositive ? "text-white" : "text-red-200"
-                  }`}
+                  className={`flex items-center gap-1 text-xs font-medium ${isPositive ? "text-white" : "text-red-200"
+                    }`}
                 >
                   {isPositive ? (
                     <BiTrendingUp size={16} />

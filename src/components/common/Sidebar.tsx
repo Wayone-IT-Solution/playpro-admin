@@ -30,9 +30,9 @@ const Sidebar: React.FC = () => {
             unoptimized
             height={100}
             src={
-              isDarkMode ? "/assets/logo/logo.jpeg" : "/assets/logo/logo.jpeg"
+              isDarkMode ? "/assets/logo/logo.png" : "/assets/logo/logo.png"
             }
-            className={`mx-auto object-contain w-16`}
+            className={`mx-auto object-contain w-32 py-0.5`}
           />
         </div>
         <nav className="flex flex-col backdrop-blur-sm gap-1 pt-3 pb-40">
@@ -61,11 +61,10 @@ const Sidebar: React.FC = () => {
                       if (tab?.tabs && tab?.tabs.length > 0)
                         showList({ tab: tab?.permission, list: tab?.tabs });
                     }}
-                    className={`py-2 pl-2 mr-auto w-[90%] mx-auto rounded-lg text-sm pr-2 cursor-pointer transition flex justify-between gap-2 items-center border-primary hover:bg-infobg hover:text-iconBlack ${
-                      pathname === tab?.href
-                        ? "text-iconBlack bg-infobg font-semibold"
-                        : "text-white"
-                    }`}
+                    className={`py-2 pl-2 mr-auto w-[90%] mx-auto rounded-lg text-sm pr-2 cursor-pointer transition flex justify-between gap-2 items-center border-primary hover:bg-infobg hover:text-iconBlack ${pathname === tab?.href
+                      ? "text-iconBlack bg-infobg font-semibold"
+                      : "text-white"
+                      }`}
                   >
                     <span className="flex gap-2 text-[11px] items-center">
                       <Icon size={16} /> {tab?.label}
@@ -91,11 +90,10 @@ const Sidebar: React.FC = () => {
                             key={index}
                             href={tabChild?.href}
                             aria-label={tabChild?.label}
-                            className={`w-full text-xs text-iconBlack pl-10 gap-2 py-2 flex items-center hover:bg-infobg hover:text-iconBlack ${
-                              pathname === tab?.href
-                                ? "text-iconBlack bg-infobg font-semibold"
-                                : "text-white"
-                            }`}
+                            className={`w-full text-xs text-iconBlack pl-10 gap-2 py-2 flex items-center hover:bg-infobg hover:text-iconBlack ${pathname === tab?.href
+                              ? "text-iconBlack bg-infobg font-semibold"
+                              : "text-white"
+                              }`}
                           >
                             <Icon size={14} /> {tabChild?.label}
                           </Link>

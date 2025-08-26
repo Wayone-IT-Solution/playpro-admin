@@ -18,11 +18,11 @@ const columns = [
   {
     key: "groundLocation.coordinates",
     label: "Ground Coordinates (Lng, Lat)",
-    sortable: false, 
+    sortable: false,
   },
   { key: "numberOfGuests", label: "No. of Guests", sortable: true },
-  { key: "totalAmount", label: "Total Amount (₹)", sortable: true },
-  { key: "finalAmount", label: "Final Amount (₹)", sortable: true },
+  { key: "totalAmount", label: "Total Amount (SAR)", sortable: true },
+  { key: "finalAmount", label: "Final Amount (SAR)", sortable: true },
   {
     key: "status",
     label: "Booking Status",
@@ -37,7 +37,7 @@ const columns = [
     isMultiPurpose: true,
     multiPurposeProps: { type: "label" },
   },
-   {
+  {
     key: "createdAt",
     label: "Submitted On",
     sortable: true,

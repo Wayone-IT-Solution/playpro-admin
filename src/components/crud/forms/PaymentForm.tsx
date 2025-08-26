@@ -83,7 +83,7 @@ const PaymentForm: React.FC<DealerFormProps> = (props: any) => {
 
           <div>
             <h3 className="font-semibold text-gray-900 underline">Transaction Info</h3>
-            <p className="text-gray-900">Amount: ₹{amount}</p>
+            <p className="text-gray-900">Amount: SAR{amount}</p>
             <p className="text-sm text-gray-600">UPI: {upiId}</p>
             <p className="text-sm text-gray-600">
               Requested on: {formatDate(new Date(createdAt))}

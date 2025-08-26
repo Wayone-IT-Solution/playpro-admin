@@ -7,7 +7,7 @@ import Loader from "@/components/common/Loader";
 import Wrapper from "@/components/common/Wrapper";
 import TableComponent from "@/components/common/Table";
 
-const columns =[
+const columns = [
   { key: "_id", label: "Booking ID", sortable: true },
   { key: "userFirstName", label: "User First Name", sortable: true },
   { key: "userLastName", label: "User Last Name", sortable: true },
@@ -18,11 +18,11 @@ const columns =[
   {
     key: "groundLocation.coordinates",
     label: "Ground Coordinates (Lng, Lat)",
-    sortable: false, 
+    sortable: false,
   },
   { key: "numberOfGuests", label: "No. of Guests", sortable: true },
-  { key: "totalAmount", label: "Total Amount (₹)", sortable: true },
-  { key: "finalAmount", label: "Final Amount (₹)", sortable: true },
+  { key: "totalAmount", label: "Total Amount (SAR)", sortable: true },
+  { key: "finalAmount", label: "Final Amount (SAR)", sortable: true },
   {
     key: "status",
     label: "Booking Status",

@@ -259,7 +259,7 @@ const TherapistData = () => {
                         </td>
                         <td className="py-2 w-1/5 text-xs pl-2">
                           {transaction?.amount_INR > 0
-                            ? `₹ ${transaction?.amount_INR}`
+                            ? `SAR ${transaction?.amount_INR}`
                             : `$ ${transaction?.amount_USD}`}
                         </td>
                         <td className="py-2 w-1/5 text-xs pl-2">
