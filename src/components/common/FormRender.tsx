@@ -12,6 +12,9 @@ import BlogForm from "../crud/forms/BlogForm";
 import CategoryForm from "../crud/forms/CategoryForm";
 import GroundForm from "../crud/forms/GroundForm";
 import ContactUsForm from "../crud/forms/ContactUs";
+import ProductCategoryForm from "../crud/forms/ProductCategoryForm";
+import ProductForm from "../crud/forms/ProductForm";
+import BrandForm from "../crud/forms/BrandForm";
 
 interface FormRendererProps {
   data: any;
@@ -23,6 +26,12 @@ interface FormRendererProps {
 
 const FormRenderer: React.FC<FormRendererProps> = (props: any) => {
   switch (props.formType) {
+    case "Products Category":
+      return <ProductCategoryForm {...props} />;
+       case "Products":
+      return <ProductForm {...props} />;
+       case "Brands":
+      return <BrandForm {...props} />;
     case "Banner":
       return <BannerForm {...props} />;
     case "Ad Video":

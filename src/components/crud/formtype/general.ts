@@ -177,6 +177,66 @@ export const paymentField: FormField[] = [
     placeholder: "Provide a short remarks about the Redeem Request",
   },
 ];
+export const productType = [
+  {
+    name: "name",
+    label: "Product Name",
+    type: "text",
+    placeholder: "Enter product name",
+    required: true,
+  },
+  {
+    name: "price",
+    label: "Price",
+    type: "number",
+    placeholder: "Enter product price",
+    required: true,
+  },
+  {
+    name: "rating",
+    label: "Rating",
+    type: "number",
+    min: 0,
+    max: 5,
+    placeholder: "Enter rating (0 - 5)",
+  },
+  {
+    name: "brand",
+    label: "Brand",
+    type: "select",
+    options: [], // populated dynamically
+    placeholder: "Select brand",
+    required: true,
+  },
+  {
+    name: "category",
+    label: "Category",
+    type: "select",
+    options: [], // populated dynamically
+    placeholder: "Select category",
+    required: true,
+  },
+  {
+    name: "subCategory",
+    label: "Parent Category",
+    type: "select",
+    options: [], // populated dynamically
+    placeholder: "Select Parent category",
+  },
+  {
+    rows: 7,
+    name: "description",
+    label: "Description",
+    type: "textarea",
+    placeholder: "Enter product description",
+  },
+  {
+    name: "image",
+    label: "Product Image",
+    type: "file",
+    placeholder: "Upload product image",
+  },
+];
 
 export const queryField: FormField[] = [
   {
@@ -297,6 +357,51 @@ export const blogField: FormField[] = [
   },
 ];
 
+export const brandFields = [
+  {
+    name: "name",
+    label: "Brand Name",
+    placeholder: "Brand Name",
+    type: "text",
+    required: true,
+  },
+  {
+    name: "country",
+    label: "Country",
+    type: "text",
+    placeholder: "Country",
+    required: false,
+  },
+  {
+    name: "establishedYear",
+    label: "Established Year",
+    type: "number",
+    placeholder: "Established Year",
+    required: false,
+  },
+  {
+    name: "isActive",
+    label: "Active Status",
+    type: "choose", // boolean field
+    required: true,
+  },
+  {
+    name: "description",
+    label: "Description",
+    type: "textarea",
+    rows: 1,
+    placeholder: "Description",
+    required: false,
+  },
+  {
+    name: "imageUrl",
+    label: "Logo / Image URL",
+    type: "file",
+    placeholder: "Upload Image",
+    required: false,
+  },
+];
+
 // ====================== Category Fields ======================
 export const categoryField: FormField[] = [
   {
@@ -329,6 +434,78 @@ export const categoryField: FormField[] = [
     type: "textarea",
     maxLength: 200,
     placeholder: "Provide a short description of the category",
+  },
+];
+
+export const productcategoryType: FormField[] = [
+  {
+    rows: 1,
+    name: "name",
+    type: "text",
+    maxLength: 50,
+    required: true,
+    label: "Category Name",
+    placeholder: "Enter parent or sub-category name",
+  },
+  {
+    options: [],
+    type: "select",
+    name: "parentCategory",
+    label: "Select Parent Category",
+    placeholder: "Select Parent Category",
+  },
+  {
+    name: "status",
+    label: "Activate Product Category?",
+    type: "choose",
+    required: true,
+  },
+  {
+    rows: 5,
+    required: true,
+    maxLength: 100,
+    widthFull: true,
+    type: "textarea",
+    name: "description",
+    label: "Category Description",
+    placeholder:
+      "Briefly describe the category, e.g. 'Devices like laptops, desktops, and accessories for tech enthusiasts'",
+  },
+];
+
+export const categoryType: FormField[] = [
+  {
+    rows: 1,
+    name: "name",
+    type: "text",
+    maxLength: 50,
+    required: true,
+    label: "Category Name",
+    placeholder: "Enter parent or sub-category name",
+  },
+  {
+    options: [],
+    type: "select",
+    name: "parentCategory",
+    label: "Select Parent Category",
+    placeholder: "Select Parent Category",
+  },
+  {
+    name: "status",
+    label: "Activate Product Category?",
+    type: "choose",
+    required: true,
+  },
+  {
+    rows: 5,
+    required: true,
+    maxLength: 100,
+    widthFull: true,
+    type: "textarea",
+    name: "description",
+    label: "Category Description",
+    placeholder:
+      "Briefly describe the category, e.g. 'Devices like laptops, desktops, and accessories for tech enthusiasts'",
   },
 ];
 
@@ -420,10 +597,16 @@ export const groundField: FormField[] = [
       { label: "Digital Display Screens", value: "Digital Display Screens" },
       { label: "Stadium Wi-Fi Network", value: "Stadium Wi-Fi Network" },
       { label: "5G Connectivity", value: "5G Connectivity" },
-      { label: "PA System with Zone Control", value: "PA System with Zone Control" },
+      {
+        label: "PA System with Zone Control",
+        value: "PA System with Zone Control",
+      },
       { label: "Video Analysis Room", value: "Video Analysis Room" },
       { label: "Live Streaming Setup", value: "Live Streaming Setup" },
-      { label: "CCTV with Facial Recognition", value: "CCTV with Facial Recognition" },
+      {
+        label: "CCTV with Facial Recognition",
+        value: "CCTV with Facial Recognition",
+      },
       { label: "Access Control System", value: "Access Control System" },
       { label: "RFID Turnstiles", value: "RFID Turnstiles" },
       { label: "Biometric Entry System", value: "Biometric Entry System" },
@@ -465,7 +648,10 @@ export const groundField: FormField[] = [
       // Medical & Safety
       { label: "Medical Room", value: "Medical Room" },
       { label: "Ambulance Bay", value: "Ambulance Bay" },
-      { label: "Emergency Response Center", value: "Emergency Response Center" },
+      {
+        label: "Emergency Response Center",
+        value: "Emergency Response Center",
+      },
       { label: "Defibrillator Stations", value: "Defibrillator Stations" },
       { label: "Fire Safety System", value: "Fire Safety System" },
       { label: "Emergency Exits", value: "Emergency Exits" },
@@ -502,14 +688,20 @@ export const groundField: FormField[] = [
       { label: "Waste Management System", value: "Waste Management System" },
       { label: "LED Lighting System", value: "LED Lighting System" },
       { label: "Green Roof Technology", value: "Green Roof Technology" },
-      { label: "Electric Vehicle Charging", value: "Electric Vehicle Charging" },
+      {
+        label: "Electric Vehicle Charging",
+        value: "Electric Vehicle Charging",
+      },
       { label: "Water Recycling Plant", value: "Water Recycling Plant" },
       { label: "Carbon Neutral Systems", value: "Carbon Neutral Systems" },
 
       // Additional Advanced Features
       { label: "Helicopter Landing Pad", value: "Helicopter Landing Pad" },
       { label: "Underground Tunnels", value: "Underground Tunnels" },
-      { label: "Multi-Purpose Event Space", value: "Multi-Purpose Event Space" },
+      {
+        label: "Multi-Purpose Event Space",
+        value: "Multi-Purpose Event Space",
+      },
       { label: "Hotel/Accommodation", value: "Hotel/Accommodation" },
       { label: "Training Pitches", value: "Training Pitches" },
       { label: "Academy Facilities", value: "Academy Facilities" },
@@ -523,11 +715,20 @@ export const groundField: FormField[] = [
       { label: "Holographic Displays", value: "Holographic Displays" },
       { label: "AI-Powered Analytics", value: "AI-Powered Analytics" },
       { label: "Drone Surveillance", value: "Drone Surveillance" },
-      { label: "Virtual Reality Experience", value: "Virtual Reality Experience" },
-      { label: "Augmented Reality Features", value: "Augmented Reality Features" },
+      {
+        label: "Virtual Reality Experience",
+        value: "Virtual Reality Experience",
+      },
+      {
+        label: "Augmented Reality Features",
+        value: "Augmented Reality Features",
+      },
       { label: "Sound Dampening System", value: "Sound Dampening System" },
       { label: "Retractable Seating", value: "Retractable Seating" },
-      { label: "Multi-Sport Configuration", value: "Multi-Sport Configuration" },
+      {
+        label: "Multi-Sport Configuration",
+        value: "Multi-Sport Configuration",
+      },
     ],
     placeholder: "Select facilities available at the ground",
   },

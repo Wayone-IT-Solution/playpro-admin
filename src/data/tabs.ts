@@ -21,12 +21,14 @@ import {
   RiCalendarCheckLine,
   RiSecurePaymentFill,
   RiCheckboxCircleLine,
+  RiShoppingCart2Line,
 } from "react-icons/ri";
-import { FaHome } from "react-icons/fa";
-import { BiCategory } from "react-icons/bi";
+import { FaHome, FaProductHunt } from "react-icons/fa";
+import { BiCategory, BiSolidCategory } from "react-icons/bi";
 import { GoTasklist } from "react-icons/go";
 import { GiEarthAsiaOceania } from "react-icons/gi";
 import { HiOutlineBuildingOffice2 } from "react-icons/hi2";
+import { TbBrandBebo } from "react-icons/tb";
 
 export const tabs = [
   {
@@ -72,6 +74,59 @@ export const tabs = [
       },
     ],
   },
+  {
+    id: 6,
+    icon: FaProductHunt,
+    label: "Manage Products",
+    href: "",
+    pageTitle: "All Products",
+    permission: "Manage Products",
+    tabs: [
+      {
+        id: 1,
+        icon: BiSolidCategory,
+        label: "Category and Sub-Category",
+        href: "/dashboard/categories",
+        pageTitle: "All Category",
+        permission: "Manage Products",
+      },
+      {
+        id: 4,
+        icon: FaProductHunt,
+        label: "Manage Products",
+        href: "/dashboard/product",
+        pageTitle: "All Products",
+        permission: "Manage Products",
+      },
+    ],
+  },
+  {
+    id: 7,
+    icon: TbBrandBebo,
+    label: "Product Brand",
+    href: "/dashboard/brand",
+    pageTitle: "All Brand",
+    permission: "Product Brand",
+    tabs: [],
+  },
+  {
+  id: 8, 
+  icon: RiShoppingCart2Line,
+  label: "Carts",
+  href: "/dashboard/carts",
+  pageTitle: "Cart Management",
+  permission: "Manage Carts",
+  tabs: [],
+},
+{
+  id: 9, 
+  icon: RiFileList2Line,
+  label: "Orders",
+  href: "/dashboard/orders",
+  pageTitle: "Orders",
+  permission: "Manage Carts",
+  tabs: [],
+},
   {
     id: 3,
     icon: MdOutlineMap,
@@ -157,16 +212,16 @@ export const tabs = [
         permission: "View All Transactions",
       },
       {
-        icon: RiCurrencyFill,
         id: 502,
+        icon: RiCurrencyFill,
         label: "Paid",
         href: "/dashboard/transactions/paid",
         pageTitle: "Confirmed Transactions",
         permission: "View Confirmed Transactions",
       },
       {
-        icon: RiTimeLine,
         id: 503,
+        icon: RiTimeLine,
         label: "Pending",
         href: "/dashboard/transactions/pending",
         pageTitle: "Pending Transactions",
@@ -183,7 +238,7 @@ export const tabs = [
     ],
   },
   {
-    id: 7,
+    id: 8,
     icon: MdLibraryBooks,
     label: "Blog Management",
     href: "",
@@ -209,7 +264,7 @@ export const tabs = [
     ],
   },
   {
-    id: 8,
+    id: 9,
     icon: MdOutlineSupportAgent,
     label: "Testimonials",
     href: "/dashboard/testimonials",
@@ -218,7 +273,7 @@ export const tabs = [
     tabs: [],
   },
   {
-    id: 9,
+    id: 10,
     icon: RiSecurePaymentFill,
     label: "Review & Ratings",
     href: "/dashboard/reviews",
@@ -227,7 +282,7 @@ export const tabs = [
     tabs: [],
   },
   {
-    id: 10,
+    id: 11,
     icon: MdManageAccounts,
     label: "System Settings",
     href: "",
@@ -276,9 +331,8 @@ export const tabs = [
       },
     ],
   },
-  // 👇 New Contact Us tab
   {
-    id: 11,
+    id: 12,
     icon: MdContactPhone,
     label: "Contact Us",
     href: "/dashboard/contact-us",
@@ -300,26 +354,31 @@ type TabItem = {
 
 export const flattenTabs = (tabList: TabItem[]): TabItem[] => {
   const flatList: TabItem[] = [];
+
   const formatPermission = (permission: string): string => {
     return permission
-      .replace(/([A-Z])/g, " $1") // Add space before uppercase letters
-      .replace(/^./, (str) => str.toLowerCase()) // Convert first character to lowercase
-      .trim() // Remove any leading/trailing spaces
-      .replace(/\b\w/g, (char) => char.toUpperCase()); // Capitalize the first letter of each word
+      .replace(/([A-Z])/g, " $1")
+      .replace(/^./, (str) => str.toLowerCase())
+      .trim()
+      .replace(/\b\w/g, (char) => char.toUpperCase());
   };
+
   const recurse = (tabs: TabItem[], parent?: string) => {
     for (const tab of tabs) {
       const permission = formatPermission(tab?.permission);
       const { tabs: nested, ...rest } = tab;
+
       if (nested && nested.length > 0) recurse(nested, tab.label);
-      else
+      else {
         flatList.push({
           ...rest,
           permission: permission,
           ...(parent ? { parent } : {}),
         });
+      }
     }
   };
+
   recurse(tabList);
   return flatList;
 };

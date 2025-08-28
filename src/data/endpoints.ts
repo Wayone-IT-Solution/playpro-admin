@@ -29,6 +29,7 @@ export const endpoints: any = {
     url: "api/booking?status=confirmed",
     operations: operations,
   },
+
   Transaction: {
     url: "api/booking/transactions",
     operations: operations,
@@ -61,4 +62,10 @@ export const endpoints: any = {
   "Uploaded Bills": { url: "api/billupload", operations: operations },
   "Redeem Request": { url: "api/transaction", operations: operations },
   Payments: { url: "api/ride?status=completed", operations: operations },
+  "Products Category": { url: "api/product-category", operations: operations },
+  "Products": { url: "api/product", operations: operations },
+  "Brands": {url:"api/brand",operations: operations},
+  "Carts":  {url:"api/cart/admin",operations: operations},
+  "Orders":  {url:"api/order/admin",operations: operations},
+
 };
