@@ -10,10 +10,11 @@ import {
   RiMenuFoldLine,
   RiArrowDropDownLine,
 } from "react-icons/ri";
+import Image from "next/image";
 
 const SidebarMobile: React.FC = () => {
   const pathname = usePathname();
-  const { token } = useAuth();
+  const { token, isDarkMode } = useAuth();
   const [isOpen, setIsOpen] = useState(false);
   const [list, showList] = useState<any>({ tab: "", list: [] });
   const sidebarRef = useRef<HTMLDivElement>(null);
@@ -63,7 +64,17 @@ const SidebarMobile: React.FC = () => {
           className="fixed top-0 left-0 h-full w-64 bg-primary text-white z-50 shadow-lg overflow-y-auto transition-all duration-300"
         >
           <div className="flex justify-between items-center px-4 py-3 border-b border-secondary">
-            <h2 className="text-base font-semibold">Billleyo</h2>
+            <Image
+              priority
+              alt="Icon"
+              width={200}
+              unoptimized
+              height={100}
+              src={
+                isDarkMode ? "/assets/logo/logo.png" : "/assets/logo/logo2.png"
+              }
+              className={`mx-auto object-contain w-32 py-0.5`}
+            />
             <button onClick={() => setIsOpen(false)}>
               <RiCloseLine size={22} />
             </button>

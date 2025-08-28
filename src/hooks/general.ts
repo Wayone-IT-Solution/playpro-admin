@@ -108,14 +108,14 @@ export const populateFormFields = (
           : field.isDisabled;
       return product.hasOwnProperty(field.name)
         ? {
-            ...field,
-            value: product[field.name],
-            isDisabled,
-          }
+          ...field,
+          value: product[field.name],
+          isDisabled,
+        }
         : {
-            ...field,
-            isDisabled,
-          };
+          ...field,
+          isDisabled,
+        };
     });
 };
 
@@ -256,17 +256,17 @@ export const formatIndianCurrency = (amount: number) => {
     formattedAmount = amount.toFixed(2); // Normal amount
   }
 
-  return `₹${formattedAmount}`;
+  return `SAR${formattedAmount}`;
 };
 
 export const formatCurrency = (value: number | undefined) =>
   value && !isNaN(value)
     ? new Intl.NumberFormat("en-IN", {
-        style: "currency",
-        currency: "INR",
-        minimumFractionDigits: 2,
-      }).format(value)
-    : "₹0.00";
+      style: "currency",
+      currency: "INR",
+      minimumFractionDigits: 2,
+    }).format(value)
+    : "SAR0.00";
 
 export const convertTo24Hour = (time: string): string => {
   console.log(time);

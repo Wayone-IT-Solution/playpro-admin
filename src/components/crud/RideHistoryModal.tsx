@@ -11,7 +11,7 @@ const columns = [
   { key: "driverName", label: "Driver Name" },
   { key: "driverPhoneNumber", label: "Driver Phone" },
   { key: "distance", label: "Distance (km)", sortable: true },
-  { key: "fare", label: "Fare (₹)", isCurrency: true, sortable: true },
+  { key: "fare", label: "Fare (SAR)", isCurrency: true, sortable: true },
   {
     key: "driverReachedAt",
     label: "Driver Reached",

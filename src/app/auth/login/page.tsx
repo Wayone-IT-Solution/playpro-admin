@@ -39,16 +39,16 @@ const Login: React.FC = () => {
         <div className="bg-[url('/assets/bg/bg.jpg')] bg-cover min-h-screen flex justify-center items-center">
           <div className="w-full bg-white backdrop-blur-2xl bg-opacity-30 p-6 mx-4 rounded-2xl md:max-w-sm md:mx-auto">
             <Image
-              src="/assets/logo/logo.jpeg"
+              src="/assets/logo/logo.png"
               alt="Icon"
               width={200}
               height={100}
-              className="w-16 mb-5 mx-auto object-contain"
+              className="w-40 mb-5 mx-auto object-contain"
             />
             <h2 className="text-xl md:text-2xl font-bold text-center text-black mb-2">
               Login to your account
             </h2>
-            <p className="text-center text-xs w-3/4 mx-auto text-black/80 lg:text-black mb-8">
+            <p className="text-center text-xs w-3/4 mx-auto text-black/80 lg:text-black mb-4">
               Enter your email and password below to access your account.
             </p>
             <form onSubmit={handleSubmit} className="space-y-5">

@@ -72,7 +72,7 @@ const AppointmentData = () => {
               <td className="py-2 pl-2 text-xs">4:30pm</td>
               <td className="py-2 pl-2 text-xs">Completed</td>
               <td className="py-2 pl-2 text-xs">Credit Card</td>
-              <td className="py-2 text-primary">+ ₹1450</td>
+              <td className="py-2 text-primary">+ SAR1450</td>
             </tr>
           </tbody>
         </table>

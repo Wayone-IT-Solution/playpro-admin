@@ -96,7 +96,7 @@ const ForgotPassword: React.FC = () => {
           </div>
           <Link href="">
             <Image
-              src={"/assets/logo/logo.jpeg"}
+              src={"/assets/logo/logo.png"}
               alt="logo"
               width={85}
               height={75}
