@@ -3,7 +3,7 @@ import Link from "next/link";
 import Modal from "../Modal";
 import Image from "next/image";
 import Actions from "./Actions";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { FiInbox } from "react-icons/fi";
 import { ColConfig } from "@/hooks/types";
 import { usePathname } from "next/navigation";
@@ -11,11 +11,8 @@ import { functionList } from "@/hooks/customFunction";
 import { AnimatePresence, motion } from "framer-motion";
 import ConfirmModal from "@/components/crud/ConfirmModal";
 import { FaSort, FaSortUp, FaSortDown } from "react-icons/fa";
-import {
-  formatCurrency,
-  getFileCategory,
-  // normalizePath,
-} from "@/hooks/general";
+import AdvancedPrintComponent from "../AdvancedPrintComponent";
+import { formatCurrency, getFileCategory } from "@/hooks/general";
 import MultiPurposeComponent from "../MultiPurposeComponentProps";
 
 interface Column {
@@ -130,6 +127,7 @@ const Table: React.FC<TableProps> = ({
 }) => {
   const pathname = usePathname();
   const pathNameParams = pathname.split("/");
+  const targetRef = useRef<HTMLDivElement>(null);
   const id =
     pathNameParams.length > 4 ? pathNameParams[pathNameParams.length - 1] : "";
 
@@ -291,114 +289,119 @@ const Table: React.FC<TableProps> = ({
   };
 
   return (
-    <div className="overflow-x-scroll no-scrollbar rounded-2xl">
-      <table className="min-w-full bg-whiteBg">
-        <thead>
-          <tr className="whitespace-nowrap">
-            {columns.map((col) => (
-              <th
-                key={col.key}
-                style={{ maxWidth: `calc(100% / ${columns.length + 1})` }}
-                className="p-3 text-xs text-iconBlack font-bold border border-infobg text-left cursor-pointer"
-                onClick={() => col.sortable && handleSort(col.key)}
-              >
-                {col.label}
-                {col.sortable && (
-                  <>
-                    {sort.key === col.key && sort.direction === "asc" ? (
-                      <FaSortUp className="inline ml-2" />
-                    ) : sort.key === col.key && sort.direction === "desc" ? (
-                      <FaSortDown className="inline ml-2" />
-                    ) : (
-                      <FaSort className="inline ml-2" />
-                    )}
-                  </>
-                )}
-              </th>
-            ))}
-            {operationsAllowed?.read && id === "" && (
-              <th className="p-3 border text-center text-xs text-iconBlack border-infobg font-bold">
-                Actions
-              </th>
-            )}
-          </tr>
-        </thead>
-        <tbody>
-          <AnimatePresence>
-            {filteredData?.length > 0 ? (
-              filteredData.map((row: any, index: number) => (
-                <motion.tr
-                  key={row.id || index}
-                  className="border text-black border-infobg cursor-pointer"
-                  initial={{ opacity: 0, x: -50 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  exit={{ opacity: 0, x: 50 }}
-                  transition={{ duration: 0.3, delay: index * 0.05 }}
+    <>
+      <AdvancedPrintComponent targetRef={targetRef as any} />
+      <div
+        ref={targetRef}
+        className="overflow-x-scroll no-scrollbar rounded-2xl">
+        <table className="min-w-full bg-whiteBg">
+          <thead>
+            <tr className="whitespace-nowrap">
+              {columns.map((col) => (
+                <th
+                  key={col.key}
+                  style={{ maxWidth: `calc(100% / ${columns.length + 1})` }}
+                  className="p-3 text-xs text-iconBlack font-bold border border-infobg text-left cursor-pointer"
+                  onClick={() => col.sortable && handleSort(col.key)}
                 >
-                  {columns.map((col: any) => (
-                    <td
-                      key={col.key}
-                      className="text-[11px] border text-iconBlack whitespace-nowrap border-infobg px-3 py-1.5"
-                    >
-                      {formatRowValue(row, col)}
-                    </td>
-                  ))}
-                  {operationsAllowed?.read && (
-                    <td className="text-nowrap flex justify-center border-infobg px-3 h-12 my-auto">
-                      <Actions
-                        row={row}
-                        type={type}
-                        setData={setData}
-                        setPaginate={setPaginate}
-                        setFilteredData={setFilteredData}
-                        setIsModalVisible={setIsModalVisible}
-                        operationsAllowed={operationsAllowed}
-                      />
-                    </td>
+                  {col.label}
+                  {col.sortable && (
+                    <>
+                      {sort.key === col.key && sort.direction === "asc" ? (
+                        <FaSortUp className="inline ml-2" />
+                      ) : sort.key === col.key && sort.direction === "desc" ? (
+                        <FaSortDown className="inline ml-2" />
+                      ) : (
+                        <FaSort className="inline ml-2" />
+                      )}
+                    </>
                   )}
-                </motion.tr>
-              ))
-            ) : (
-              <tr>
-                <td
-                  className="p-6 text-center text-xs text-gray-600"
-                  colSpan={columns.length + (operationsAllowed?.read ? 1 : 0)}
-                >
-                  <div className="flex flex-col items-center justify-center gap-3">
-                    <FiInbox className="w-8 h-8 text-iconBlack opacity-60" />
+                </th>
+              ))}
+              {operationsAllowed?.read && id === "" && (
+                <th className="p-3 border text-center text-xs text-iconBlack border-infobg font-bold">
+                  Actions
+                </th>
+              )}
+            </tr>
+          </thead>
+          <tbody>
+            <AnimatePresence>
+              {filteredData?.length > 0 ? (
+                filteredData.map((row: any, index: number) => (
+                  <motion.tr
+                    key={row.id || index}
+                    className="border text-black border-infobg cursor-pointer"
+                    initial={{ opacity: 0, x: -50 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    exit={{ opacity: 0, x: 50 }}
+                    transition={{ duration: 0.3, delay: index * 0.05 }}
+                  >
+                    {columns.map((col: any) => (
+                      <td
+                        key={col.key}
+                        className="text-[11px] border text-iconBlack whitespace-nowrap border-infobg px-3 py-1.5"
+                      >
+                        {formatRowValue(row, col)}
+                      </td>
+                    ))}
+                    {operationsAllowed?.read && (
+                      <td className="text-nowrap flex justify-center border-infobg px-3 h-12 my-auto">
+                        <Actions
+                          row={row}
+                          type={type}
+                          setData={setData}
+                          setPaginate={setPaginate}
+                          setFilteredData={setFilteredData}
+                          setIsModalVisible={setIsModalVisible}
+                          operationsAllowed={operationsAllowed}
+                        />
+                      </td>
+                    )}
+                  </motion.tr>
+                ))
+              ) : (
+                <tr>
+                  <td
+                    className="p-6 text-center text-xs text-gray-600"
+                    colSpan={columns.length + (operationsAllowed?.read ? 1 : 0)}
+                  >
+                    <div className="flex flex-col items-center justify-center gap-3">
+                      <FiInbox className="w-8 h-8 text-iconBlack opacity-60" />
 
-                    <p className="text-base font-semibold text-iconBlack">
-                      No Records Found!
-                    </p>
+                      <p className="text-base font-semibold text-iconBlack">
+                        No Records Found!
+                      </p>
 
-                    <p className="text-xs text-iconBlack">
-                      We couldn&apos;t find any data that matches your current
-                      view.
-                    </p>
+                      <p className="text-xs text-iconBlack">
+                        We couldn&apos;t find any data that matches your current
+                        view.
+                      </p>
 
-                    <ul className="text-xs text-gray-500 list-disc list-inside text-left max-w-md">
-                      <li>Review or reset applied filters and search terms</li>
-                      <li>Ensure the date range includes valid entries</li>
-                      <li>
-                        Check if the selected status or category is correct
-                      </li>
-                      <li>
-                        If this is a new section, consider adding your first
-                        entry
-                      </li>
-                    </ul>
+                      <ul className="text-xs text-gray-500 list-disc list-inside text-left max-w-md">
+                        <li>Review or reset applied filters and search terms</li>
+                        <li>Ensure the date range includes valid entries</li>
+                        <li>
+                          Check if the selected status or category is correct
+                        </li>
+                        <li>
+                          If this is a new section, consider adding your first
+                          entry
+                        </li>
+                      </ul>
 
-                    <span className="text-xs italic text-gray-400 mt-2">
-                      Tip: Keep your filters broad to start, then narrow down.
-                    </span>
-                  </div>
-                </td>
-              </tr>
-            )}
-          </AnimatePresence>
-        </tbody>
-      </table>
-    </div>
+                      <span className="text-xs italic text-gray-400 mt-2">
+                        Tip: Keep your filters broad to start, then narrow down.
+                      </span>
+                    </div>
+                  </td>
+                </tr>
+              )}
+            </AnimatePresence>
+          </tbody>
+        </table>
+      </div>
+    </>
   );
 };
 

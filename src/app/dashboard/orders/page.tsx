@@ -14,8 +14,8 @@ const columns = [
   { key: "userDetails.lastName", label: "Last Name", sortable: true },
   { key: "userDetails.email", label: "Email", sortable: true },
   { key: "userDetails.phoneNumber", label: "Phone Number", sortable: true },
-  { key: "totalAmount", label: "Total Amount", sortable: true },
-  { key: "finalAmount", label: "Final Amount", sortable: true },
+  { key: "totalAmount", label: "Total Amount (In SAR)", sortable: true, prefix: "SAR " },
+  { key: "finalAmount", label: "Final Amount (In SAR)", sortable: true, prefix: "SAR " },
   { key: "paymentMethod", label: "Payment Method", sortable: true },
   {
     key: "paymentStatus",
@@ -32,14 +32,8 @@ const columns = [
     multiPurposeProps: { type: "label" },
   },
   { key: "address", label: "Address", sortable: true },
-  { key: "createdAt", label: "Created Date", sortable: true, isDate: true },
-  { key: "updatedAt", label: "Updated Date", sortable: true, isDate: true },
-  {
-    key: "items",
-    label: "Items",
-    isMultiPurpose: true,
-    multiPurposeProps: { type: "array", displayKey: "name" }, // display product names in items array
-  },
+  { key: "createdAt", label: "Created Date", sortable: true, isDateTime: true },
+  { key: "updatedAt", label: "Updated Date", sortable: true, isDateTime: true },
 ];
 
 const filterOptions = [
@@ -57,7 +51,7 @@ const Contacts: React.FC = () => {
   const updatedData = data?.data?.result;
   const paginationData = data?.data?.pagination;
   let operationsAllowed = endpoints[formType]?.operations;
-  operationsAllowed = { ...operationsAllowed, create: false, read: false };
+  operationsAllowed = { ...operationsAllowed, create: false, update: false };
 
   if (loading && !updatedData && !error) return <Loader />;
 

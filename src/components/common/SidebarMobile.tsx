@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import { tabs } from "@/data/tabs";
 import { usePathname } from "next/navigation";
 import { useAuth } from "@/context/AuthContext";
 import { useEffect, useRef, useState } from "react";
@@ -12,7 +11,7 @@ import {
 } from "react-icons/ri";
 import Image from "next/image";
 
-const SidebarMobile: React.FC = () => {
+const SidebarMobile = ({ filteredTabs }: { filteredTabs: any }) => {
   const pathname = usePathname();
   const { token, isDarkMode } = useAuth();
   const [isOpen, setIsOpen] = useState(false);
@@ -35,7 +34,7 @@ const SidebarMobile: React.FC = () => {
     <div className="lg:hidden fixed z-[100] w-[10%] md:w-[7%] h-full">
       {/* Icon sidebar */}
       <div className="flex flex-col bg-primary h-full text-white items-center py-4 gap-6">
-        {tabs.map((tab: any, index: number) => {
+        {filteredTabs.map((tab: any, index: number) => {
           const Icon = tab.icon;
           return (
             <button
@@ -81,7 +80,7 @@ const SidebarMobile: React.FC = () => {
           </div>
 
           <nav className="flex flex-col gap-1 px-3 py-4">
-            {tabs.map((tab: any, index: number) => {
+            {filteredTabs.map((tab: any, index: number) => {
               const Icon = tab.icon;
               return (
                 <div key={index}>

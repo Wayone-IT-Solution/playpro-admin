@@ -526,9 +526,19 @@ export const groundField: FormField[] = [
     placeholder: "Enter the official name of the ground",
   },
   {
-    name:"type",
+    name: "type",
+    type: "select",
+    required: true,
     label: "Ground Type",
-    type: "text",
+    options: [
+      { label: "Tennis", value: "Tennis" },
+      { label: "Hockey", value: "Hockey" },
+      { label: "Cricket", value: "Cricket" },
+      { label: "Football", value: "Football" },
+      { label: "Badminton", value: "Badminton" },
+      { label: "Volleyball", value: "Volleyball" },
+    ],
+    placeholder: "Select Ground Type",
   },
   {
     name: "status",

@@ -8,9 +8,9 @@ import Wrapper from "@/components/common/Wrapper";
 import TableComponent from "@/components/common/Table";
 
 const columns = [
-  { key: "name", label: "Brand", imageWithKey: "imageUrl" },
+  { key: "name", label: "Brand Name", image: true, imageWithKey: "imageUrl" },
   { key: "description", label: "Description", sortable: true },
-  { key: "country", label: "Country", sortable: true },
+  { key: "country", label: "Country of Origin", sortable: true },
   { key: "establishedYear", label: "Established Year", sortable: true },
   {
     key: "isActive",
@@ -18,14 +18,17 @@ const columns = [
     isMultiPurpose: true,
     multiPurposeProps: { type: "label" },
   },
-  { key: "createdAt", label: "Created At", sortable: true, isDate: true },
-  { key: "updatedAt", label: "Updated At", sortable: true, isDate: true },
+  { key: "createdAt", label: "Date Created", sortable: true, isDateTime: true },
+  { key: "updatedAt", label: "Last Updated", sortable: true, isDateTime: true },
 ];
 
 const filterOptions = [
-  { label: "Name", value: "name" },
-  { label: "Desc.", value: "description" },
+  { label: "Brand Name", value: "name" },
+  { label: "Description", value: "description" },
+  { label: "Country of Origin", value: "country" },
+  { label: "Established Year", value: "establishedYear" },
 ];
+
 
 const Contacts: React.FC = () => {
   const formType = "Brands";

@@ -51,12 +51,12 @@ const columns = [
   },
 ];
 
-
 const filterOptions = [
-  { label: "Emp. ID", value: "_id" },
-  { label: "Name", value: "username" },
-  { label: "Email", value: "email" },
-  { label: "Role", value: "role" },
+  { label: "User Name", value: "userFirstName" },
+  { label: "Email ID", value: "userEmail" },
+  { label: "Phone Number", value: "userPhoneNumber" },
+  { label: "Ground Name", value: "groundName" },
+  { label: "Ground Address", value: "groundAddress" },
 ];
 
 const Page: React.FC = () => {

@@ -11,12 +11,7 @@ import Table from "./table/TableComponent";
 import Pagination from "./table/Pagination";
 import { endpoints } from "@/data/endpoints";
 import { usePathname } from "next/navigation";
-import { useAuth } from "@/context/AuthContext";
 import React, { useState, useEffect, useCallback } from "react";
-import TicketStatusSummary from "../dashboard/TicketStatusSummary";
-import JobApplicationStatusSummary from "../dashboard/JobApplicationStatusSummary";
-import BadgeStatusSummary from "../dashboard/BadgeStatusSummary";
-import ServiceStatusSummary from "../dashboard/ServiceStatusSummary";
 
 interface TableColumn {
   key: string;
@@ -62,7 +57,6 @@ const TableComponent = <T extends { [key: string]: any }>({
   pagination_data,
   operationsAllowed,
 }: TableProps) => {
-  const { user } = useAuth();
   const pathname = usePathname();
   const [paginate, setPaginate] = useState<Pagination>({
     totalPages: pagination_data?.totalPages ?? 1,
@@ -213,16 +207,6 @@ const TableComponent = <T extends { [key: string]: any }>({
     setIsModalVisible(true);
   };
 
-  // if (filteredData.length === 0 && !isModalVisible)
-  //   return (
-  //     <NoDataFound
-  //       type={type}
-  //       handleAdd={handleAdd}
-  //       handleReset={handleReset}
-  //       operationsAllowed={operationsAllowed}
-  //     />
-  //   );
-
   return (
     <>
       {/* Modals */}
@@ -241,16 +225,6 @@ const TableComponent = <T extends { [key: string]: any }>({
           />
         )}
       </Modal>
-
-      {type === "Agent" && user?.role === "admin" && <TicketStatusSummary />}
-
-      {type === "Job Application" && user?.role === "admin" && (
-        <div className="mb-3">
-          <JobApplicationStatusSummary />
-        </div>
-      )}
-
-      {type === "Virtual HR" && <ServiceStatusSummary />}
 
       {/* Header */}
       {!hideHeader && (
@@ -304,8 +278,6 @@ const TableComponent = <T extends { [key: string]: any }>({
             fetchFilteredData={fetchFilteredData}
           />
         )}
-
-        {type === "Badge" && <BadgeStatusSummary />}
       </div>
     </>
   );

@@ -22,7 +22,8 @@ const columns = [
     isMultiPurpose: true,
     multiPurposeProps: { type: "label" },
   },
-  { key: "createdAt", label: "Date Created", sortable: true, isDate: true },
+  { key: "createdAt", label: "Date Created", sortable: true, isDateTime: true },
+  { key: "updatedAt", label: "Last Updated", sortable: true, isDateTime: true },
 ];
 
 const filterOptions = [

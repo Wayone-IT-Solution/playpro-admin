@@ -6,7 +6,7 @@ import {
 import { useState } from "react";
 import Modal from "./common/Modal";
 import LogoutModal from "./crud/LogoutModal";
-// import { FaUserShield } from "react-icons/fa";
+import { FaUserShield } from "react-icons/fa";
 import { useAuth } from "@/context/AuthContext";
 import { MdOutlineArrowDropDown } from "react-icons/md";
 
@@ -26,25 +26,22 @@ const Profile = () => {
         />
       </Modal>
       <button
-        className={`flex items-center gap-2 p-0.5 rounded-full ${
-          isDarkMode ? "bg-iconBlack" : "bg-primary"
-        } text-white text-xs font-semibold`}
+        className={`flex items-center gap-2 p-0.5 rounded-full ${isDarkMode ? "bg-iconBlack" : "bg-primary"
+          } text-white text-xs font-semibold`}
       >
         <span
-          className={`w-6 h-6 flex justify-center items-center rounded-full bg-white ${
-            isDarkMode ? "text-iconBlack" : "text-primary"
-          } font-bold text-sm`}
+          className={`w-6 h-6 flex justify-center items-center rounded-full bg-white ${isDarkMode ? "text-iconBlack" : "text-primary"
+            } font-bold text-sm`}
         >
-          {getInitial(user?.username)}
+          {getInitial(user?.username || "Admin")}
         </span>
         <MdOutlineArrowDropDown className="text-lg" />
       </button>
 
       {/* Dropdown */}
       <div
-        className={`absolute right-0 mt-0.5 w-60 overflow-hidden rounded-xl shadow-xl border border-gray-200 ${
-          isDarkMode ? "bg-primary" : "bg-white"
-        } z-50 hidden group-hover:block transition-all duration-200 ease-in-out`}
+        className={`absolute right-0 mt-0.5 w-60 overflow-hidden rounded-xl shadow-xl border border-gray-200 ${isDarkMode ? "bg-primary" : "bg-white"
+          } z-50 hidden group-hover:block transition-all duration-200 ease-in-out`}
       >
         {/* Top Info */}
         <div className="border-b border-gray-100 text-iconBlack p-2">
@@ -54,6 +51,9 @@ const Profile = () => {
               <p className="text-sm font-semibold">{user?.username}</p>
               <p className="text-xs flex items-center gap-1">
                 <IoMailOutline className="text-sm" /> {user?.email}
+              </p>
+              <p className="text-[11px] flex items-center gap-1">
+                <FaUserShield className="text-xs" /> {user?.role?.name?.toUpperCase()}
               </p>
             </div>
           </div>

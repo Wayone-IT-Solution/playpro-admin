@@ -2,9 +2,9 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { tabs } from "@/data/tabs";
+import { combineParentTabs, flattenTabs, tabs } from "@/data/tabs";
 import { motion } from "framer-motion";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import SidebarMobile from "./SidebarMobile";
 import { usePathname } from "next/navigation";
 import { useAuth } from "@/context/AuthContext";
@@ -12,13 +12,31 @@ import { RiArrowDropDownLine } from "react-icons/ri";
 
 const Sidebar: React.FC = () => {
   const pathname = usePathname();
-  const { token, isDarkMode } = useAuth();
+  const { user, token, isDarkMode } = useAuth();
+  const [hasMounted, setHasMounted] = useState(false);
   const [list, showList] = useState<any>({ tab: "", list: [] });
 
-  if (!token) return null;
+  useEffect(() => {
+    setHasMounted(true);
+  }, []);
+
+  if (!hasMounted || !token) return null;
+
+  let filteredTabs: any = [];
+  const flattend = flattenTabs(tabs);
+  const userPermissions = user?.role?.permissions;
+  if (userPermissions && userPermissions.length > 0) {
+    filteredTabs = flattend.filter((tab) =>
+      userPermissions.some(
+        (permission: any) =>
+          permission?.module === tab.permission && permission?.access?.read
+      )
+    );
+  }
+  filteredTabs = combineParentTabs(filteredTabs);
   return (
     <>
-      <SidebarMobile />
+      <SidebarMobile filteredTabs={filteredTabs} />
       <div
         className={`hidden lg:block fixed w-[17.1%] text-white bg-primary h-full overflow-y-scroll no-scrollbar`}
       >
@@ -36,7 +54,7 @@ const Sidebar: React.FC = () => {
           />
         </div>
         <nav className="flex flex-col backdrop-blur-sm gap-1 pt-3 pb-40">
-          {tabs.map((tab: any, index: number) => {
+          {filteredTabs.map((tab: any, index: number) => {
             const Icon = tab.icon;
             return (
               <React.Fragment key={index}>

@@ -27,7 +27,7 @@ const columns = [
     isMultiPurpose: true,
     multiPurposeProps: { type: "label" },
   },
-  { key: "pricePerHour", label: "Hourly Price ($)", sortable: true },
+  { key: "pricePerHour", label: "Price (In SAR)", sortable: true, prefix: "SAR " },
   {
     key: "createdAt",
     label: "Date of Registration",
@@ -43,11 +43,14 @@ const columns = [
 ];
 
 const filterOptions = [
-  { label: "Emp. ID", value: "_id" },
-  { label: "Name", value: "username" },
-  { label: "Email", value: "email" },
-  { label: "Phone Number", value: "mobile" },
-  { label: "Address", value: "address" },
+  { label: "Ground Name", value: "name" },
+  { label: "Location", value: "address" },
+  { label: "Ground Type", value: "type" },
+  { label: "Owner Name", value: "firstName" },
+  { label: "Owner Email", value: "email" },
+  { label: "Contact Number", value: "mobile" },
+  { label: "Current Status", value: "status" },
+  { label: "Price (In SAR)", value: "pricePerHour" }
 ];
 
 const Page: React.FC = () => {

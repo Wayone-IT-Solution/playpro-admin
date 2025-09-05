@@ -10,8 +10,8 @@ import {
 } from "react-icons/md";
 import {
   RiKey2Line,
-  RiAdminFill,
   RiTimeLine,
+  RiAdminFill,
   RiCurrencyFill,
   RiBankCardLine,
   RiFileList2Line,
@@ -23,12 +23,13 @@ import {
   RiCheckboxCircleLine,
   RiShoppingCart2Line,
 } from "react-icons/ri";
-import { FaHome, FaProductHunt } from "react-icons/fa";
-import { BiCategory, BiSolidCategory } from "react-icons/bi";
+import { FaTags } from "react-icons/fa";
 import { GoTasklist } from "react-icons/go";
-import { GiEarthAsiaOceania } from "react-icons/gi";
-import { HiOutlineBuildingOffice2 } from "react-icons/hi2";
 import { TbBrandBebo } from "react-icons/tb";
+import { GiEarthAsiaOceania } from "react-icons/gi";
+import { FaHome, FaProductHunt } from "react-icons/fa";
+import { HiOutlineBuildingOffice2 } from "react-icons/hi2";
+import { BiCategory, BiSolidCategory } from "react-icons/bi";
 
 export const tabs = [
   {
@@ -43,25 +44,17 @@ export const tabs = [
   {
     id: 2,
     icon: RiAdminFill,
-    label: "User Access Management",
+    label: "User Management",
     href: "",
-    pageTitle: "User Roles & Access",
+    pageTitle: "Manage Users & Roles",
     permission: "Manage Users",
     tabs: [
       {
-        id: 203,
-        icon: RiAdminFill,
-        label: "Employees",
-        href: "/dashboard/employees",
-        pageTitle: "Manage Employees",
-        permission: "Manage Employees",
-      },
-      {
         id: 201,
         icon: MdOutlineWorkOutline,
-        label: "Users",
+        label: "Manage Users",
         href: "/dashboard/users",
-        pageTitle: "Platform Users",
+        pageTitle: "All Users",
         permission: "Manage Users",
       },
       {
@@ -69,86 +62,49 @@ export const tabs = [
         icon: HiOutlineBuildingOffice2,
         label: "Ground Owners",
         href: "/dashboard/property-owners",
-        pageTitle: "Manage Property Owners",
+        pageTitle: "Ground Owners",
         permission: "Manage Owners",
       },
-    ],
-  },
-  {
-    id: 6,
-    icon: FaProductHunt,
-    label: "Manage Products",
-    href: "",
-    pageTitle: "All Products",
-    permission: "Manage Products",
-    tabs: [
       {
-        id: 1,
-        icon: BiSolidCategory,
-        label: "Category and Sub-Category",
-        href: "/dashboard/categories",
-        pageTitle: "All Category",
-        permission: "Manage Products",
+        id: 203,
+        icon: RiAdminFill,
+        label: "Manage Employees",
+        href: "/dashboard/employees",
+        pageTitle: "Employees",
+        permission: "Manage Employees",
       },
       {
-        id: 4,
-        icon: FaProductHunt,
-        label: "Manage Products",
-        href: "/dashboard/product",
-        pageTitle: "All Products",
-        permission: "Manage Products",
+        id: 204,
+        icon: MdManageAccounts,
+        label: "Roles & Permissions",
+        href: "/dashboard/role-management",
+        pageTitle: "Access Control",
+        permission: "roleManagement",
       },
     ],
   },
-  {
-    id: 7,
-    icon: TbBrandBebo,
-    label: "Product Brand",
-    href: "/dashboard/brand",
-    pageTitle: "All Brand",
-    permission: "Product Brand",
-    tabs: [],
-  },
-  {
-  id: 8, 
-  icon: RiShoppingCart2Line,
-  label: "Carts",
-  href: "/dashboard/carts",
-  pageTitle: "Cart Management",
-  permission: "Manage Carts",
-  tabs: [],
-},
-{
-  id: 9, 
-  icon: RiFileList2Line,
-  label: "Orders",
-  href: "/dashboard/orders",
-  pageTitle: "Orders",
-  permission: "Manage Carts",
-  tabs: [],
-},
   {
     id: 3,
     icon: MdOutlineMap,
-    label: "Ground Listings",
+    label: "Grounds Listing",
     href: "/dashboard/grounds",
-    pageTitle: "Available Grounds",
+    pageTitle: "Ground Listings",
     permission: "Manage Grounds",
     tabs: [],
   },
   {
-    id: 104,
+    id: 4,
     icon: GoTasklist,
-    label: "Ground Slots Management",
+    label: "Slots Management",
     href: "/dashboard/tasks",
-    pageTitle: "Tasks",
-    permission: "tasks",
+    pageTitle: "Ground Slot Scheduling",
+    permission: "Manage Slots",
     tabs: [],
   },
   {
     id: 5,
     icon: RiCalendarCheckLine,
-    label: "Bookings",
+    label: "All Bookings",
     href: "",
     pageTitle: "Booking Management",
     permission: "Manage Bookings",
@@ -158,13 +114,13 @@ export const tabs = [
         icon: RiFileList2Line,
         label: "All Bookings",
         href: "/dashboard/bookings",
-        pageTitle: "All Bookings",
+        pageTitle: "Bookings Overview",
         permission: "View All Bookings",
       },
       {
         id: 502,
         icon: RiCheckboxCircleLine,
-        label: "Confirmed",
+        label: "Confirmed Bookings",
         href: "/dashboard/bookings/confirmed",
         pageTitle: "Confirmed Bookings",
         permission: "View Confirmed Bookings",
@@ -172,7 +128,7 @@ export const tabs = [
       {
         id: 503,
         icon: RiTimeLine,
-        label: "Pending",
+        label: "Pending Bookings",
         href: "/dashboard/bookings/pending",
         pageTitle: "Pending Bookings",
         permission: "View Pending Bookings",
@@ -180,7 +136,7 @@ export const tabs = [
       {
         id: 504,
         icon: RiCheckDoubleLine,
-        label: "Completed",
+        label: "Completed Bookings",
         href: "/dashboard/bookings/completed",
         pageTitle: "Completed Bookings",
         permission: "View Completed Bookings",
@@ -188,23 +144,23 @@ export const tabs = [
       {
         id: 505,
         icon: RiCalendar2Line,
-        label: "Rescheduled",
+        label: "Rescheduled Bookings",
         href: "/dashboard/bookings/rescheduled",
         pageTitle: "Rescheduled Bookings",
-        permission: "View Pending Bookings",
+        permission: "View Rescheduled Bookings",
       },
     ],
   },
   {
     id: 6,
     icon: RiBankCardLine,
-    label: "Transactions",
+    label: "All Transactions",
     href: "",
-    pageTitle: "Transactions",
+    pageTitle: "Transaction Records",
     permission: "Transaction Management",
     tabs: [
       {
-        id: 501,
+        id: 601,
         icon: RiFileList2Line,
         label: "All Transactions",
         href: "/dashboard/transactions",
@@ -212,72 +168,131 @@ export const tabs = [
         permission: "View All Transactions",
       },
       {
-        id: 502,
+        id: 602,
         icon: RiCurrencyFill,
-        label: "Paid",
+        label: "Paid Transactions",
         href: "/dashboard/transactions/paid",
-        pageTitle: "Confirmed Transactions",
-        permission: "View Confirmed Transactions",
+        pageTitle: "Paid Transactions",
+        permission: "View Paid Transactions",
       },
       {
-        id: 503,
+        id: 603,
         icon: RiTimeLine,
-        label: "Pending",
+        label: "Pending Transactions",
         href: "/dashboard/transactions/pending",
         pageTitle: "Pending Transactions",
         permission: "View Pending Transactions",
       },
       {
-        id: 504,
+        id: 604,
         icon: RiErrorWarningLine,
-        label: "Failed",
+        label: "Failed Transactions",
         href: "/dashboard/transactions/failed",
         pageTitle: "Failed Transactions",
-        permission: "View Completed Transactions",
+        permission: "View Failed Transactions",
+      },
+    ],
+  },
+  {
+    id: 7,
+    icon: FaProductHunt,
+    label: "Manage Products",
+    href: "",
+    pageTitle: "Product Management",
+    permission: "Manage Products",
+    tabs: [
+      {
+        id: 701,
+        icon: BiSolidCategory,
+        label: "Categories",
+        href: "/dashboard/categories",
+        pageTitle: "Product Categories",
+        permission: "Manage Categories",
+      },
+      {
+        id: 702,
+        icon: FaProductHunt,
+        label: "All Products",
+        href: "/dashboard/product",
+        pageTitle: "Manage Products",
+        permission: "Manage Products",
+      },
+      {
+        id: 703,
+        icon: TbBrandBebo,
+        label: "Brands",
+        href: "/dashboard/brand",
+        pageTitle: "Product Brands",
+        permission: "Manage Brands",
       },
     ],
   },
   {
     id: 8,
-    icon: MdLibraryBooks,
-    label: "Blog Management",
+    icon: RiShoppingCart2Line,
+    label: "Orders & Carts",
     href: "",
-    pageTitle: "Content Management Tools",
-    permission: "Access Blog Records",
+    pageTitle: "Sales Management",
+    permission: "Manage Orders",
     tabs: [
       {
-        id: 601,
+        id: 801,
+        icon: RiFileList2Line,
+        label: "Orders",
+        href: "/dashboard/orders",
+        pageTitle: "Customer Orders",
+        permission: "Manage Orders",
+      },
+      {
+        id: 802,
+        icon: RiShoppingCart2Line,
+        label: "Carts",
+        href: "/dashboard/carts",
+        pageTitle: "User Carts",
+        permission: "Manage Carts",
+      },
+    ],
+  },
+  {
+    id: 9,
+    icon: MdLibraryBooks,
+    label: "Blogs & Testimonials",
+    href: "",
+    pageTitle: "Content Management",
+    permission: "Manage Content",
+    tabs: [
+      {
+        id: 901,
         icon: MdArticle,
-        label: "All Blogs",
+        label: "Blogs",
         href: "/dashboard/blogs",
         pageTitle: "Manage Blogs",
         permission: "Manage Blogs",
       },
       {
-        id: 602,
+        id: 902,
         icon: BiCategory,
         label: "Blog Categories",
         href: "/dashboard/blog-categories",
         pageTitle: "Manage Blog Categories",
         permission: "Manage Blog Categories",
       },
+      {
+        id: 903,
+        icon: MdOutlineSupportAgent,
+        label: "Testimonials",
+        href: "/dashboard/testimonials",
+        pageTitle: "User Testimonials",
+        permission: "Manage Testimonials",
+      },
     ],
-  },
-  {
-    id: 9,
-    icon: MdOutlineSupportAgent,
-    label: "Testimonials",
-    href: "/dashboard/testimonials",
-    pageTitle: "User Testimonials",
-    permission: "Manage Testimonials",
-    tabs: [],
   },
   {
     id: 10,
     icon: RiSecurePaymentFill,
-    label: "Review & Ratings",
+    label: "Reviews & Ratings",
     href: "/dashboard/reviews",
-    pageTitle: "Review and Rating System",
+    pageTitle: "Customer Feedback",
     permission: "Manage Reviews",
     tabs: [],
   },
@@ -286,47 +301,47 @@ export const tabs = [
     icon: MdManageAccounts,
     label: "System Settings",
     href: "",
-    pageTitle: "Administrative Tools",
-    permission: "Access System Records",
+    pageTitle: "Admin Tools",
+    permission: "Access Settings",
     tabs: [
       {
-        id: 901,
+        id: 1101,
         icon: MdCampaign,
-        label: "Banner Management",
+        label: "Banners",
         href: "/dashboard/banners",
-        pageTitle: "Promotional Banners",
+        pageTitle: "Banner Management",
         permission: "Manage Banners",
       },
       {
-        id: 902,
+        id: 1102,
         icon: RiKey2Line,
         label: "OTP Logs",
         href: "/dashboard/otp-logs",
-        pageTitle: "OTP History Logs",
+        pageTitle: "OTP Logs",
         permission: "View OTP Logs",
       },
       {
-        id: 903,
+        id: 1103,
         icon: GiEarthAsiaOceania,
-        label: "Country Directory",
+        label: "Countries",
         href: "/dashboard/countries",
-        pageTitle: "Manage Countries",
+        pageTitle: "Country Management",
         permission: "Manage Countries",
       },
       {
-        id: 904,
+        id: 1104,
         icon: MdOutlineMap,
-        label: "State Directory",
+        label: "States",
         href: "/dashboard/states",
-        pageTitle: "Manage States",
+        pageTitle: "State Management",
         permission: "Manage States",
       },
       {
-        id: 905,
+        id: 1105,
         icon: HiOutlineBuildingOffice2,
-        label: "City Directory",
+        label: "Cities",
         href: "/dashboard/cities",
-        pageTitle: "Manage Cities",
+        pageTitle: "City Management",
         permission: "Manage Cities",
       },
     ],
@@ -334,9 +349,9 @@ export const tabs = [
   {
     id: 12,
     icon: MdContactPhone,
-    label: "Contact Us",
+    label: "Contact Messages",
     href: "/dashboard/contact-us",
-    pageTitle: "Contact Messages",
+    pageTitle: "Contact Submissions",
     permission: "Manage Contact",
     tabs: [],
   },
@@ -381,4 +396,46 @@ export const flattenTabs = (tabList: TabItem[]): TabItem[] => {
 
   recurse(tabList);
   return flatList;
+};
+
+export const combineParentTabs = (tabList: TabItem[]): TabItem[] => {
+  const combinedList: TabItem[] = [];
+
+  tabList.forEach((tab: any) => {
+    if (tab.parent) {
+      let parentTab = combinedList.find((item) => item.label === tab.parent);
+
+      if (!parentTab) {
+        parentTab = {
+          href: "",
+          tabs: [],
+          id: Date.now(),
+          icon: tab.icon,
+          label: tab.parent,
+          permission: tab.parent,
+          pageTitle: `${tab.parent} Overview`,
+        };
+        combinedList.push(parentTab);
+      }
+      parentTab.tabs?.push({
+        id: tab.id,
+        label: tab.label,
+        href: tab.href,
+        pageTitle: tab.pageTitle,
+        permission: tab.permission,
+        icon: tab.icon || FaTags, // Default icon if not present
+      });
+    } else {
+      combinedList.push({
+        id: tab.id,
+        label: tab.label,
+        href: tab.href,
+        pageTitle: tab.pageTitle,
+        permission: tab.permission,
+        icon: tab.icon || FaTags, // Default icon if not present
+      });
+    }
+  });
+
+  return combinedList;
 };

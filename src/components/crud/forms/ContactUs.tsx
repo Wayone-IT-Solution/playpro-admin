@@ -49,7 +49,7 @@ const ContactUsForm: React.FC<ContactUsFormProps> = (props) => {
       const resp: any = await Put(`${url}/${form?._id}`, form, 5000);
 
       if (resp.success) {
-        const response: any = await Fetch(currentEndpoint.url);
+        const response: any = await Fetch(currentEndpoint.url, {}, 5000, true, false);
         if (response?.success) props.setFilteredData(response?.data?.result);
         else window.location.reload(); // TODO: this should be done in future
       } else return toast.error("Failed to update blog");

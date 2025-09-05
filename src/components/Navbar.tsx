@@ -18,7 +18,7 @@ const Navbar: React.FC = () => {
   const [stateReady, setStateReady] = useState(false);
 
   useEffect(() => {
-    const list = ["/auth/login", "/login", "/auth"];
+    const list = ["/auth/login", "/login", "/auth", "/no-access"];
     if (!includes(list, pathname)) localStorage.setItem("pathname", pathname);
     else localStorage.removeItem("pathname");
   }, [pathname]);

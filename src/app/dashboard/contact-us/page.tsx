@@ -13,7 +13,7 @@ const columns = [
   { key: "query", label: "Query", sortable: true },
   { key: "senderMobile", label: "Phone Number", sortable: true },
   { key: "senderEmail", label: "Email", sortable: true },
-  { key: "createdAt", label: "Date", sortable: true, isDate: true },
+  { key: "createdAt", label: "Date", sortable: true, isDateTime: true },
   {
     key: "status",
     label: "Status",
@@ -21,6 +21,13 @@ const columns = [
     isMultiPurpose: true,
     multiPurposeProps: { type: "label" },
   },
+];
+
+const filterOptions = [
+  { label: "Name", value: "senderName" },
+  { label: "Email", value: "senderEmail" },
+  { label: "Mobile", value: "senderMobile" },
+  { label: "Query", value: "query" },
 ];
 
 const Contacts: React.FC = () => {
@@ -39,6 +46,7 @@ const Contacts: React.FC = () => {
           type="Contact"
           columns={columns}
           data={updatedData}
+          filterOptions={filterOptions}
           pagination_data={paginationData}
           operationsAllowed={operationsAllowed}
         />

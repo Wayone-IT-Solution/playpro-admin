@@ -14,16 +14,10 @@ const columns = [
   { key: "user.lastName", label: "Last Name", sortable: true },
   { key: "user.email", label: "Email", sortable: true },
   { key: "user.phoneNumber", label: "Phone Number", sortable: true },
-  { key: "totalAmount", label: "Total Amount", sortable: true },
-  { key: "finalAmount", label: "Final Amount", sortable: true },
-  { key: "createdAt", label: "Created Date", sortable: true, isDate: true },
-  { key: "updatedAt", label: "Updated Date", sortable: true, isDate: true },
-  {
-    key: "items",
-    label: "Items",
-    isMultiPurpose: true,
-    multiPurposeProps: { type: "array", displayKey: "product.name" }, // displays product names in items array
-  },
+  { key: "totalAmount", label: "Total Amt. (In SAR)", sortable: true, prefix: "SAR " },
+  { key: "finalAmount", label: "Final Amt. (In SAR)", sortable: true, prefix: "SAR " },
+  { key: "createdAt", label: "Created Date", sortable: true, isDateTime: true },
+  { key: "updatedAt", label: "Updated Date", sortable: true, isDateTime: true },
 ];
 
 const filterOptions = [
@@ -39,7 +33,7 @@ const Contacts: React.FC = () => {
   const updatedData = data?.data?.result;
   const paginationData = data?.data?.pagination;
   let operationsAllowed = endpoints[formType]?.operations;
-  operationsAllowed = { ...operationsAllowed, create: false, read: false };
+  operationsAllowed = { ...operationsAllowed, create: false, update: false };
 
   if (loading && !updatedData && !error) return <Loader />;
 

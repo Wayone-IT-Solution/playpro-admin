@@ -17,7 +17,7 @@ const columns = [
     key: "paymentDetails",
     label: "Payment Details",
     sortable: true,
-    isDate: true,
+    isDateTime: true,
   },
   {
     key: "createdAt",

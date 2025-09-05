@@ -1,10 +1,18 @@
 "use client";
-import AuthGuard from "@/components/AuthGuard";
 
-export default function Home() {
-  return (
-    <AuthGuard>
-      <main className="flex min-h-screen flex-col items-center justify-between p-24"></main>
-    </AuthGuard>
-  );
-}
+import { useEffect } from "react";
+import { useRouter } from "next/navigation";
+import { useAuth } from "@/context/AuthContext";
+
+const AuthPage: React.FC = () => {
+  const { token } = useAuth();
+  const navigate = useRouter();
+
+  useEffect(() => {
+    if (token === null) return navigate.push("/auth/login"); // if admin is not logged In
+  }, [navigate, token]);
+
+  return null;
+};
+
+export default AuthPage;

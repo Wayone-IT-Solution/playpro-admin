@@ -11,17 +11,22 @@ import React, {
 import { Fetch } from "@/hooks/apiUtils";
 import { useRouter } from "next/navigation";
 import Loader from "@/components/common/Loader";
+import { flattenTabs, tabs } from "@/data/tabs";
 import useIsDarkMode from "@/hooks/useIsDarkMode";
 
 interface User {
   _id: string;
   name: string;
+  username: string;
+  role: {
+    name: string;
+    permissions: any[];
+  };
   email: string;
-  role: string;
 }
 
 interface AuthContextProps {
-  user: any;
+  user: User | null;
   logout: () => void;
   isDarkMode: boolean;
   token: string | null;
@@ -33,36 +38,37 @@ const AuthContext = createContext<AuthContextProps | undefined>(undefined);
 export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const router = useRouter();
   const { isDarkMode } = useIsDarkMode();
-  const [loading, setLoading] = useState(true);
+
   const [user, setUser] = useState<User | null>(null);
   const [token, setToken] = useState<string | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [hasMounted, setHasMounted] = useState(false);
+
+  // Prevent hydration mismatch
+  useEffect(() => {
+    setHasMounted(true);
+  }, []);
 
   useEffect(() => {
+    if (!hasMounted) return;
+
     router.prefetch("/dashboard");
-  }, [router]);
 
-  useEffect(() => {
-    const sharedToken = typeof window !== "undefined"
-      ? localStorage.getItem("adminToken")
-      : null;
+    const sharedToken = localStorage.getItem("adminToken");
 
     const fetchUser = async () => {
       try {
-        const response: {
-          success: boolean;
-          user: User;
-          message: string;
-        } = await Fetch("api/admin/current/user", {}, 5000, true, false);
-
+        const response: any = await Fetch("api/admin/current/user", {}, 5000, true, false);
         if (response?.success && response?.user) {
-          setToken(sharedToken);
           setUser(response.user);
-          router.replace("/dashboard");
-        } else router.replace("/auth/login");
+          setToken(sharedToken);
+          handleRedirect(response.user.role?.permissions);
+        } else {
+          handleLogout();
+        }
       } catch (error) {
         console.log("❌ Auth fetch error:", error);
-        localStorage.clear();
-        router.replace("/auth/login");
+        handleLogout();
       } finally {
         setLoading(false);
       }
@@ -73,20 +79,36 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     } else {
       setLoading(false);
     }
-  }, [router]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [hasMounted, router]);
 
-  const login = (authToken: string, userData: User) => {
-    setToken(authToken);
-    setUser(userData);
-    localStorage.setItem("adminToken", authToken);
-    router.replace("/dashboard");
+  const handleRedirect = (permissions: any[]) => {
+    const flat = flattenTabs(tabs);
+    const readable = permissions?.filter((p) => p?.access?.read);
+    const firstModule = readable?.[0]?.module;
+
+    const firstLink = flat.find((tab) => tab.permission === firstModule)?.href;
+    const storedPath = localStorage.getItem("pathname");
+
+    if (firstLink) {
+      router.replace(storedPath || firstLink);
+    } else {
+      router.replace("/no-access");
+    }
   };
 
-  const logout = () => {
+  const handleLogout = () => {
     setToken(null);
     setUser(null);
     localStorage.clear();
     router.replace("/auth/login");
+  };
+
+  const login = (authToken: string, userData: User) => {
+    localStorage.setItem("adminToken", authToken);
+    setToken(authToken);
+    setUser(userData);
+    handleRedirect(userData?.role?.permissions);
   };
 
   const contextValue = useMemo(
@@ -94,17 +116,17 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
       user,
       token,
       login,
-      logout,
+      logout: handleLogout,
       isDarkMode,
     }),
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [user, token, isDarkMode]
   );
 
+  if (!hasMounted || loading) return <Loader />;
+
   return (
-    <AuthContext.Provider value={contextValue}>
-      {loading ? <Loader /> : children}
-    </AuthContext.Provider>
+    <AuthContext.Provider value={contextValue}>{children}</AuthContext.Provider>
   );
 };
 

@@ -40,9 +40,11 @@ const columns = [
 ];
 
 const filterOptions = [
-  { label: "Name", value: "firstName" },
-  { label: "Email", value: "email" },
-  { label: "Mobile", value: "phoneNumber" },
+  { label: "User Name", value: "userFirstName" },
+  { label: "Email ID", value: "userEmail" },
+  { label: "Phone Number", value: "userPhoneNumber" },
+  { label: "Ground Name", value: "groundName" },
+  { label: "Ground Address", value: "groundAddress" },
 ];
 
 const Page: React.FC = () => {

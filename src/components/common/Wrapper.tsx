@@ -9,7 +9,7 @@ const Wrapper = ({
 }>) => {
   return (
     <div className="bg-infobg pt-[64px] ml-[10%] md:ml-[7%] lg:ml-[17.1%]">
-      <div className="p-1 md:p-3 bg-[url('/assets/bg/bg3.png')] bg-no-repeat backdrop-blur-xl bg-cover bg-bottom bg-[#1F1F1F]/10 md:pb-3 min-h-screen flex-1">
+      <div className="p-1 md:p-3 md:pb-3 min-h-screen flex-1 backdrop-blur-md">
         {children}
       </div>
       <footer className="text-xs text-iconBlack bg-whiteBg py-4 px-4 flex flex-wrap justify-center items-center gap-1 text-center">

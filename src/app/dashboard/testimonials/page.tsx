@@ -41,8 +41,8 @@ const columns = [
 ];
 
 const filterOptions = [
-  { label: "Emp. ID", value: "_id" },
-  { label: "Name", value: "username" },
+  { label: "Name", value: "name" },
+  { label: "Feedback", value: "feedback" },
 ];
 
 const Page: React.FC = () => {

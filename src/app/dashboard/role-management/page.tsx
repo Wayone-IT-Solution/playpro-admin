@@ -8,31 +8,9 @@ import Wrapper from "@/components/common/Wrapper";
 import TableComponent from "@/components/common/Table";
 
 const columns = [
-  {
-    key: "_id",
-    label: "State ID",
-    sortable: true,
-  },
-  {
-    key: "name",
-    label: "State Name",
-    sortable: true,
-  },
-  {
-    key: "code",
-    label: "State Code",
-    sortable: true,
-  },
-  {
-    key: "countryName",
-    label: "Country Name",
-    sortable: true,
-  },
-  {
-    key: "countryCode",
-    label: "Country Code",
-    sortable: true,
-  },
+  { key: "_id", label: "Role ID" },
+  { key: "name", label: "Name", sortable: true },
+  { key: "description", label: "Description", sortable: true, length: 75 },
   {
     key: "createdAt",
     label: "Created On",
@@ -41,25 +19,24 @@ const columns = [
   },
   {
     key: "updatedAt",
-    label: "Updated On",
+    label: "Last Modified",
     sortable: true,
     isDateTime: true,
   },
 ];
 
 const filterOptions = [
-  { label: "Name", value: "name" },
-  { label: "Code", value: "code" },
-  { label: "Country Name", value: "countryName" },
-  { label: "Country Code", value: "countryCode" },
+  { label: "Role Name", value: "name" },
+  { label: "Description", value: "description" },
 ];
 
 const Page: React.FC = () => {
-  const formType = "State";
+  const formType = "Role Management";
   const { data, loading, error } = useFetch(endpoints[formType]?.url);
   const updatedData = data?.data?.result;
   const paginationData = data?.data?.pagination;
-  const operationsAllowed = endpoints[formType]?.operations;
+  let operationsAllowed = endpoints[formType]?.operations;
+  operationsAllowed = { ...operationsAllowed, delete: false };
 
   if (loading && !updatedData && !error) return <Loader />;
 

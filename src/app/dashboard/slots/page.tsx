@@ -1,4 +1,4 @@
-              "use client";
+"use client";
 
 import useFetch from "@/hooks/useFetch";
 import { endpoints } from "@/data/endpoints";
@@ -14,7 +14,7 @@ const columns = [
   { key: "email", label: "Email Address", sortable: true },
   { key: "phoneNumber", label: "Phone Number", sortable: true },
   { key: "upiId", label: "UPI ID", sortable: true },
-  { key: "dateOfBirth", label: "Date Of Birth", sortable: true, isDate: true },
+  { key: "dateOfBirth", label: "Date Of Birth", sortable: true, isDateTime: true },
   { key: "points", sortable: true, label: "Current Points" },
   {
     key: "createdAt",

@@ -16,13 +16,13 @@ const columns = [
   },
   {
     key: "slug",
-    label:" Slug",
+    label: " Slug",
     sortable: true,
   },
   {
-     key: "categoryName",
-     label:" Category Name",
-     sortable: true,
+    key: "categoryName",
+    label: " Category Name",
+    sortable: true,
   },
   {
     key: "isActive",
@@ -46,10 +46,10 @@ const columns = [
 ];
 
 const filterOptions = [
-  { label: "Name", value: "userName" },
-  { label: "Email", value: "userEmail" },
-  { label: "Mobile", value: "userMobile" },
-  { label: "Status", value: "status" },
+  { label: "Blog Title", value: "title" },
+  { label: "Slug", value: "slug" },
+  { label: "Category", value: "categoryName" },
+  { label: "Status", value: "isActive" },
 ];
 
 const Page: React.FC = () => {

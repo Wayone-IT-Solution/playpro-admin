@@ -8,6 +8,7 @@ const operations = {
 
 export const endpoints: any = {
   User: { url: "api/user/user", operations: operations },
+  "Role Management": { url: "api/role", operations: operations },
   Blog: { url: "api/blog", operations: operations },
   Banner: { url: "api/banner", operations: operations },
   Employee: { url: "api/admin", operations: operations },
@@ -50,7 +51,7 @@ export const endpoints: any = {
   Reviews: { url: "api/review", operations: operations },
   Slots: { url: "api/slot", operations: operations },
   Testimonials: { url: "api/testimonial", operations: operations },
-  "Property Owner": { url: "api/user/ground_owner", operations: operations },
+  "Ground Owner": { url: "api/user/ground_owner", operations: operations },
   "Ad Video": { url: "api/video", operations: operations },
   OTP: { url: "api/user/otp/all", operations: operations },
   City: { url: "api/location/city", operations: operations },
@@ -64,8 +65,8 @@ export const endpoints: any = {
   Payments: { url: "api/ride?status=completed", operations: operations },
   "Products Category": { url: "api/product-category", operations: operations },
   "Products": { url: "api/product", operations: operations },
-  "Brands": {url:"api/brand",operations: operations},
-  "Carts":  {url:"api/cart/admin",operations: operations},
-  "Orders":  {url:"api/order/admin",operations: operations},
+  "Brands": { url: "api/brand", operations: operations },
+  "Carts": { url: "api/cart/admin", operations: operations },
+  "Orders": { url: "api/order/admin", operations: operations },
 
 };

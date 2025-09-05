@@ -6,17 +6,19 @@ import { RxCross1 } from "react-icons/rx";
 interface ModalProps {
   width?: string;
   isVisible: boolean;
+  hideCross?: boolean;
   onClose: () => void;
   hidePadding?: boolean;
   children: React.ReactNode;
 }
 
 const Modal: React.FC<ModalProps> = ({
-  width = "max-w-4/5",
-  isVisible,
   onClose,
   children,
+  isVisible,
   hidePadding,
+  hideCross = false,
+  width = "max-w-4/5",
 }) => {
   if (!isVisible) return null;
 
@@ -27,11 +29,13 @@ const Modal: React.FC<ModalProps> = ({
         className={`bg-opacity-50 backdrop-filter backdrop-blur-lg shadow-lg rounded-xl z-10 relative ${width}`}
       >
         <div className="bg-white relative overflow-scroll no-scrollbar max-h-[90vh] rounded-xl">
-          <RxCross1
-            size={24}
-            className="cursor-pointer z-30 absolute top-2 right-2 text-primary"
-            onClick={onClose}
-          />
+          {!hideCross &&
+            <RxCross1
+              size={24}
+              className="cursor-pointer z-30 absolute top-2 right-2 text-primary"
+              onClick={onClose}
+            />
+          }
           <div
             onClick={(e) => e.stopPropagation()}
             className={hidePadding ? "" : "p-4"}

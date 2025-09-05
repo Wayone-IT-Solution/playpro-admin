@@ -13,7 +13,7 @@ const columns = [
   { key: "lastName", label: "Last Name", sortable: true },
   { key: "email", label: "Email Address", sortable: true },
   { key: "phoneNumber", label: "Phone Number", sortable: true },
-  { key: "dateOfBirth", label: "Date Of Birth", sortable: true, isDate: true },
+  { key: "dateOfBirth", label: "Date Of Birth", sortable: true, isDateTime: true },
   {
     key: "createdAt",
     label: "Registration Date",
@@ -31,7 +31,7 @@ const columns = [
     sortable: true,
     label: "Active Status",
     isMultiPurpose: true,
-    multiPurposeProps: { type: "label" },
+    multiPurposeProps: { type: "select", options: ["active", "pending"] },
   },
 ];
 
@@ -42,7 +42,7 @@ const filterOptions = [
 ];
 
 const Page: React.FC = () => {
-  const formType = "Property Owner";
+  const formType = "Ground Owner";
   const { data, loading, error } = useFetch(endpoints[formType]?.url);
   const updatedData = data?.data?.result;
   const paginationData = data?.data?.pagination;

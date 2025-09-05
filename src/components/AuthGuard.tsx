@@ -10,23 +10,33 @@ const AuthGuard: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const router = useRouter();
   const pathname = usePathname();
 
-  const [hasMounted, setHasMounted] = useState(false);
+  const [isMounted, setIsMounted] = useState(false);
+  const [isAuthenticated, setIsAuthenticated] = useState<boolean | null>(null);
 
   useEffect(() => {
-    setHasMounted(true);
+    setIsMounted(true);
 
-    const localToken = localStorage.getItem("adminToken");
+    // Wait until hydration before accessing localStorage
+    const localToken = typeof window !== "undefined" ? localStorage.getItem("adminToken") : null;
 
-    if (!token && !localToken) {
+    // Client-side redirection logic only after mount
+    if (!localToken && !token) {
+      setIsAuthenticated(false);
       router.replace("/auth/login");
-    } else if (token && pathname === "/") {
-      router.replace("/dashboard");
+    } else {
+      setIsAuthenticated(true);
+      if (pathname === "/") {
+        router.replace("/dashboard");
+      }
     }
   }, [token, router, pathname]);
 
-  if (!hasMounted) return <Loader />;
+  // Avoid rendering anything until the component is hydrated
+  if (!isMounted || isAuthenticated === null) {
+    return <Loader />;
+  }
 
-  return <>{token ? children : <Loader />}</>;
+  return <>{isAuthenticated ? children : <Loader />}</>;
 };
 
 export default AuthGuard;
