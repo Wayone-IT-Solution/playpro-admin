@@ -18,6 +18,14 @@ export const userFormType: FormField[] = [
     validation: (value) => (includes(value, "@") ? null : "Invalid email"),
   },
   {
+    name: "role",
+    type: "select",
+    required: true,
+    label: "Employee Role",
+    placeholder: "Select user role",
+    options: []
+  },
+  {
     type: "text",
     name: "password",
     label: "Enter Password",

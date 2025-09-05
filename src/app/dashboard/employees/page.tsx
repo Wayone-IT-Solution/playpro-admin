@@ -8,28 +8,36 @@ import Wrapper from "@/components/common/Wrapper";
 import TableComponent from "@/components/common/Table";
 
 const columns = [
-  { key: "_id", label: "User ID", sortable: true },
-  { key: "username", label: "User Name", sortable: true },
-  { key: "email", label: "Email Address", sortable: true },
-  {key: "status", label: "Status", sortable :true, isMultiPurpose: true, multiPurposeProps: { type: "label" }} ,
-  
+  { key: "_id", label: "User ID" },
+  { key: "username", label: "Full Name", sortable: true },
+  { key: "email", label: "Email", sortable: true },
+  { key: "role", label: "Assigned Role", sortable: true },
+  {
+    key: "status",
+    label: "Account Status",
+    sortable: true,
+    isMultiPurpose: true,
+    multiPurposeProps: { type: "label" },
+  },
   {
     key: "createdAt",
-    label: "Registration Date",
+    label: "Date of Registration",
     sortable: true,
     isDateTime: true,
   },
   {
     key: "updatedAt",
-    label: "Last Updated",
+    label: "Last Modified",
     sortable: true,
     isDateTime: true,
   },
 ];
 
 const filterOptions = [
-  { label: " User Name", value: "username" },
+  { label: "Name", value: "username" },
   { label: "Email", value: "email" },
+  { label: "Role", value: "role" },
+  { label: "Status", value: "status" },
 ];
 
 const Page: React.FC = () => {
@@ -38,12 +46,7 @@ const Page: React.FC = () => {
   const updatedData = data?.data?.result;
   const paginationData = data?.data?.pagination;
   let operationsAllowed = endpoints[formType]?.operations;
-  operationsAllowed = {
-    ...operationsAllowed,
-    delete: false,
-    update: false,
-    create: false,
-  };
+  operationsAllowed = { ...operationsAllowed, delete: false };
 
   if (loading && !updatedData && !error) return <Loader />;
 
