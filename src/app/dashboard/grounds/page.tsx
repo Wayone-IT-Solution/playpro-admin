@@ -8,8 +8,15 @@ import Wrapper from "@/components/common/Wrapper";
 import TableComponent from "@/components/common/Table";
 
 const columns = [
-  { key: "name", label: "Ground Name", sortable: true, image: true, imageWithKey: "images[0]" },
+  {
+    key: "name",
+    label: "Ground Name",
+    sortable: true,
+    image: true,
+    imageWithKey: "images[0]",
+  },
   { key: "address", label: "Location", sortable: true },
+  { key: "type", label: "Ground Type", sortable: true },
   { key: "firstName", label: "Owner Name", sortable: true },
   { key: "email", label: "Owner Email", sortable: true },
   { key: "mobile", label: "Contact Number", sortable: true },

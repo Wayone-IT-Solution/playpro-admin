@@ -13,6 +13,7 @@ const columns = [
   { key: "brand", label: "Brand", sortable: true },
   { key: "category", label: "Category", sortable: true },
   { key: "subCategory", label: "Sub Category", sortable: true },
+  
   {
     key: "isActive",
     label: "Status",

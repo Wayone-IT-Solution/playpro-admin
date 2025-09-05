@@ -526,6 +526,11 @@ export const groundField: FormField[] = [
     placeholder: "Enter the official name of the ground",
   },
   {
+    name:"type",
+    label: "Ground Type",
+    type: "text",
+  },
+  {
     name: "status",
     label: "Ground Status",
     type: "select",
