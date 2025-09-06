@@ -1,16 +1,16 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
+import { useEffect, useState } from "react";
 import { endpoints } from "@/data/endpoints";
-import { Fetch, Post, Put } from "@/hooks/apiUtils";
 import { groundField } from "../formtype/general";
+import { Fetch, Post, Put } from "@/hooks/apiUtils";
 import DynamicForm from "@/components/common/DynamicForm";
 import {
-  flattenOneLevelPreserveKeys,
-  getSelectFormattedData,
+  flattenObject,
   populateFormData,
   populateFormFields,
+  getSelectFormattedData,
 } from "@/hooks/general";
 
 interface GroundFormProps {
@@ -32,7 +32,7 @@ const GroundForm: React.FC<GroundFormProps> = (props: any) => {
 
   const [formData, setFormData] = useState<any>(
     data._id
-      ? populateFormData(groundField, flattenOneLevelPreserveKeys(data))
+      ? populateFormData(groundField, flattenObject(data, "", ["images"]))
       : {}
   );
 
@@ -62,9 +62,8 @@ const GroundForm: React.FC<GroundFormProps> = (props: any) => {
 
   const makeApiCall = async (updatedData: any) => {
     try {
-      const url = `${endpoints[formType].url}/admin${
-        !data._id ? "" : "/" + data._id
-      }`;
+      const url = `${endpoints[formType].url}/admin${!data._id ? "" : "/" + data._id
+        }`;
 
       setSubmitting(true);
       const response: any = data._id

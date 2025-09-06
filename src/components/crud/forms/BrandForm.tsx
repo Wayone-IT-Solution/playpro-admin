@@ -1,13 +1,15 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
+import { useEffect, useState } from "react";
 import { endpoints } from "@/data/endpoints";
-import { Fetch, Post, Put } from "@/hooks/apiUtils";
 import { brandFields } from "../formtype/general";
+import { Fetch, Post, Put } from "@/hooks/apiUtils";
 import DynamicForm from "@/components/common/DynamicForm";
 import {
-  flattenOneLevelPreserveKeys,
+  deepUnflatten,
+  flattenObject,
+  makeFormData,
   populateFormData,
   populateFormFields,
 } from "@/hooks/general";
@@ -33,22 +35,23 @@ const BrandForm: React.FC<BrandFormProps> = (props: any) => {
 
   const [formData, setFormData] = useState<any>(
     data?._id
-      ? populateFormData(brandFields, flattenOneLevelPreserveKeys(data))
+      ? populateFormData(brandFields, flattenObject(data))
       : {}
   );
 
   useEffect(() => {
-    setLoading(false); 
+    setLoading(false);
   }, []);
 
   const makeApiCall = async (updatedData: any) => {
     try {
       const url = `${endpoints[formType].url}${data?._id ? "/" + data._id : ""}`;
       setSubmitting(true);
-
-      const response: any = data?._id
-        ? await Put(url, updatedData)
-        : await Post(url, updatedData);
+      const unflatten = deepUnflatten(updatedData);
+      const formatedData = makeFormData(unflatten, true);
+      const response: any = data._id
+        ? await Put(url, formatedData)
+        : await Post(url, formatedData);
 
       if (response.success) {
         const fetchUrl = `${endpoints[formType].url}`;
@@ -78,8 +81,8 @@ const BrandForm: React.FC<BrandFormProps> = (props: any) => {
       {!loading && (
         <DynamicForm
           id={data?._id}
+          returnAs="object"
           fields={formField}
-          returnAs="formData"
           formData={formData}
           submitting={submitting}
           onClose={props?.onClose}

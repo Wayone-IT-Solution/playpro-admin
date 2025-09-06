@@ -519,7 +519,7 @@ const DoctorSlotsManager = () => {
                           <option value="">Select Ground</option>
                           {grounds.map((ground: any, index) => (
                             <option key={index} value={ground._id}>
-                              {ground.name} - {ground.firstName}{" "}
+                              {ground?.name?.en} - {ground.firstName}{" "}
                               {ground.lastName} ({ground.email})
                             </option>
                           ))}
@@ -770,11 +770,11 @@ const DoctorSlotsManager = () => {
                       slot(s) for{" "}
                       {slot.useRecurring
                         ? `recurring ${slot.selectedDays
-                            .map(
-                              (day) =>
-                                daysOfWeek.find((d) => d.value === day)?.label
-                            )
-                            .join(", ")}`
+                          .map(
+                            (day) =>
+                              daysOfWeek.find((d) => d.value === day)?.label
+                          )
+                          .join(", ")}`
                         : `specific dates`}
                     </div>
                   </div>
@@ -817,7 +817,7 @@ const DoctorSlotsManager = () => {
                   <option value="">Select Ground</option>
                   {grounds.map((ground: any, index) => (
                     <option key={index} value={ground._id}>
-                      {ground.name} - {ground.firstName} {ground.lastName} (
+                      {ground?.name?.en} - {ground.firstName} {ground.lastName} (
                       {ground.email})
                     </option>
                   ))}

@@ -8,9 +8,10 @@ import Wrapper from "@/components/common/Wrapper";
 import TableComponent from "@/components/common/Table";
 
 const columns = [
-  { key: "name", label: "Brand Name", image: true, imageWithKey: "imageUrl" },
-  { key: "description", label: "Description", sortable: true },
-  { key: "country", label: "Country of Origin", sortable: true },
+  { key: "name.en", label: "Brand (EN)", image: true, imageWithKey: "imageUrl" },
+  { key: "name.ar", label: "Brand (AR)", image: true, imageWithKey: "imageUrl" },
+  { key: "country.en", label: "Country (EN)", sortable: true },
+  { key: "country.ar", label: "Country (AR)", sortable: true },
   { key: "establishedYear", label: "Established Year", sortable: true },
   {
     key: "isActive",

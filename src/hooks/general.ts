@@ -142,6 +142,113 @@ export const populateFormData = (fields: any, product: any) => {
   return object;
 };
 
+export const deepUnflatten = (obj: any) => {
+  const result = {};
+  for (const flatKey in obj) {
+    const keys = flatKey.replace(/\[/g, ".").replace(/\]/g, "").split(".");
+    let current: any = result;
+
+    keys.forEach((key: any, i) => {
+      const isLast = i === keys.length - 1;
+      const nextKey = keys[i + 1];
+      if (/^\d+$/.test(key)) key = parseInt(key);
+      if (isLast) {
+        const val: any = obj[flatKey];
+        current[key] =
+          typeof val === "string" && !isNaN(Number(val)) ? Number(val) : val;
+      } else {
+        if (!current[key]) {
+          current[key] = /^\d+$/.test(nextKey) ? [] : {};
+        }
+        current = current[key];
+      }
+    });
+  }
+  return result;
+};
+
+export const makeFormData = (formData: any, allowObjectParse?: any) => {
+  const data = new FormData();
+  const appendToFormData = (key: string, value: any) => {
+    if (value instanceof File) data.append(key, value);
+    else if (Array.isArray(value)) {
+      value.forEach((item, index) => {
+        if (item instanceof File) data.append(`${key}[${index}]`, item);
+        else if (typeof item === "object" && item !== null) {
+          Object.entries(item).forEach(([subKey, subValue]) => {
+            if (subValue instanceof File) {
+              data.append(`${key}[${index}][${subKey}]`, subValue);
+            } else data.append(`${key}[${index}][${subKey}]`, String(subValue));
+          });
+        } else data.append(`${key}[${index}]`, String(item));
+      });
+    } else if (typeof value === "object" && value !== null) {
+      if (allowObjectParse)
+        Object.entries(value).forEach(([subKey, subValue]) =>
+          appendToFormData(`${key}[${subKey}]`, subValue)
+        );
+      else data.append(key, value);
+    } else data.append(key, String(value));
+  };
+
+  Object.entries(formData).forEach(([key, value]) => {
+    if (value !== null && value !== undefined) {
+      appendToFormData(key, value);
+    }
+  });
+  return data;
+};
+
+export const flattenObject = (
+  obj: any,
+  prefix = "",
+  excludeKeys: string[] = []
+): Record<string, any> => {
+  let result: Record<string, any> = {};
+
+  for (const key in obj) {
+    if (!obj.hasOwnProperty(key)) continue;
+
+    const value = obj[key];
+    const fullKey = prefix ? `${prefix}.${key}` : key;
+
+    // Skip flattening if key is in excludeKeys
+    if (excludeKeys.includes(fullKey)) {
+      result[fullKey] = value;
+      continue;
+    }
+
+    const prefixedKey = Array.isArray(obj)
+      ? `${prefix}[${key}]`
+      : prefix
+        ? `${prefix}.${key}`
+        : key;
+
+    if (
+      value !== null &&
+      typeof value === "object" &&
+      !Array.isArray(value) &&
+      !(value instanceof Date)
+    ) {
+      const nested = flattenObject(value, prefixedKey, excludeKeys);
+      result = { ...result, ...nested };
+    } else if (Array.isArray(value)) {
+      value.forEach((val, i) => {
+        const arrayKey = `${prefixedKey}[${i}]`;
+        if (typeof val === "object" && val !== null) {
+          const nested = flattenObject(val, arrayKey, excludeKeys);
+          result = { ...result, ...nested };
+        } else {
+          result[arrayKey] = val;
+        }
+      });
+    } else {
+      result[prefixedKey] = value;
+    }
+  }
+  return result;
+};
+
 export const updateFormData = (
   formData: FormData,
   nestedFieldKey: string,

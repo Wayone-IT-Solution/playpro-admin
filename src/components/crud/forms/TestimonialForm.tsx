@@ -7,7 +7,9 @@ import { Fetch, Post, Put } from "@/hooks/apiUtils";
 import { testimonialField } from "../formtype/general";
 import DynamicForm from "@/components/common/DynamicForm";
 import {
-  flattenOneLevelPreserveKeys,
+  deepUnflatten,
+  flattenObject,
+  makeFormData,
   populateFormData,
   populateFormFields,
 } from "@/hooks/general";
@@ -30,20 +32,21 @@ const TestimonialForm: React.FC<BannerFormProps> = (props: any) => {
 
   const [formData, setFormData] = useState<any>(
     data._id
-      ? populateFormData(testimonialField, flattenOneLevelPreserveKeys(data))
+      ? populateFormData(testimonialField, flattenObject(data))
       : {}
   );
 
   const makeApiCall = async (updatedData: any) => {
     try {
-      const url = `${endpoints[formType].url}${
-        !data._id ? "" : "/" + data._id
-      }`;
+      const url = `${endpoints[formType].url}${!data._id ? "" : "/" + data._id
+        }`;
 
       setSubmitting(true);
+      const unflatten = deepUnflatten(updatedData);
+      const formatedData = makeFormData(unflatten, true);
       const response: any = data._id
-        ? await Put(url, updatedData)
-        : await Post(url, updatedData);
+        ? await Put(url, formatedData)
+        : await Post(url, formatedData);
 
       if (response.success) {
         const fetchUrl = `${endpoints[formType].url}`;
@@ -68,7 +71,7 @@ const TestimonialForm: React.FC<BannerFormProps> = (props: any) => {
       <DynamicForm
         id={data._id}
         fields={formField}
-        returnAs="formData"
+        returnAs="object"
         formData={formData}
         submitting={submitting}
         onClose={props?.onClose}

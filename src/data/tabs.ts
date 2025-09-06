@@ -1,8 +1,8 @@
 import {
-  MdArticle,
+  // MdArticle,
   MdCampaign,
   MdOutlineMap,
-  MdLibraryBooks,
+  // MdLibraryBooks,
   MdContactPhone,
   MdManageAccounts,
   MdOutlineWorkOutline,
@@ -26,11 +26,11 @@ import {
 import { FaTags } from "react-icons/fa";
 import { GoTasklist } from "react-icons/go";
 import { TbBrandBebo } from "react-icons/tb";
+import { BiSolidCategory } from "react-icons/bi";
 import { GiEarthAsiaOceania } from "react-icons/gi";
 import { FaHome, FaProductHunt } from "react-icons/fa";
 import { HiOutlineBuildingOffice2 } from "react-icons/hi2";
-import { BiCategory, BiSolidCategory } from "react-icons/bi";
-
+// BiCategory,
 export const tabs = [
   {
     id: 1,
@@ -253,39 +253,40 @@ export const tabs = [
       },
     ],
   },
+  // {
+  //   id: 9,
+  //   icon: MdLibraryBooks,
+  //   label: "Blogs & Testimonials",
+  //   href: "",
+  //   pageTitle: "Content Management",
+  //   permission: "Manage Content",
+  //   tabs: [
+  //     // {
+  //     //   id: 901,
+  //     //   icon: MdArticle,
+  //     //   label: "Blogs",
+  //     //   href: "/dashboard/blogs",
+  //     //   pageTitle: "Manage Blogs",
+  //     //   permission: "Manage Blogs",
+  //     // },
+  //     // {
+  //     //   id: 902,
+  //     //   icon: BiCategory,
+  //     //   label: "Blog Categories",
+  //     //   href: "/dashboard/blog-categories",
+  //     //   pageTitle: "Manage Blog Categories",
+  //     //   permission: "Manage Blog Categories",
+  //     // },
+
+  //   ],
+  // },
   {
-    id: 9,
-    icon: MdLibraryBooks,
-    label: "Blogs & Testimonials",
-    href: "",
-    pageTitle: "Content Management",
-    permission: "Manage Content",
-    tabs: [
-      {
-        id: 901,
-        icon: MdArticle,
-        label: "Blogs",
-        href: "/dashboard/blogs",
-        pageTitle: "Manage Blogs",
-        permission: "Manage Blogs",
-      },
-      {
-        id: 902,
-        icon: BiCategory,
-        label: "Blog Categories",
-        href: "/dashboard/blog-categories",
-        pageTitle: "Manage Blog Categories",
-        permission: "Manage Blog Categories",
-      },
-      {
-        id: 903,
-        icon: MdOutlineSupportAgent,
-        label: "Testimonials",
-        href: "/dashboard/testimonials",
-        pageTitle: "User Testimonials",
-        permission: "Manage Testimonials",
-      },
-    ],
+    id: 903,
+    icon: MdOutlineSupportAgent,
+    label: "Testimonials",
+    href: "/dashboard/testimonials",
+    pageTitle: "User Testimonials",
+    permission: "Manage Testimonials",
   },
   {
     id: 10,

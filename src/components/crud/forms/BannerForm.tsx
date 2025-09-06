@@ -6,7 +6,7 @@ import { endpoints } from "@/data/endpoints";
 import { Fetch, Post, Put } from "@/hooks/apiUtils";
 import { bannerFormFields } from "../formtype/general";
 import DynamicForm from "@/components/common/DynamicForm";
-import { flattenOneLevelPreserveKeys, populateFormData, populateFormFields } from "@/hooks/general";
+import { deepUnflatten, flattenObject, makeFormData, populateFormData, populateFormFields } from "@/hooks/general";
 
 interface BannerFormProps {
   data?: any;
@@ -26,7 +26,7 @@ const BannerForm: React.FC<BannerFormProps> = (props: any) => {
       : bannerFormFields;
 
   const [formData, setFormData] = useState<any>(
-    data._id ? populateFormData(bannerFormFields, flattenOneLevelPreserveKeys(data)) : {}
+    data._id ? populateFormData(bannerFormFields, flattenObject(data)) : {}
   );
 
   const makeApiCall = async (updatedData: any) => {
@@ -35,9 +35,11 @@ const BannerForm: React.FC<BannerFormProps> = (props: any) => {
         }`;
 
       setSubmitting(true);
+      const unflatten = deepUnflatten(updatedData);
+      const formatedData = makeFormData(unflatten, true);
       const response: any = data._id
-        ? await Put(url, updatedData)
-        : await Post(url, updatedData);
+        ? await Put(url, formatedData)
+        : await Post(url, formatedData);
 
       if (response.success) {
         const fetchUrl = `${endpoints[formType].url}`;
@@ -61,8 +63,8 @@ const BannerForm: React.FC<BannerFormProps> = (props: any) => {
       </h2>
       <DynamicForm
         id={data._id}
+        returnAs="object"
         fields={formField}
-        returnAs="formData"
         formData={formData}
         submitting={submitting}
         onClose={props?.onClose}

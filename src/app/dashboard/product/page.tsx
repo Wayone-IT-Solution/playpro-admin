@@ -8,12 +8,22 @@ import Wrapper from "@/components/common/Wrapper";
 import TableComponent from "@/components/common/Table";
 
 const columns = [
-  { key: "name", label: "Product", image: true, imageWithKey: "image" },
-  { key: "description", label: "Description", sortable: true },
+  { key: "name.en", label: "Product (EN)", image: true, imageWithKey: "image" },
+  { key: "name.ar", label: "المنتج (AR)", image: true, imageWithKey: "image" },
+
+  { key: "description.en", label: "Description (EN)", sortable: true },
+  { key: "description.ar", label: "الوصف (AR)", sortable: true },
+
   { key: "price", label: "Price (SAR)", sortable: true, prefix: "SAR " },
-  { key: "brand", label: "Brand", sortable: true },
-  { key: "category", label: "Category", sortable: true },
-  { key: "subCategory", label: "Sub-Category", sortable: true },
+
+  { key: "brand.en", label: "Brand (EN)", sortable: true },
+  { key: "brand.ar", label: "الماركة (AR)", sortable: true },
+
+  { key: "category.en", label: "Category (EN)", sortable: true },
+  { key: "category.ar", label: "الفئة (AR)", sortable: true },
+
+  { key: "subCategory.en", label: "Sub-Category (EN)", sortable: true },
+  { key: "subCategory.ar", label: "الفئة الفرعية (AR)", sortable: true },
 
   {
     key: "isActive",

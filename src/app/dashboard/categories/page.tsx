@@ -9,12 +9,19 @@ import TableComponent from "@/components/common/Table";
 
 const columns = [
   { key: "_id", label: "ID", sortable: true },
-  { key: "name", label: "Category Name", sortable: true },
-  { key: "description", label: "Category Description", sortable: true },
+  { key: "name.en", label: "Name (EN)", sortable: true },
+  { key: "name.ar", label: "Name (AR)", sortable: true },
+  { key: "description.en", label: "Description (EN)", sortable: true },
+  { key: "description.ar", label: "Description (AR)", sortable: true },
   {
-    key: "parentCategoryDetails.name",
-    label: "Parent Category",
-    fallback: "No parent category",
+    label: "Parent (EN)",
+    fallback: "-",
+    key: "parentCategoryDetails.name.en",
+  },
+  {
+    label: "Parent (AR)",
+    fallback: "-",
+    key: "parentCategoryDetails.name.ar",
   },
   {
     key: "status",

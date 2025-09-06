@@ -7,7 +7,7 @@ import { productType } from "../formtype/general";
 import { Fetch, Post, Put } from "@/hooks/apiUtils";
 import DynamicForm from "@/components/common/DynamicForm";
 import {
-  getSelectFormattedData,
+  flattenObject,
   populateFormData,
   populateFormFields,
 } from "@/hooks/general";
@@ -31,7 +31,7 @@ const ProductForm: React.FC<ProductFormProps> = (props: any) => {
   );
 
   const [formData, setFormData] = useState<any>(
-    data?._id ? populateFormData(productType, data) : {}
+    data?._id ? populateFormData(productType, flattenObject(data)) : {}
   );
 
   useEffect(() => {
@@ -46,11 +46,12 @@ const ProductForm: React.FC<ProductFormProps> = (props: any) => {
           false
         );
         if (categoryResp.success) {
-          const selectData = getSelectFormattedData(categoryResp.data);
+          const selectData = categoryResp.data.map((option: any) => ({
+            label: option?._id,
+            value: option?.name?.ar + " (" + option?.name?.en + ")",
+          }));
           const updatedFormField = formField.map((obj: any) => {
             if (obj.name === "category") return { ...obj, options: selectData };
-            if (obj.name === "subCategory")
-              return { ...obj, options: selectData };
             return obj;
           });
           setFormField(updatedFormField);
@@ -65,7 +66,10 @@ const ProductForm: React.FC<ProductFormProps> = (props: any) => {
           false
         );
         if (brandResp.success) {
-          const selectData = getSelectFormattedData(brandResp.data.result);
+          const selectData = brandResp.data.result.map((option: any) => ({
+            label: option?._id,
+            value: option?.name?.ar + " (" + option?.name?.en + ")",
+          }));
           const updatedFormField = (prev: any[]) =>
             prev.map((obj: any) =>
               obj.name === "brand" ? { ...obj, options: selectData } : obj
@@ -81,6 +85,37 @@ const ProductForm: React.FC<ProductFormProps> = (props: any) => {
     fetchSelectOptions();
     // eslint-disable-next-line
   }, []);
+
+  useEffect(() => {
+    const fetchSelectOptions = async () => {
+      try {
+        const categoryResp: any = await Fetch(
+          "/api/product-category/public",
+          { parentCategoryId: formData.category },
+          5000,
+          true,
+          false
+        );
+        if (categoryResp.success) {
+          const selectData = categoryResp.data.map((option: any) => ({
+            label: option?._id,
+            value: option?.name?.ar + " (" + option?.name?.en + ")",
+          }));
+          const updatedFormField = formField.map((obj: any) => {
+            if (obj.name === "subCategory") return { ...obj, options: selectData };
+            return obj;
+          });
+          setFormField(updatedFormField);
+        }
+      } catch (error) {
+        console.log("Error fetching select options: ", error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+    if (formData.category) fetchSelectOptions();
+    // eslint-disable-next-line
+  }, [formData.category]);
 
   const makeApiCall = async (updatedData: any) => {
     try {

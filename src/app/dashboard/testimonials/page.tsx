@@ -9,8 +9,10 @@ import TableComponent from "@/components/common/Table";
 
 const columns = [
   { key: "_id", label: "Testimonial ID", sortable: true },
-  { key: "name", label: "Name", sortable: true },
-  { key: "feedback", label: "Feedback", sortable: false },
+  { key: "name.en", label: "Name (EN)", sortable: true },
+  { key: "name.ar", label: "Name (AR)", sortable: true },
+  { key: "feedback.en", label: "Feedback (EN", sortable: false },
+  { key: "feedback.ar", label: "Feedback (AR)", sortable: false },
   { key: "rating", label: "Rating", sortable: true },
   {
     key: "isVerified",

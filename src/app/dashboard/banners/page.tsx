@@ -10,14 +10,15 @@ import TableComponent from "@/components/common/Table";
 const columns = [
   {
     image: true,
-    key: "title",
-    label: "Banner",
+    label: "Banner (EN)",
+    key: "title.en",
     imageWithKey: "image",
   },
   {
-    key: "description",
-    label: "Description",
-    sortable: true,
+    image: true,
+    label: "Banner (AR)",
+    key: "title.ar",
+    imageWithKey: "image",
   },
   {
     key: "isActive",

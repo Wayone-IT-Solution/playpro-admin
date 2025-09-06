@@ -9,14 +9,23 @@ import TableComponent from "@/components/common/Table";
 
 const columns = [
   {
-    key: "name",
-    label: "Ground Name",
+    key: "name.en",
+    label: "Ground Name (EN)",
     sortable: true,
     image: true,
     imageWithKey: "images[0]",
   },
-  { key: "address", label: "Location", sortable: true },
-  { key: "type", label: "Ground Type", sortable: true },
+  {
+    key: "name.ar",
+    label: "اسم الملعب (AR)",
+    sortable: true,
+    image: true,
+    imageWithKey: "images[0]",
+  },
+  { key: "address.en", label: "Location (EN)", sortable: true },
+  { key: "address.ar", label: "الموقع (AR)", sortable: true },
+  { key: "type.en", label: "Ground Type (EN)", sortable: true },
+  { key: "type.ar", label: "نوع الملعب (AR)", sortable: true },
   { key: "firstName", label: "Owner Name", sortable: true },
   { key: "email", label: "Owner Email", sortable: true },
   { key: "mobile", label: "Contact Number", sortable: true },

@@ -3,11 +3,12 @@
 import { toast } from "react-toastify";
 import { useEffect, useState } from "react";
 import { endpoints } from "@/data/endpoints";
-import { productcategoryType } from "../formtype/general";
 import { Fetch, Post, Put } from "@/hooks/apiUtils";
+import { productcategoryType } from "../formtype/general";
 import DynamicForm from "@/components/common/DynamicForm";
 import {
-  getSelectFormattedData,
+  deepUnflatten,
+  flattenObject,
   populateFormData,
   populateFormFields,
 } from "@/hooks/general";
@@ -29,12 +30,12 @@ const ProductCategoryForm: React.FC<ProductCategoryFormProps> = (
   const [submitting, setSubmitting] = useState(false);
   const [formField, setFormField] = useState(
     data?._id
-      ? populateFormFields(productcategoryType, data)
+      ? populateFormFields(productcategoryType, flattenObject(data))
       : productcategoryType
   );
 
   const [formData, setFormData] = useState<any>(
-    data?._id ? populateFormData(productcategoryType, data) : {}
+    data?._id ? populateFormData(productcategoryType, flattenObject(data)) : {}
   );
 
   useEffect(() => {
@@ -44,7 +45,10 @@ const ProductCategoryForm: React.FC<ProductCategoryFormProps> = (
         const response: any = await Fetch(url, {}, 5000, true, false);
         if (response.success && response?.data.length > 0) {
           const filteredData = response.data;
-          const selectData = getSelectFormattedData(filteredData);
+          const selectData = filteredData.map((option: any) => ({
+            label: option?._id,
+            value: option?.name?.ar + "(" + option?.name?.en + ")",
+          }));
           const updatedFormField = formField.map((obj: any) => {
             if (obj.name === "parentCategory")
               return { ...obj, options: selectData };
@@ -68,10 +72,11 @@ const ProductCategoryForm: React.FC<ProductCategoryFormProps> = (
       if (data?._id) url = `${url}/${data?._id}`;
 
       setSubmitting(true);
-
-      const response: any = data?._id
-        ? await Put(url, updatedData)
-        : await Post(url, updatedData);
+      const unflatten: any = deepUnflatten(updatedData);
+      if (!unflatten?.parentCategory) delete unflatten.parentCategory;
+      const response: any = data._id
+        ? await Put(url, unflatten)
+        : await Post(url, unflatten);
 
       if (response.success) {
         const url = endpoints[formType]?.url;
