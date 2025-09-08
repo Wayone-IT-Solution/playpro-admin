@@ -772,6 +772,22 @@ export const groundField: FormField[] = [
   {
     rows: 1,
     required: true,
+    name: "city.en",
+    type: "text",
+    label: "City (EN)",
+    placeholder: "Enter the city name in English",
+  },
+  {
+    rows: 1,
+    required: true,
+    name: "city.ar",
+    type: "text",
+    label: "المدينة (AR)",
+    placeholder: "أدخل اسم المدينة باللغة العربية",
+  },
+  {
+    rows: 1,
+    required: true,
     widthFull: true,
     name: "address.en",
     type: "textarea",
