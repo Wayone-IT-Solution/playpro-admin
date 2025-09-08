@@ -26,6 +26,7 @@ const columns = [
   { key: "address.ar", label: "الموقع (AR)", sortable: true },
   { key: "type.en", label: "Ground Type (EN)", sortable: true },
   { key: "type.ar", label: "نوع الملعب (AR)", sortable: true },
+  { key: "pitchType.en", label: "Pitch Type (EN)", sortable: true },
   { key: "firstName", label: "Owner Name", sortable: true },
   { key: "email", label: "Owner Email", sortable: true },
   { key: "mobile", label: "Contact Number", sortable: true },

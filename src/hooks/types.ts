@@ -117,6 +117,8 @@ export interface FormField {
   | "label"
   | "br"
   | "button"
+  | "time"
+  | "datetime"
   | "arrayOfString"
   | "warehouse"
   | "packing"
@@ -150,7 +152,7 @@ export interface FormField {
   currentDate?: any;
   maxSizeMB?: number;
   maxLength?: number;
-  minLength?:number;
+  minLength?: number;
   multiple?: boolean;
   isVideo?: boolean;
   required?: boolean;

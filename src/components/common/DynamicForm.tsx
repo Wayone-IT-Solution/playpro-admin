@@ -18,6 +18,8 @@ import SingleImageUploader from "../input/ImageUploader";
 import SingleVideoUploader from "../input/VideoUploader";
 import MultipleImageUpload from "./MultipleImageUploader";
 import MultipleVideoUpload from "../input/MultipleVideoUploader";
+import Time from "../input/Time";
+import DateTime from "../input/DateTime";
 
 interface DynamicFormProps {
   id: any;
@@ -234,6 +236,20 @@ const DynamicForm: React.FC<DynamicFormProps> = ({
 
             {field.type === "password" && (
               <Password
+                field={{ ...field, value: formData[field?.name] || "" }}
+                handleInputChange={handleInputChange}
+              />
+            )}
+
+            {field.type === "time" && (
+              <Time
+                field={{ ...field, value: formData[field?.name] || "" }}
+                handleInputChange={handleInputChange}
+              />
+            )}
+
+            {field.type === "datetime" && (
+              <DateTime
                 field={{ ...field, value: formData[field?.name] || "" }}
                 handleInputChange={handleInputChange}
               />
