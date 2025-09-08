@@ -8,16 +8,13 @@ import Wrapper from "@/components/common/Wrapper";
 import TableComponent from "@/components/common/Table";
 
 const columns = [
-  { key: "_id", label: "User ID", sortable: true },
-  { key: "groundOwnerName", label: "Ground Owner", sortable: true },
-  { key: "groundName", label: "Ground Name", sortable: true },
-  { key: "userName", label: "User Name", sortable: true },
-  { key: "userEmail", label: "User Email", sortable: true },
-{
-    key: "paymentDetails.paymentId",
-    label: "Transaction ID",
-    sortable: true,
-  },
+  { key: "_id", label: "TXN ID", sortable: true },
+  { key: "groundOwnerName", label: "Ground Owner" },
+  { key: "groundName.en", label: "Ground Name" },
+  { key: "userName", label: "User Name" },
+  { key: "userEmail", label: "User Email" },
+  { key: "totalAmount", label: "Total Amt.", prefix: "SAR " },
+  { key: "finalAmount", label: "Final Amt.", prefix: "SAR " },
   {
     key: "createdAt",
     label: "Transaction Date",

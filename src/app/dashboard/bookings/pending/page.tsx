@@ -9,20 +9,13 @@ import TableComponent from "@/components/common/Table";
 
 const columns = [
   { key: "_id", label: "Booking ID", sortable: true },
-  { key: "userFirstName", label: "User First Name", sortable: true },
-  { key: "userLastName", label: "User Last Name", sortable: true },
-  { key: "userEmail", label: "User Email", sortable: true },
-  { key: "userPhoneNumber", label: "User Phone Number", sortable: true },
-  { key: "groundName", label: "Ground Name", sortable: true },
-  { key: "groundAddress", label: "Ground Address", sortable: true },
-  {
-    key: "groundLocation.coordinates",
-    label: "Ground Coordinates (Lng, Lat)",
-    sortable: false, // optional: sorting may not make sense here
-  },
-  { key: "numberOfGuests", label: "No. of Guests", sortable: true },
-  { key: "totalAmount", label: "Total Amount (SAR)", sortable: true },
-  { key: "finalAmount", label: "Final Amount (SAR)", sortable: true },
+  { key: "userFirstName", label: "User Name", key2: "userLastName" },
+  { key: "userEmail", label: "User Email ID" },
+  { key: "userPhoneNumber", label: "User Number" },
+  { key: "groundName.en", label: "Ground Name" },
+  { key: "groundAddress.en", label: "Ground Address" },
+  { key: "totalAmount", label: "Total Amt.", prefix: "SAR " },
+  { key: "finalAmount", label: "Final Amt.", prefix: "SAR " },
   {
     key: "status",
     label: "Booking Status",
@@ -48,7 +41,7 @@ const columns = [
     label: "Last Updated",
     sortable: true,
     isDateTime: true,
-  }
+  },
 ];
 
 const filterOptions = [

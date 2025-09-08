@@ -82,11 +82,11 @@ const applyTransform = (
   }
 };
 
-// ✅ Final function to get clean, formatted display value
 const getFormattedValue = (
   obj: any,
   col: {
     key: string | string[];
+    key2?: string | string[];
     joiner?: string;
     fallback?: string;
     prefix?: string;
@@ -94,19 +94,38 @@ const getFormattedValue = (
     transform?: "uppercase" | "lowercase" | "capitalize";
   }
 ): string => {
-  let raw: any;
-
+  const rawParts: any[] = [];
   if (Array.isArray(col.key)) {
-    raw = col.key
-      .map((k) => getNestedValue(obj, k))
-      .filter((v) => v !== undefined && v !== null)
-      .join(col.joiner ?? " ");
+    rawParts.push(
+      col.key
+        .map((k) => getNestedValue(obj, k))
+        .filter((v) => v !== undefined && v !== null)
+        .join(col.joiner ?? " ")
+    );
   } else {
-    raw = getNestedValue(obj, col.key);
+    const val = getNestedValue(obj, col.key);
+    if (val !== undefined && val !== null) rawParts.push(val);
   }
 
-  const value =
-    raw !== undefined && raw !== null ? String(raw) : col.fallback ?? "-";
+  // Handle `key2`
+  if (col.key2) {
+    if (Array.isArray(col.key2)) {
+      rawParts.push(
+        col.key2
+          .map((k) => getNestedValue(obj, k))
+          .filter((v) => v !== undefined && v !== null)
+          .join(col.joiner ?? " ")
+      );
+    } else {
+      const val = getNestedValue(obj, col.key2);
+      if (val !== undefined && val !== null) rawParts.push(val);
+    }
+  }
+
+  // Join key and key2 values
+  const combined = rawParts.filter(Boolean).join(col.joiner ?? " ");
+
+  const value = combined !== "" ? String(combined) : col.fallback ?? "-";
   const transformed = applyTransform(value, col.transform);
 
   return `${col.prefix ?? ""}${transformed}${col.suffix ?? ""}`;
