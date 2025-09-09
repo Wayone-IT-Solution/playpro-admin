@@ -8,39 +8,39 @@ import Wrapper from "@/components/common/Wrapper";
 import TableComponent from "@/components/common/Table";
 
 const columns = [
-  { key: "_id", label: "ID" },
-  { key: "code", label: "Code", sortable: true },
-  { key: "discountValue", label: "Value", sortable: true },
-  { key: "type", label: "Discount Type", sortable: true },
-  { key: "usageLimit", label: "Global Limit", sortable: true },
-  { key: "startDate", label: "Start Date", isDate: true, sortable: true },
-  { key: "endDate", label: "End Date", isDate: true, sortable: true },
+  { key: "name.en", label: "Name (EN)", sortable: true, image: true, imageWithKey: "profileImage" },
+  { key: "name.ar", label: "Name (AR)", sortable: true },
+  { key: "email", label: "Email Address", sortable: true },
+  { key: "phoneNumber", label: "Phone Number", sortable: true },
   {
-    key: "isPublic",
+    key: "createdAt",
     sortable: true,
-    isMultiPurpose: true,
-    label: "Target Audience",
-    multiPurposeProps: { type: "label" },
+    isDateTime: true,
+    label: "Registration Date",
+  },
+  {
+    key: "updatedAt",
+    label: "Last Updated",
+    sortable: true,
+    isDateTime: true,
   },
   {
     key: "status",
-    label: "Status",
     sortable: true,
+    label: "Active Status",
     isMultiPurpose: true,
     multiPurposeProps: { type: "label" },
   },
-  { key: "createdAt", label: "Created On", isDateTime: true, sortable: true },
-  { key: "updatedAt", label: "Updated On", isDateTime: true, sortable: true },
 ];
 
 const filterOptions = [
-  { label: "Code", value: "code" },
-  { label: "Type", value: "type" },
-  { label: "Status", value: "status" },
+  { label: "Name", value: "name" },
+  { label: "Email", value: "email" },
+  { label: "Mobile", value: "phoneNumber" },
 ];
 
 const Page: React.FC = () => {
-  const formType = "Coupon";
+  const formType = "Coaches";
   const { data, loading, error } = useFetch(endpoints[formType]?.url);
   const updatedData = data?.data?.result;
   const paginationData = data?.data?.pagination;

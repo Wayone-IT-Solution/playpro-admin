@@ -1,14 +1,12 @@
 import {
-  // MdArticle,
+  MdArticle,
   MdCampaign,
   MdOutlineMap,
-  // MdLibraryBooks,
   MdContactPhone,
+  MdLibraryBooks,
   MdManageAccounts,
   MdOutlineWorkOutline,
   MdOutlineSupportAgent,
-  MdArticle,
-  MdLibraryBooks,
 } from "react-icons/md";
 import {
   RiKey2Line,
@@ -17,31 +15,29 @@ import {
   RiCurrencyFill,
   RiBankCardLine,
   RiFileList2Line,
-  // RiCalendar2Line,
-  // RiCheckDoubleLine,
-  // RiErrorWarningLine,
   RiCalendarCheckLine,
   RiSecurePaymentFill,
-  RiCheckboxCircleLine,
   RiShoppingCart2Line,
+  RiCheckboxCircleLine,
 } from "react-icons/ri";
 import { FaTags } from "react-icons/fa";
 import { GoTasklist } from "react-icons/go";
 import { TbBrandBebo } from "react-icons/tb";
-import { BiCategory, BiSolidCategory } from "react-icons/bi";
-import { GiEarthAsiaOceania } from "react-icons/gi";
 import { FaHome, FaProductHunt } from "react-icons/fa";
+import { HiOutlineClipboardList } from "react-icons/hi";
 import { HiOutlineBuildingOffice2 } from "react-icons/hi2";
-// BiCategory,
+import { BiCategory, BiSolidCategory } from "react-icons/bi";
+import { GiEarthAsiaOceania, GiWhistle } from "react-icons/gi";
+
 export const tabs = [
   {
     id: 1,
+    tabs: [],
     icon: FaHome,
     label: "Dashboard",
     href: "/dashboard",
-    pageTitle: "Platform Overview",
     permission: "Dashboard",
-    tabs: [],
+    pageTitle: "Platform Overview",
   },
   {
     id: 2,
@@ -55,8 +51,8 @@ export const tabs = [
         id: 201,
         icon: MdOutlineWorkOutline,
         label: "Manage Users",
-        href: "/dashboard/users",
         pageTitle: "All Users",
+        href: "/dashboard/users",
         permission: "Manage Users",
       },
       {
@@ -74,6 +70,14 @@ export const tabs = [
         href: "/dashboard/employees",
         pageTitle: "Employees",
         permission: "Manage Employees",
+      },
+      {
+        id: 205,
+        icon: GiWhistle,
+        label: "Manage Coaches",
+        href: "/dashboard/coaches",
+        pageTitle: "Coach Management",
+        permission: "Manage Coaches",
       },
       {
         id: 204,
@@ -102,6 +106,14 @@ export const tabs = [
     pageTitle: "Ground Slot Scheduling",
     permission: "Manage Slots",
     tabs: [],
+  },
+  {
+    id: 205,
+    icon: HiOutlineClipboardList, // you can pick another icon if you like
+    label: "Registration Requests",
+    href: "/dashboard/registration-requests",
+    pageTitle: "All Registration Requests",
+    permission: "Manage Registrations",
   },
   {
     id: 5,

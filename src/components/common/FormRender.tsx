@@ -3,11 +3,13 @@ import NoFormFallback from "./NoFormFallback";
 import BlogForm from "../crud/forms/BlogForm";
 import UserForm from "../crud/forms/Adminform";
 import QueryForm from "../crud/forms/QueryForm";
+import CoachForm from "../crud/forms/CoachForm";
 import StateForm from "../crud/forms/StateForm";
 import VideoForm from "../crud/forms/VideoForm";
 import BrandForm from "../crud/forms/BrandForm";
 import GroundForm from "../crud/forms/GroundForm";
 import BannerForm from "../crud/forms/BannerForm";
+import CouponForm from "../crud/forms/CouponForm";
 import ContactUsForm from "../crud/forms/ContactUs";
 import CountryForm from "../crud/forms/CountryForm";
 import PaymentForm from "../crud/forms/PaymentForm";
@@ -16,7 +18,6 @@ import ManageRoleForm from "../crud/forms/Roleform";
 import CategoryForm from "../crud/forms/CategoryForm";
 import TestimonialForm from "../crud/forms/TestimonialForm";
 import ProductCategoryForm from "../crud/forms/ProductCategoryForm";
-import CouponForm from "../crud/forms/CouponForm";
 
 interface FormRendererProps {
   data: any;
@@ -31,7 +32,9 @@ const FormRenderer: React.FC<FormRendererProps> = (props: any) => {
     case "Products Category":
       return <ProductCategoryForm {...props} />;
     case "Coupon":
-      return <CouponForm{...props} />;
+      return <CouponForm {...props} />;
+    case "Coaches":
+      return <CoachForm {...props} />;
     case "Role Management":
       return <ManageRoleForm {...props} />;
     case "Products":
