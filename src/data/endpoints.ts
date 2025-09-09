@@ -7,7 +7,9 @@ const operations = {
 };
 
 export const endpoints: any = {
-  User: { url: "api/user/user", operations: operations },
+  User: { url: "api/user", operations: operations },
+    Coupon: { url: "api/coupon", operations: operations },
+
   "Role Management": { url: "api/role", operations: operations },
   Blog: { url: "api/blog", operations: operations },
   Banner: { url: "api/banner", operations: operations },

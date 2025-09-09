@@ -39,7 +39,8 @@ export const bannerFormFields: FormField[] = [
     name: "description.en",
     rows: 7,
     label: "Banner Description (EN)",
-    placeholder: "Provide a detailed description in English (max 250 characters)",
+    placeholder:
+      "Provide a detailed description in English (max 250 characters)",
   },
   {
     type: "textarea",
@@ -57,7 +58,106 @@ export const bannerFormFields: FormField[] = [
     accept: "image/*",
   },
 ];
-
+export const couponFormFields: FormField[] = [
+  {
+    type: "text",
+    name: "code",
+    label: "Coupon Code",
+    placeholder: "Enter unique coupon code (e.g., SAVE20)",
+    required: true,
+  },
+  {
+    type: "text",
+    name: "title",
+    label: "Coupon Title",
+    placeholder: "Enter title (e.g., Summer Offer)",
+    required: true,
+  },
+  {
+    type: "select",
+    name: "type",
+    label: "Discount Type",
+    placeholder: "Choose discount type",
+    required: true,
+    options: [
+      { value: "Flat", label: "flat" },
+      { value: "Percentage", label: "percentage" },
+    ],
+  },
+  {
+    type: "number",
+    name: "discountValue",
+    label: "Discount Value",
+    placeholder: "Enter discount amount (e.g., 20 or 100)",
+    required: true,
+    min: 1,
+  },
+  {
+    type: "number",
+    name: "minBookingAmount",
+    label: "Minimum Booking Amount",
+    placeholder: "Optional (e.g., 500)",
+  },
+  {
+    type: "number",
+    name: "maxDiscountAmount",
+    label: "Maximum Discount Amount",
+    placeholder: "Optional (e.g., 500)",
+  },
+  {
+    type: "number",
+    name: "usageLimit",
+    label: "Total Usage Limit",
+    placeholder: "Max times coupon can be used overall",
+  },
+  // {
+  //   type: "number",
+  //   name: "usageLimitPerUser",
+  //   label: "Usage Limit Per User",
+  //   placeholder: "Max times coupon can be used per user",
+  // },
+  {
+    type: "date",
+    name: "startDate",
+    label: "Start Date",
+    placeholder: "Select coupon start date",
+    required: true,
+  },
+  {
+    type: "date",
+    name: "endDate",
+    label: "End Date",
+    placeholder: "Select coupon end date",
+    required: true,
+  },
+  {
+    type: "select",
+    name: "status",
+    label: "Coupon Status",
+    placeholder: "Select status",
+    required: true,
+    options: [
+      { value: "Active", label: "active" },
+      { value: "Upcoming", label: "upcoming" },
+      { value: "Inactive", label: "inactive" },
+      { value: "Expired", label: "expired" },
+    ],
+  },
+  {
+    type: "choose",
+    name: "isPublic",
+    label: "Is Public?",
+    required: true,
+  },
+  {
+    type: "textarea",
+    name: "description",
+    label: "Description",
+    placeholder: "Describe the coupon usage, terms, etc.",
+    rows: 1,
+    widthFull: true,
+  },
+];
 export const videoFormFields: FormField[] = [
   {
     type: "number",
@@ -690,7 +790,10 @@ export const groundField: FormField[] = [
       { label: "AstroTurf (Hockey Specific)", value: "AstroTurf" },
       { label: "Indoor Synthetic Flooring", value: "Indoor Synthetic" },
       { label: "Matting Pitch (Cricket)", value: "Matting Pitch" },
-      { label: "Coconut Matting (Traditional Cricket)", value: "Coconut Matting" },
+      {
+        label: "Coconut Matting (Traditional Cricket)",
+        value: "Coconut Matting",
+      },
       { label: "Red Soil Pitch", value: "Red Soil Pitch" },
       { label: "Black Soil Pitch", value: "Black Soil Pitch" },
       { label: "Multi-Sport Modular Tiles", value: "Modular Tiles" },
@@ -810,7 +913,8 @@ export const groundField: FormField[] = [
     type: "textarea",
     name: "description.en",
     label: "Ground Description (EN)",
-    placeholder: "Provide additional details about the ground in English (optional)",
+    placeholder:
+      "Provide additional details about the ground in English (optional)",
   },
   {
     rows: 2,

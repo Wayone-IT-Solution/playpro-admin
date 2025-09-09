@@ -16,6 +16,7 @@ import ManageRoleForm from "../crud/forms/Roleform";
 import CategoryForm from "../crud/forms/CategoryForm";
 import TestimonialForm from "../crud/forms/TestimonialForm";
 import ProductCategoryForm from "../crud/forms/ProductCategoryForm";
+import CouponForm from "../crud/forms/CouponForm";
 
 interface FormRendererProps {
   data: any;
@@ -29,6 +30,8 @@ const FormRenderer: React.FC<FormRendererProps> = (props: any) => {
   switch (props.formType) {
     case "Products Category":
       return <ProductCategoryForm {...props} />;
+    case "Coupon":
+      return <CouponForm{...props} />;
     case "Role Management":
       return <ManageRoleForm {...props} />;
     case "Products":
