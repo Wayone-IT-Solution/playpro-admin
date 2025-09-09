@@ -79,7 +79,7 @@ const Sidebar: React.FC = () => {
                       if (tab?.tabs && tab?.tabs.length > 0)
                         showList({ tab: tab?.permission, list: tab?.tabs });
                     }}
-                    className={`py-2 pl-2 mr-auto w-[90%] mx-auto rounded-lg text-sm pr-2 cursor-pointer transition flex justify-between gap-2 items-center border-primary hover:bg-infobg hover:text-iconBlack ${pathname === tab?.href
+                    className={`py-2 pl-2 mr-auto w-[90%] mx-auto rounded-lg text-xs pr-2 cursor-pointer transition flex justify-between gap-2 items-center border-primary hover:bg-infobg hover:text-iconBlack ${pathname === tab?.href
                       ? "text-iconBlack bg-infobg font-semibold"
                       : "text-white"
                       }`}
@@ -108,7 +108,7 @@ const Sidebar: React.FC = () => {
                             key={index}
                             href={tabChild?.href}
                             aria-label={tabChild?.label}
-                            className={`w-full text-xs text-iconBlack pl-10 gap-2 py-2 flex items-center hover:bg-infobg hover:text-iconBlack ${pathname === tab?.href
+                            className={`w-full text-[10px] text-iconBlack pl-10 gap-2 py-2 flex items-center hover:bg-infobg hover:text-iconBlack ${pathname === tab?.href
                               ? "text-iconBlack bg-infobg font-semibold"
                               : "text-white"
                               }`}
