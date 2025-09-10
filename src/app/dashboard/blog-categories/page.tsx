@@ -13,18 +13,17 @@ const columns = [
     label: "Category Id",
   },
   {
-    key: "name",
-    label: "Name",
+    key: "name.en",
+    label: "Name (EN)",
     sortable: true,
+  },
+  {
+    key: "name.ar",
+    label: "Name (AR)",
   },
   {
     key: "type",
     label: "Type",
-    sortable: true,
-  },
-  {
-    key: "description",
-    label: "Description",
     sortable: true,
   },
   {
@@ -51,7 +50,6 @@ const columns = [
 const filterOptions = [
   { label: "Name", value: "name" },
   { label: "Type", value: "type" },
-  { label: "Description", value: "description" },
 ];
 
 const Page: React.FC = () => {

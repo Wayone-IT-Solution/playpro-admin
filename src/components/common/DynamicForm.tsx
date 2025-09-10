@@ -206,8 +206,9 @@ const DynamicForm: React.FC<DynamicFormProps> = ({
 
             {field?.type === "richTextEditor" && (
               <RichTextEditor
-                data={formData[field?.name] || ""}
+                field={field?.name}
                 setData={setFormData}
+                data={formData[field?.name] || ""}
               />
             )}
 

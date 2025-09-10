@@ -581,7 +581,7 @@ const DoctorSlotsManager = () => {
                       {/* Amount Input */}
                       <div>
                         <label className="flex items-center space-x-2 text-sm font-medium text-gray-700 mb-2">
-                          <span>Amount (₹) *</span>
+                          <span>Amount (SAR) *</span>
                         </label>
                         <input
                           type="number"

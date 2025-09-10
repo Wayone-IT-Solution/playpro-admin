@@ -6,7 +6,7 @@ import { useRef, useMemo } from "react";
 // Dynamically import JoditEditor with SSR disabled
 const JoditEditor = dynamic(() => import("jodit-react"), { ssr: false });
 
-const RichTextEditor = ({ data, setData }: { data: any; setData: any }) => {
+const RichTextEditor = ({ data, setData, field }: { field: any; data: any; setData: any }) => {
   const editorRef = useRef(null);
   const options = [
     "bold",
@@ -73,7 +73,7 @@ const RichTextEditor = ({ data, setData }: { data: any; setData: any }) => {
         value={data}
         {...config}
         onChange={(htmlString: any) =>
-          setData((prev: any) => ({ ...prev, description: htmlString }))
+          setData((prev: any) => ({ ...prev, [field]: htmlString }))
         }
       />
     </div>

@@ -10,8 +10,14 @@ import TableComponent from "@/components/common/Table";
 const columns = [
   {
     image: true,
-    key: "title",
-    label: "Blog Title",
+    key: "title.en",
+    label: "Blog Title (EN)",
+    imageWithKey: "imageUrl",
+  },
+  {
+    image: true,
+    key: "title.ar",
+    label: "Blog Title (AR)",
     imageWithKey: "imageUrl",
   },
   {
@@ -20,8 +26,13 @@ const columns = [
     sortable: true,
   },
   {
-    key: "categoryName",
-    label: " Category Name",
+    key: "categoryNameEN",
+    label: " Category Name (EN)",
+    sortable: true,
+  },
+  {
+    key: "categoryNameAR",
+    label: " Category Name (AR)",
     sortable: true,
   },
   {

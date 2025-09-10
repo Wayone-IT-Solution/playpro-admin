@@ -4,9 +4,11 @@ import { useState } from "react";
 import { toast } from "react-toastify";
 import { endpoints } from "@/data/endpoints";
 import { Fetch, Post, Put } from "@/hooks/apiUtils";
-import {  categoryField } from "../formtype/general";
+import { categoryField } from "../formtype/general";
 import DynamicForm from "@/components/common/DynamicForm";
 import {
+  deepUnflatten,
+  flattenObject,
   flattenOneLevelPreserveKeys,
   populateFormData,
   populateFormFields,
@@ -30,20 +32,20 @@ const CategoryForm: React.FC<CategoryFormProps> = (props: any) => {
 
   const [formData, setFormData] = useState<any>(
     data._id
-      ? populateFormData(categoryField, flattenOneLevelPreserveKeys(data))
+      ? populateFormData(categoryField, flattenObject(data))
       : {}
   );
 
   const makeApiCall = async (updatedData: any) => {
     try {
-      const url = `${endpoints[formType].url}${
-        !data._id ? "" : "/" + data._id
-      }`;
+      const url = `${endpoints[formType].url}${!data._id ? "" : "/" + data._id
+        }`;
       updatedData = {
         ...updatedData,
         isActive: updatedData?.isActive === "active",
       };
       setSubmitting(true);
+      updatedData = deepUnflatten(updatedData);
       const response: any = data._id
         ? await Put(url, updatedData)
         : await Post(url, updatedData);

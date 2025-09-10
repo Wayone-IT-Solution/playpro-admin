@@ -133,7 +133,7 @@ const SlotBookingUI = ({
               <div className="text-xs text-gray-500">
                 {slot.duration} minute session
               </div>
-              <div className="text-xs text-gray-500">₹{slot.amount}</div>
+              <div className="text-xs text-gray-500">SAR{slot.amount}</div>
 
               {slot.selected && (
                 <div className="flex items-center text-green-600 mt-2">

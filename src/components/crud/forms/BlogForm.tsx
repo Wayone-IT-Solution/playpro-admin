@@ -1,14 +1,13 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
+import { useEffect, useState } from "react";
 import { endpoints } from "@/data/endpoints";
-import { Fetch, Post, Put } from "@/hooks/apiUtils";
 import { blogField } from "../formtype/general";
+import { Fetch, Post, Put } from "@/hooks/apiUtils";
 import DynamicForm from "@/components/common/DynamicForm";
 import {
-  flattenOneLevelPreserveKeys,
-  getSelectFormattedData,
+  flattenObject,
   populateFormData,
   populateFormFields,
 } from "@/hooks/general";
@@ -32,7 +31,7 @@ const BlogForm: React.FC<BlogFormProps> = (props: any) => {
 
   const [formData, setFormData] = useState<any>(
     data._id
-      ? populateFormData(blogField, flattenOneLevelPreserveKeys(data))
+      ? populateFormData(blogField, flattenObject(data))
       : {}
   );
 
@@ -40,10 +39,13 @@ const BlogForm: React.FC<BlogFormProps> = (props: any) => {
     const fetchCategrory = async () => {
       try {
         const url = "/api/category";
-        const params = { limit: 500, page: 1, isActive: true };
+        const params = { limit: 5000, page: 1, isActive: true };
         const response: any = await Fetch(url, params, 5000, true, false);
         if (response.success && response?.data?.result.length > 0) {
-          const selectData = getSelectFormattedData(response?.data?.result);
+          const selectData = response?.data?.result.map((option: any) => ({
+            label: option?._id,
+            value: option?.name?.ar + " (" + option?.name?.en + ")",
+          }));
           const updatedFormField = formField.map((obj: any) => {
             if (obj.name === "categoryId")
               return { ...obj, options: selectData };
@@ -63,9 +65,8 @@ const BlogForm: React.FC<BlogFormProps> = (props: any) => {
 
   const makeApiCall = async (updatedData: any) => {
     try {
-      const url = `${endpoints[formType].url}${
-        !data._id ? "" : "/" + data._id
-      }`;
+      const url = `${endpoints[formType].url}${!data._id ? "" : "/" + data._id
+        }`;
 
       setSubmitting(true);
       const response: any = data._id
