@@ -9,6 +9,7 @@ const operations = {
 export const endpoints: any = {
   User: { url: "api/user", operations: operations },
   Blog: { url: "api/blog", operations: operations },
+  Sponsor: { url: "api/sponsor", operations: operations },
   Coupon: { url: "api/coupon", operations: operations },
   Coaches: { url: "api/coach", operations: operations },
   Banner: { url: "api/banner", operations: operations },

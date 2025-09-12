@@ -39,6 +39,147 @@ export const userFormType: FormField[] = [
   },
 ];
 
+
+export const ownerFormType: FormField[] = [
+  {
+    type: "text",
+    required: true,
+    name: "firstName",
+    label: "First Name",
+    placeholder: "Enter first name",
+  },
+  {
+    type: "text",
+    required: true,
+    name: "lastName",
+    label: "Last Name",
+    placeholder: "Enter last name",
+  },
+  {
+    name: "email",
+    type: "email",
+    label: "Email",
+    required: true,
+    placeholder: "Enter your email",
+    validation: (value) => (includes(value, "@") ? null : "Invalid email"),
+  },
+  {
+    type: "text",
+    name: "phoneNumber",
+    required: true,
+    label: "Phone Number",
+    placeholder: "Enter phone number",
+  },
+  {
+    type: "date",
+    name: "dateOfBirth",
+    required: false,
+    label: "Date of Birth",
+    placeholder: "Select date of birth",
+  },
+  {
+    name: "gender",
+    type: "select",
+    required: false,
+    label: "Gender",
+    placeholder: "Select gender",
+    options: [
+      { label: "Male", value: "male" },
+      { label: "Female", value: "female" },
+      { label: "Other", value: "other" },
+    ],
+  },
+  // {
+  //   name: "role",
+  //   type: "select",
+  //   required: true,
+  //   label: "User Role",
+  //   placeholder: "Select user role",
+  //   options: [
+  //     { label: "Ground Owner", value: "ground_owner" },
+  //     { label: "Admin", value: "admin" },
+  //     { label: "Staff", value: "staff" },
+  //   ],
+  // },
+  {
+    type: "choose",
+    name: "status",
+    label: "Activate this user?",
+    required: false,
+  },
+  {
+    type: "br",
+    label: "Business Details",
+    name: "Business Details",
+    widthFull: true
+  },
+  {
+    type: "text",
+    name: "businessDetail.businessName",
+    label: "Business Name",
+    placeholder: "Enter business name",
+  },
+  {
+    type: "text",
+    name: "businessDetail.gstNumber",
+    label: "GST Number",
+    placeholder: "Enter GST number",
+  },
+  {
+    type: "text",
+    name: "businessDetail.businessAddress",
+    label: "Business Address",
+    placeholder: "Enter business address",
+  },
+  {
+    type: "br",
+    label: "Contact Details",
+    name: "Contact Details",
+    widthFull: true
+  },
+  {
+    type: "text",
+    name: "contactDetail.alternatePhone",
+    label: "Alternate Phone",
+    placeholder: "Enter alternate phone number",
+  },
+  {
+    type: "text",
+    name: "contactDetail.emergencyContact",
+    label: "Emergency Contact Name",
+    placeholder: "Enter emergency contact name",
+  },
+  {
+    type: "text",
+    name: "contactDetail.emergencyPhone",
+    label: "Emergency Phone",
+    placeholder: "Enter emergency phone number",
+  },
+  // {
+  //   type: "group",
+  //   name: "userProfile",
+  //   label: "Notification Preferences",
+  //   fields: [
+  //     {
+  //       type: "checkbox",
+  //       name: "sms",
+  //       label: "SMS",
+  //     },
+  //     {
+  //       type: "checkbox",
+  //       name: "email",
+  //       label: "Email",
+  //     },
+  //     {
+  //       type: "checkbox",
+  //       name: "push",
+  //       label: "Push Notification",
+  //     },
+  //   ],
+  // },
+];
+
+
 export const coachFormType: FormField[] = [
   {
     type: "text",

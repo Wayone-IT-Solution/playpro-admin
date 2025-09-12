@@ -49,8 +49,8 @@ const Page: React.FC = () => {
   let operationsAllowed = endpoints[formType]?.operations;
   operationsAllowed = {
     ...operationsAllowed,
-    delete: false,
-    update: false,
+    delete: true,
+    update: true,
     create: false,
   };
 

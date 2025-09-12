@@ -534,6 +534,71 @@ export const blogField: FormField[] = [
   },
 ];
 
+export const sponsorField: FormField[] = [
+  {
+    type: "text",
+    name: "name.en",
+    label: "Sponsor Name (English)",
+    required: true,
+    placeholder: "Enter sponsor name in English",
+  },
+  {
+    type: "text",
+    name: "name.ar",
+    label: "اسم الراعي (Arabic)",
+    required: false,
+    placeholder: "أدخل اسم الراعي باللغة العربية",
+  },
+  {
+    type: "text",
+    name: "website",
+    label: "Website",
+    required: true,
+    placeholder: "Enter sponsor website (e.g., https://example.com)",
+  },
+  {
+    type: "file",
+    name: "logo",
+    label: "Logo",
+    required: false,
+    accept: "image/*",
+    placeholder: "Upload sponsor logo",
+  },
+  {
+    type: "text",
+    name: "description.en",
+    label: "Description (English)",
+    required: false,
+    placeholder: "Enter sponsor description in English",
+  },
+  {
+    type: "text",
+    name: "description.ar",
+    label: "الوصف (Arabic)",
+    required: false,
+    placeholder: "أدخل وصف الراعي باللغة العربية",
+  },
+  {
+    type: "select",
+    name: "isActive",
+    label: "Status",
+    required: true,
+    placeholder: "Select sponsor status",
+    options: [
+      { label: "Active", value: "active" },
+      { label: "Inactive", value: "inactive" },
+    ],
+  },
+  {
+    type: "number",
+    name: "order",
+    label: "Display Order",
+    required: false,
+    placeholder: "Enter display order (e.g., 0, 1, 2...)",
+  },
+];
+
+
 export const brandFields: FormField[] = [
   {
     name: "name.en",

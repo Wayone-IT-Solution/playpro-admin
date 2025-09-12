@@ -367,13 +367,14 @@ export const formatIndianCurrency = (amount: number) => {
 };
 
 export const formatCurrency = (value: number | undefined) =>
-  value && !isNaN(value)
-    ? new Intl.NumberFormat("en-IN", {
+  typeof value === "number" && !isNaN(value)
+    ? new Intl.NumberFormat("en-SA", {
       style: "currency",
-      currency: "INR",
+      currency: "SAR",
       minimumFractionDigits: 2,
     }).format(value)
-    : "SAR0.00";
+    : "SAR 0.00"; // Includes non-breaking space like Intl would
+
 
 export const convertTo24Hour = (time: string): string => {
   console.log(time);

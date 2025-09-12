@@ -18,6 +18,8 @@ import ManageRoleForm from "../crud/forms/Roleform";
 import CategoryForm from "../crud/forms/CategoryForm";
 import TestimonialForm from "../crud/forms/TestimonialForm";
 import ProductCategoryForm from "../crud/forms/ProductCategoryForm";
+import OwnerForm from "../crud/forms/Ownerform";
+import SponsorForm from "../crud/forms/SponsorForm";
 
 interface FormRendererProps {
   data: any;
@@ -53,12 +55,16 @@ const FormRenderer: React.FC<FormRendererProps> = (props: any) => {
       return <CityForm {...props} />;
     case "Employee":
       return <UserForm {...props} />;
+    case "Ground Owner":
+      return <OwnerForm {...props} />;
     case "Redeem Request":
       return <PaymentForm {...props} />;
     case "Customer Support":
       return <QueryForm {...props} />;
     case "Testimonials":
       return <TestimonialForm {...props} />;
+    case "Sponsor":
+      return <SponsorForm {...props} />;
     case "Blog":
       return <BlogForm {...props} />;
     case "Blog Category":

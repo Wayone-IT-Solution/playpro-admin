@@ -267,6 +267,14 @@ export const tabs = [
         pageTitle: "Manage Blog Categories",
         permission: "Manage Blog Categories",
       },
+      {
+        id: 902,
+        icon: BiCategory,
+        label: "Sponsors",
+        href: "/dashboard/sponsor",
+        pageTitle: "Manage Sponsor",
+        permission: "Manage Sponsor",
+      },
     ],
   },
   {
