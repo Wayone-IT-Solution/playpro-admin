@@ -17,6 +17,7 @@ export const endpoints: any = {
   Bookings: { url: "api/booking", operations: operations },
   "Role Management": { url: "api/role", operations: operations },
   Registrations: { url: "api/registration", operations: operations },
+  Academy: { url: "api/academy", operations: operations },
   Contact: { url: "api/contact", operations: { ...operations, create: false } },
   "Completed Bookings": {
     url: "api/booking?status=completed",

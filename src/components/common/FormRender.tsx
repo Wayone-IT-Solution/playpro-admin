@@ -20,6 +20,7 @@ import TestimonialForm from "../crud/forms/TestimonialForm";
 import ProductCategoryForm from "../crud/forms/ProductCategoryForm";
 import OwnerForm from "../crud/forms/Ownerform";
 import SponsorForm from "../crud/forms/SponsorForm";
+import AcademyForm from "../crud/forms/AcademyForm";
 
 interface FormRendererProps {
   data: any;
@@ -37,6 +38,8 @@ const FormRenderer: React.FC<FormRendererProps> = (props: any) => {
       return <CouponForm {...props} />;
     case "Coaches":
       return <CoachForm {...props} />;
+    case "Academy":
+      return <AcademyForm {...props} />;
     case "Role Management":
       return <ManageRoleForm {...props} />;
     case "Products":

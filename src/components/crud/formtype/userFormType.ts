@@ -271,3 +271,89 @@ export const coachFormType: FormField[] = [
     required: true,
   },
 ];
+
+
+export const academyFormType: FormField[] = [
+  {
+    type: "text",
+    name: "name.en",
+    label: "Academy Name (English)",
+    required: true,
+    placeholder: "Enter academy name in English",
+  },
+  {
+    type: "text",
+    name: "name.ar",
+    label: "Academy Name (Arabic)",
+    required: false,
+    placeholder: "Enter academy name in Arabic",
+  },
+  {
+    type: "textarea",
+    name: "description.en",
+    label: "Description (English)",
+    required: true,
+    placeholder: "Enter description in English",
+    rows: 3,
+    widthFull: true,
+  },
+  {
+    type: "textarea",
+    name: "description.ar",
+    label: "Description (Arabic)",
+    required: false,
+    placeholder: "Enter description in Arabic",
+    rows: 3,
+    widthFull: true,
+  },
+  {
+    type: "select",
+    name: "ground",
+    label: "Ground",
+    required: true,
+    placeholder: "Select ground",
+    options: [], // Populate dynamically with available grounds
+  },
+  {
+    type: "select",
+    name: "sports",
+    label: "Sports",
+    required: true,
+    placeholder: "Select sports offered",
+    options: [
+      { value: "football", label: "Football" },
+      { value: "basketball", label: "Basketball" },
+      { value: "tennis", label: "Tennis" },
+      { value: "swimming", label: "Swimming" },
+      { value: "volleyball", label: "Volleyball" },
+      { value: "badminton", label: "Badminton" },
+      { value: "table_tennis", label: "Table Tennis" },
+      { value: "karate", label: "Karate" },
+      { value: "taekwondo", label: "Taekwondo" },
+      { value: "gymnastics", label: "Gymnastics" },
+    ],
+  },
+  {
+    type: "select",
+    name: "coaches",
+    label: "Assigned Coaches",
+    required: false,
+    placeholder: "Select coaches",
+    options: [], // Populate dynamically from /api/coaches
+  },
+  {
+    type: "select",
+    name: "status",
+    label: "Academy Status",
+    required: true,
+    placeholder: "Select status",
+    options: [
+      { value: 'Active', label: "Active" },
+      { value: 'Inactive', label: "Inactive" },
+      { value: 'Closed', label: "Closed" },
+    ],
+  },
+];
+
+
+
