@@ -91,7 +91,7 @@ const SponsorForm: React.FC<SponsorFormProps> = (props: any) => {
   return (
     <div>
       <h2 className="text-xl pb-4 font-semibold text-gray-800">
-        {data?._id ? "Edit Blog Details" : "Add New Blog"}
+        {data?._id ? "Edit Sponsor Details" : "Add New Sponsor"}
       </h2>
       {!loading && (
         <DynamicForm

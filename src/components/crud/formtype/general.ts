@@ -30,8 +30,8 @@ export const bannerFormFields: FormField[] = [
     label: "Banner Status",
     placeholder: "Select banner visibility status",
     options: [
-      { label: "Active", value: true },
-      { label: "Inactive", value: false },
+      { label: "active", value: "Active" },
+      { label: "inactive", value: "In Active" },
     ],
   },
   {
@@ -557,28 +557,6 @@ export const sponsorField: FormField[] = [
     placeholder: "Enter sponsor website (e.g., https://example.com)",
   },
   {
-    type: "file",
-    name: "logo",
-    label: "Logo",
-    required: false,
-    accept: "image/*",
-    placeholder: "Upload sponsor logo",
-  },
-  {
-    type: "text",
-    name: "description.en",
-    label: "Description (English)",
-    required: false,
-    placeholder: "Enter sponsor description in English",
-  },
-  {
-    type: "text",
-    name: "description.ar",
-    label: "الوصف (Arabic)",
-    required: false,
-    placeholder: "أدخل وصف الراعي باللغة العربية",
-  },
-  {
     type: "select",
     name: "isActive",
     label: "Status",
@@ -595,6 +573,28 @@ export const sponsorField: FormField[] = [
     label: "Display Order",
     required: false,
     placeholder: "Enter display order (e.g., 0, 1, 2...)",
+  },
+  {
+    type: "text",
+    name: "description.en",
+    label: "Description (English)",
+    required: false,
+    placeholder: "Enter sponsor description in English",
+  },
+  {
+    type: "text",
+    name: "description.ar",
+    label: "الوصف (Arabic)",
+    required: false,
+    placeholder: "أدخل وصف الراعي باللغة العربية",
+  },
+  {
+    type: "file",
+    name: "logo",
+    label: "Logo",
+    required: false,
+    accept: "image/*",
+    placeholder: "Upload sponsor logo",
   },
 ];
 
@@ -938,6 +938,20 @@ export const groundField: FormField[] = [
       { label: "maintenance", value: "Under Maintenance" },
     ],
     placeholder: "Select availability status",
+  },
+  {
+    type: "choose",
+    required: true,
+    label: "Nearby Place",
+    name: "isNearByPlace",
+    placeholder: "Select if it is a nearby place",
+  },
+  {
+    type: "choose",
+    required: true,
+    label: "Higher Ranked",
+    name: "isHigherRanked",
+    placeholder: "Select if it is higher ranked",
   },
   {
     type: "time",

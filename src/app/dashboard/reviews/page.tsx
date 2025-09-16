@@ -9,12 +9,10 @@ import TableComponent from "@/components/common/Table";
 
 const columns = [
   { key: "_id", label: "Feedback ID", sortable: true },
-  { key: "userFirstName", label: "First Name", sortable: true },
-  { key: "userLastName", label: "Last Name", sortable: true },
+  { key: "userFirstName", label: "First Name", sortable: true, key2: "userLastName" },
   { key: "userEmail", label: "Email", sortable: true },
-  { key: "userPhoneNumber", label: "Phone Number", sortable: true },
-  { key: "groundName", label: "Ground Name", sortable: true },
-  { key: "groundAddress", label: "Ground Address", sortable: true },
+  { key: "groundName.en", label: "Ground Name", sortable: true },
+  { key: "groundAddress.en", label: "Ground Address", sortable: true },
   {
     key: "status",
     label: "Status",

@@ -7,9 +7,12 @@ import CoachForm from "../crud/forms/CoachForm";
 import StateForm from "../crud/forms/StateForm";
 import VideoForm from "../crud/forms/VideoForm";
 import BrandForm from "../crud/forms/BrandForm";
+import OwnerForm from "../crud/forms/Ownerform";
 import GroundForm from "../crud/forms/GroundForm";
 import BannerForm from "../crud/forms/BannerForm";
 import CouponForm from "../crud/forms/CouponForm";
+import SponsorForm from "../crud/forms/SponsorForm";
+import AcademyForm from "../crud/forms/AcademyForm";
 import ContactUsForm from "../crud/forms/ContactUs";
 import CountryForm from "../crud/forms/CountryForm";
 import PaymentForm from "../crud/forms/PaymentForm";
@@ -18,9 +21,6 @@ import ManageRoleForm from "../crud/forms/Roleform";
 import CategoryForm from "../crud/forms/CategoryForm";
 import TestimonialForm from "../crud/forms/TestimonialForm";
 import ProductCategoryForm from "../crud/forms/ProductCategoryForm";
-import OwnerForm from "../crud/forms/Ownerform";
-import SponsorForm from "../crud/forms/SponsorForm";
-import AcademyForm from "../crud/forms/AcademyForm";
 
 interface FormRendererProps {
   data: any;

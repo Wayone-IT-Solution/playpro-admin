@@ -20,9 +20,9 @@ import {
   RiShoppingCart2Line,
   RiCheckboxCircleLine,
 } from "react-icons/ri";
-import { FaTags } from "react-icons/fa";
 import { GoTasklist } from "react-icons/go";
 import { TbBrandBebo } from "react-icons/tb";
+import { FaTags, FaHandshake } from "react-icons/fa";
 import { FaHome, FaProductHunt } from "react-icons/fa";
 import { HiOutlineClipboardList } from "react-icons/hi";
 import { HiOutlineBuildingOffice2 } from "react-icons/hi2";
@@ -309,14 +309,6 @@ export const tabs = [
         pageTitle: "Manage Blog Categories",
         permission: "Manage Blog Categories",
       },
-      {
-        id: 902,
-        icon: BiCategory,
-        label: "Sponsors",
-        href: "/dashboard/sponsor",
-        pageTitle: "Manage Sponsor",
-        permission: "Manage Sponsor",
-      },
     ],
   },
   {
@@ -343,6 +335,14 @@ export const tabs = [
         pageTitle: "Coupon Management",
         permission: "Manage Coupons",
         tabs: [],
+      },
+      {
+        id: 902,
+        icon: FaHandshake, // 🤝 Partnership / Sponsorship vibe
+        label: "Sponsorships",
+        href: "/dashboard/sponsor",
+        pageTitle: "Sponsor Management",
+        permission: "manageSponsors",
       },
       {
         id: 903,
