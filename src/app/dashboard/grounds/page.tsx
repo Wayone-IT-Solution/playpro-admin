@@ -68,7 +68,8 @@ const Page: React.FC = () => {
   const { data, loading, error } = useFetch(endpoints[formType]?.url);
   const updatedData = data?.data?.result;
   const paginationData = data?.data?.pagination;
-  const operationsAllowed = endpoints[formType]?.operations;
+  let operationsAllowed = endpoints[formType]?.operations;
+  operationsAllowed = { ...operationsAllowed, delete: false };
 
   if (loading && !updatedData && !error) return <Loader />;
 

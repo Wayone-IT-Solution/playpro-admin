@@ -851,10 +851,10 @@ export const groundField: FormField[] = [
     label: "Ground Type (EN)",
     options: [
       { label: "Tennis", value: "Tennis" },
-      { label: "Hockey", value: "Hockey" },
+      { label: "BasketBall", value: "BasketBall" },
       { label: "Cricket", value: "Cricket" },
       { label: "Football", value: "Football" },
-      { label: "Badminton", value: "Badminton" },
+      { label: "Paddles", value: "Paddles" },
       { label: "Volleyball", value: "Volleyball" },
     ],
     placeholder: "Select Ground Type (EN)",
