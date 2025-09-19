@@ -32,14 +32,14 @@ const columns = [
         key: "sports",
         label: "Sports",
         sortable: false,
-        isArray: true, // if used for chips/badges in UI
+        isArray: true, 
     },
     {
         key: "ground",
         label: "Ground",
         sortable: true,
-        isReference: true, // can be populated with name
-        referenceKey: "name.en", // if you're populating ground with its localized name
+        isReference: true, 
+        referenceKey: "name.en", 
     },
     {
         key: "coaches",
@@ -47,7 +47,7 @@ const columns = [
         sortable: false,
         isArray: true,
         isReference: true,
-        referenceKey: "fullName", // assuming coach has fullName
+        referenceKey: "fullName", 
     },
     {
         key: "createdAt",
@@ -67,7 +67,7 @@ const columns = [
         sortable: true,
         isMultiPurpose: true,
         multiPurposeProps: {
-            type: "label", // e.g., for colored labels or badges
+            type: "label", 
             statusMap: {
                 active: { color: "green", label: "Active" },
                 inactive: { color: "orange", label: "Inactive" },

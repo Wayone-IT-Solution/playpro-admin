@@ -291,7 +291,7 @@ const DoctorSlotsManager = () => {
 
     // Calculate days until next target day
     let diff = targetDay - currentDay;
-    if (diff <= 0) diff += 7; // ensures it's upcoming, not today or past
+    if (diff <= 0) diff += 7;
 
     date.setDate(date.getDate() + diff);
     return date;

@@ -338,7 +338,7 @@ export const tabs = [
       },
       {
         id: 902,
-        icon: FaHandshake, // 🤝 Partnership / Sponsorship vibe
+        icon: FaHandshake, 
         label: "Sponsorships",
         href: "/dashboard/sponsor",
         pageTitle: "Sponsor Management",
