@@ -40,16 +40,15 @@ const Select: FC<SelectProps> = ({ field, handleInputChange, className }) => {
         multiple={field.isMultiple}
         onChange={handleInputChange}
         value={field.options && field.options.length > 0 ? field?.value : ""}
-        className={`border border-gray-300 rounded-lg p-2.5 w-full text-black placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent ${className} ${
-          field?.isMultiple && "h-36"
-        }`}
+        className={`border cursor-pointer border-gray-300 rounded-lg no-scrollbar p-2.5 w-full text-black placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent ${className} ${field?.isMultiple && "h-48"
+          }`}
       >
         {field.placeholder && field.options && field.options.length > 0 && (
-          <option value="">{field.placeholder}</option>
+          <option value="" disabled={field.required} className="bg-gray-100 px-2 py-1 rounded-md mb-1.5">{field.placeholder}</option>
         )}
         {field.options && field.options.length > 0 ? (
           field.options?.map((option, index) => (
-            <option key={index} value={option.label}>
+            <option key={index} value={option.label} className="text-sm">
               {option.value} {option?.email && `(${option?.email})`}
             </option>
           ))

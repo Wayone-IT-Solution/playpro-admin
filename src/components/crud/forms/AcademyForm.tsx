@@ -1,7 +1,7 @@
 "use client";
 
-import { useState, useEffect } from "react";
 import { toast } from "react-toastify";
+import { useState, useEffect } from "react";
 import { endpoints } from "@/data/endpoints";
 import { Fetch, Post, Put } from "@/hooks/apiUtils";
 import DynamicForm from "@/components/common/DynamicForm";
@@ -9,7 +9,6 @@ import {
   flattenObject,
   populateFormData,
   populateFormFields,
-  getSelectFormattedData,
 } from "@/hooks/general";
 import { academyFormType } from "../formtype/userFormType";
 
@@ -24,79 +23,63 @@ interface AcademyFormProps {
 const AcademyForm: React.FC<AcademyFormProps> = (props: any) => {
   const data = props.data;
   const formType = props.formType;
+  const [loading, setLoading] = useState(true);
   const [submitting, setSubmitting] = useState(false);
-  const [loading, setLoading] = useState(false);
 
   const [formField, setFormField] = useState(
     data._id ? populateFormFields(academyFormType, data) : academyFormType
   );
 
   const [formData, setFormData] = useState<any>(
-    data._id ? populateFormData(academyFormType, flattenObject(data)) : {}
+    data._id ? populateFormData(academyFormType, flattenObject(data, "", ["sports", "workingDays", "coaches"])) : {}
   );
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const groundUrl = "/api/ground";
-        const params = { limit: 500, page: 1 };
-        const groundResp: any = await Fetch(
-          groundUrl,
-          params,
-          5000,
-          true,
-          false
-        );
+        const params = { limit: 5000, page: 1 };
+        const [groundResp, coachResp]: any = await Promise.all([
+          Fetch("/api/ground", params, 5000, true, false),
+          Fetch("/api/coach", params, 5000, true, false),
+        ]);
 
-        let updatedFormField = [...formField];
-
-        if (groundResp.success && groundResp?.data?.result.length > 0) {
-          const groundOptions = groundResp.data.result.map((g: any) => ({
-            value: g?.name?.en || g?.name || "Unnamed Ground",
-            label: g._id,
+        const mapOptions = (arr: any[], fallback: string) =>
+          arr.map((item: any) => ({
+            label: item._id,
+            value: item?.name?.en || item?.name || fallback,
           }));
 
-          updatedFormField = updatedFormField.map((obj: any) =>
-            obj.name === "ground" ? { ...obj, options: groundOptions } : obj
-          );
+        const groundOptions =
+          groundResp?.success && groundResp.data?.result?.length
+            ? mapOptions(groundResp.data.result, "Unnamed Ground")
+            : [];
 
-          console.log("Ground Options:", groundOptions);
-        }
+        const coachOptions =
+          coachResp?.success && coachResp.data?.result?.length
+            ? mapOptions(coachResp.data.result, "Unnamed Coach")
+            : [];
 
-        // --- Fetch Coaches ---
-        const coachUrl = "/api/coach";
-        const coachResp: any = await Fetch(coachUrl, params, 5000, true, false);
-
-        if (coachResp.success && coachResp?.data?.result.length > 0) {
-          const coachOptions = coachResp.data.result.map((c: any) => ({
-            value: c?.name?.en || c?.name || "Unnamed Coach",
-            label: c._id,
-          }));
-
-          updatedFormField = updatedFormField.map((obj: any) =>
-            obj.name === "coaches" ? { ...obj, options: coachOptions } : obj
-          );
-
-          console.log("Coach Options:", coachOptions);
-        }
-
+        const updatedFormField = formField.map((field: any) => {
+          if (field.name === "ground") return { ...field, options: groundOptions };
+          if (field.name === "coaches") return { ...field, options: coachOptions };
+          return field;
+        });
         setFormField(updatedFormField);
       } catch (error) {
-        console.log("Error fetching data:", error);
+        console.error("Error fetching data:", error);
       } finally {
         setLoading(false);
       }
     };
 
     fetchData();
-    // eslint-disable-next-line
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const makeApiCall = async (updatedData: any) => {
     try {
-      const url = `${endpoints[formType].url}${
-        !data._id ? "" : "/" + data._id
-      }`;
+      const url = `${endpoints[formType].url}${!data._id ? "" : "/" + data._id
+        }`;
       setSubmitting(true);
       const response: any = data._id
         ? await Put(url, updatedData)
@@ -122,16 +105,18 @@ const AcademyForm: React.FC<AcademyFormProps> = (props: any) => {
       <h2 className="text-xl pb-4 font-semibold text-gray-800">
         {data?._id ? "Edit Academy Details" : "Add New Academy"}
       </h2>
-      <DynamicForm
-        id={data._id}
-        fields={formField}
-        returnAs="formData"
-        formData={formData}
-        submitting={submitting}
-        onClose={props?.onClose}
-        setFormData={setFormData}
-        makeApiCall={makeApiCall}
-      />
+      {!loading &&
+        <DynamicForm
+          id={data._id}
+          returnAs="formData"
+          fields={formField}
+          formData={formData}
+          submitting={submitting}
+          onClose={props?.onClose}
+          setFormData={setFormData}
+          makeApiCall={makeApiCall}
+        />
+      }
     </div>
   );
 };

@@ -9,45 +9,18 @@ import TableComponent from "@/components/common/Table";
 
 const columns = [
     {
+        image: true,
         key: "name.en",
-        label: "Name (EN)",
         sortable: true,
+        imageWithKey: "imageUrl",
+        label: "Academy Name (EN)",
     },
     {
+        image: true,
         key: "name.ar",
-        label: "Name (AR)",
         sortable: true,
-    },
-    {
-        key: "description.en",
-        label: "Description (EN)",
-        sortable: false,
-    },
-    {
-        key: "description.ar",
-        label: "Description (AR)",
-        sortable: false,
-    },
-    {
-        key: "sports",
-        label: "Sports",
-        sortable: false,
-        isArray: true, 
-    },
-    {
-        key: "ground",
-        label: "Ground",
-        sortable: true,
-        isReference: true, 
-        referenceKey: "name.en", 
-    },
-    {
-        key: "coaches",
-        label: "Coaches",
-        sortable: false,
-        isArray: true,
-        isReference: true,
-        referenceKey: "fullName", 
+        imageWithKey: "imageUrl",
+        label: "Academy Name (AR)",
     },
     {
         key: "createdAt",
@@ -63,23 +36,17 @@ const columns = [
     },
     {
         key: "status",
-        label: "Status",
         sortable: true,
         isMultiPurpose: true,
-        multiPurposeProps: {
-            type: "label", 
-            statusMap: {
-                active: { color: "green", label: "Active" },
-                inactive: { color: "orange", label: "Inactive" },
-                closed: { color: "red", label: "Closed" },
-            },
-        },
+        label: "Active Status?",
+        multiPurposeProps: { type: "label" },
     },
 ];
 
 
 const filterOptions = [
-    { label: "Name", value: "name" },
+    { label: "Name (EN)", value: "name.en" },
+    { label: "Name (AR)", value: "name.ar" },
 ];
 
 const Page: React.FC = () => {

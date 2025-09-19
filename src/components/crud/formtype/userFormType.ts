@@ -272,7 +272,6 @@ export const coachFormType: FormField[] = [
   },
 ];
 
-
 export const academyFormType: FormField[] = [
   {
     type: "text",
@@ -289,24 +288,6 @@ export const academyFormType: FormField[] = [
     placeholder: "Enter academy name in Arabic",
   },
   {
-    type: "textarea",
-    name: "description.en",
-    label: "Description (English)",
-    required: true,
-    placeholder: "Enter description in English",
-    rows: 3,
-    widthFull: true,
-  },
-  {
-    type: "textarea",
-    name: "description.ar",
-    label: "Description (Arabic)",
-    required: false,
-    placeholder: "Enter description in Arabic",
-    rows: 3,
-    widthFull: true,
-  },
-  {
     type: "select",
     name: "ground",
     label: "Ground",
@@ -315,31 +296,36 @@ export const academyFormType: FormField[] = [
     options: [], // Populate dynamically with available grounds
   },
   {
-    type: "select",
-    name: "sports",
-    label: "Sports",
+    type: "textarea",
+    name: "description.en",
+    label: "Description (English)",
     required: true,
-    placeholder: "Select sports offered",
-    options: [
-      { value: "football", label: "Football" },
-      { value: "basketball", label: "Basketball" },
-      { value: "tennis", label: "Tennis" },
-      { value: "swimming", label: "Swimming" },
-      { value: "volleyball", label: "Volleyball" },
-      { value: "badminton", label: "Badminton" },
-      { value: "table_tennis", label: "Table Tennis" },
-      { value: "karate", label: "Karate" },
-      { value: "taekwondo", label: "Taekwondo" },
-      { value: "gymnastics", label: "Gymnastics" },
-    ],
+    placeholder: "Enter description in English",
+    rows: 1,
+    widthFull: true,
   },
   {
-    type: "select",
-    name: "coaches",
-    label: "Assigned Coaches",
+    type: "textarea",
+    name: "description.ar",
+    label: "Description (Arabic)",
     required: false,
-    placeholder: "Select coaches",
-    options: [], // Populate dynamically from /api/coaches
+    placeholder: "Enter description in Arabic",
+    rows: 1,
+    widthFull: true,
+  },
+  {
+    type: "time",
+    name: "startTime",
+    label: "Start Time",
+    required: true,
+    placeholder: "Select start time",
+  },
+  {
+    type: "time",
+    name: "endTime",
+    label: "End Time",
+    required: true,
+    placeholder: "Select end time",
   },
   {
     type: "select",
@@ -348,12 +334,71 @@ export const academyFormType: FormField[] = [
     required: true,
     placeholder: "Select status",
     options: [
-      { value: 'Active', label: "Active" },
-      { value: 'Inactive', label: "Inactive" },
-      { value: 'Closed', label: "Closed" },
+      { label: "active", value: "Active" },
+      { label: "inactive", value: "In Active" },
+      { label: "closed", value: "Closed" },
     ],
   },
+  {
+    type: "text",
+    required: true,
+    label: "Latitude",
+    name: "location.lat",
+    placeholder: "Enter latitude (e.g., 28.7041)",
+  },
+  {
+    type: "text",
+    required: true,
+    label: "Longitude",
+    name: "location.lng",
+    placeholder: "Enter longitude (e.g., 77.1025)",
+  },
+  {
+    name: "sports",
+    type: "select",
+    required: true,
+    isMultiple: true,
+    label: "Sports Offered",
+    placeholder: "Select sports",
+    options: [
+      { value: "cricket", label: "Cricket / كريكيت" },
+      { value: "football", label: "Football / كرة القدم" },
+      { value: "paddles", label: "Paddles / البادل" },
+      { value: "volleyball", label: "Volleyball / الكرة الطائرة" },
+      { value: "basketball", label: "Basketball / كرة السلة" },
+      { value: "tennis", label: "Tennis / تنس" },
+    ],
+  },
+  {
+    type: "select",
+    name: "workingDays",
+    label: "Working Days",
+    required: true,
+    isMultiple: true,
+    placeholder: "Select working days",
+    options: [
+      { value: "monday", label: "Monday / الاثنين" },
+      { value: "tuesday", label: "Tuesday / الثلاثاء" },
+      { value: "wednesday", label: "Wednesday / الأربعاء" },
+      { value: "thursday", label: "Thursday / الخميس" },
+      { value: "friday", label: "Friday / الجمعة" },
+      { value: "saturday", label: "Saturday / السبت" },
+      { value: "sunday", label: "Sunday / الأحد" },
+    ],
+  },
+  {
+    options: [],
+    type: "select",
+    name: "coaches",
+    required: false,
+    isMultiple: true,
+    label: "Assigned Coaches",
+    placeholder: "Select coaches",
+  },
+  {
+    type: "file",
+    required: true,
+    name: "imageUrl",
+    label: "Academy Logo / Image",
+  },
 ];
-
-
-

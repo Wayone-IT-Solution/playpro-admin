@@ -19,7 +19,7 @@ export const getFileCategory = (
     ? fileNameOrExt.toLowerCase()
     : "." + fileNameOrExt.split(".").pop()?.toLowerCase();
 
-  const imageExts = [".png", ".jpg", ".jpeg", ".gif"];
+  const imageExts = [".png", ".jpg", ".jpeg", ".gif", ".jfif"];
   const videoExts = [".mp4", ".mov", ".webm", ".avi"];
   const docExts = [".pdf", ".doc", ".docx"];
 
