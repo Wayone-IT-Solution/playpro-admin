@@ -42,17 +42,17 @@ const MultipleImageUpload: React.FC<MultipleImageUploadProps> = ({
 
   const [selectedImages, setSelectedImages] = useState<ImageData[]>(initialImages);
 
-  const validateImageResolution = (file: File): Promise<boolean> => {
-    return new Promise((resolve) => {
-      const img = new window.Image();
-      img.src = URL.createObjectURL(file);
-      img.onload = () => {
-        const valid = img.width === 420 && img.height === 840;
-        resolve(valid);
-      };
-      img.onerror = () => resolve(false);
-    });
-  };
+  // const validateImageResolution = (file: File): Promise<boolean> => {
+  //   return new Promise((resolve) => {
+  //     const img = new window.Image();
+  //     img.src = URL.createObjectURL(file);
+  //     img.onload = () => {
+  //       const valid = img.width === 420 && img.height === 840;
+  //       resolve(valid);
+  //     };
+  //     img.onerror = () => resolve(false);
+  //   });
+  // };
 
   const handleImageChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
     const files = event.target.files;
@@ -74,11 +74,11 @@ const MultipleImageUpload: React.FC<MultipleImageUploadProps> = ({
         continue;
       }
 
-      const resolutionValid = await validateImageResolution(file);
-      if (!resolutionValid) {
-        toast.warn(`Invalid resolution for ${file.name}. Required: 420x840px`);
-        continue;
-      }
+      // const resolutionValid = await validateImageResolution(file);
+      // if (!resolutionValid) {
+      //   toast.warn(`Invalid resolution for ${file.name}. Required: 420x840px`);
+      //   continue;
+      // }
 
       const alreadySelected = selectedImages.some(
         (img) => img.file?.name === file.name && img.file?.size === file.size
