@@ -3,8 +3,8 @@
 import Image from "next/image";
 import { toast } from "react-toastify";
 import { useState, useRef } from "react";
-import { IoCloudUpload } from "react-icons/io5";
 import { Delete } from "@/hooks/apiUtils";
+import { IoCloudUpload } from "react-icons/io5";
 
 interface ImageData {
   url: string;
@@ -42,7 +42,19 @@ const MultipleImageUpload: React.FC<MultipleImageUploadProps> = ({
 
   const [selectedImages, setSelectedImages] = useState<ImageData[]>(initialImages);
 
-  const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const validateImageResolution = (file: File): Promise<boolean> => {
+    return new Promise((resolve) => {
+      const img = new window.Image();
+      img.src = URL.createObjectURL(file);
+      img.onload = () => {
+        const valid = img.width === 420 && img.height === 840;
+        resolve(valid);
+      };
+      img.onerror = () => resolve(false);
+    });
+  };
+
+  const handleImageChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
     const files = event.target.files;
     if (!files) return;
 
@@ -52,20 +64,27 @@ const MultipleImageUpload: React.FC<MultipleImageUploadProps> = ({
 
     const validNewFiles: File[] = [];
 
-    Array.from(files).slice(0, remainingSlots).forEach((file) => {
+    for (const file of Array.from(files).slice(0, remainingSlots)) {
       if (!allowedTypes.includes(file.type)) {
         toast.warn(`Unsupported file type: ${file.name}`);
-        return;
+        continue;
       }
       if (file.size > maxSizeMB * 1024 * 1024) {
         toast.warn(`File too large: ${file.name} (max ${maxSizeMB}MB)`);
-        return;
+        continue;
       }
+
+      const resolutionValid = await validateImageResolution(file);
+      if (!resolutionValid) {
+        toast.warn(`Invalid resolution for ${file.name}. Required: 420x840px`);
+        continue;
+      }
+
       const alreadySelected = selectedImages.some(
         (img) => img.file?.name === file.name && img.file?.size === file.size
       );
       if (!alreadySelected) validNewFiles.push(file);
-    });
+    }
 
     if (validNewFiles.length === 0) return;
 
@@ -86,7 +105,7 @@ const MultipleImageUpload: React.FC<MultipleImageUploadProps> = ({
     try {
       if (url.includes("http")) {
         const s3Key = url.split(".com/")[1];
-        const data = { groundId: id, key: s3Key }
+        const data = { groundId: id, key: s3Key };
         await Delete("/api/ground/image", data);
       }
       const updated = selectedImages.filter((img) => img.url !== url);
@@ -96,7 +115,7 @@ const MultipleImageUpload: React.FC<MultipleImageUploadProps> = ({
         [fieldname]: updated.map((img) => img.file || img.url),
       }));
     } catch (error) {
-      console.log("Error: ", error)
+      console.log("Error: ", error);
     }
   };
 
@@ -119,14 +138,17 @@ const MultipleImageUpload: React.FC<MultipleImageUploadProps> = ({
       {selectedImages.length < maxImages && (
         <div
           onClick={() => fileInputRef.current?.click()}
-          className="flex bg-gray-100 flex-col w-full h-40 border-2 border-dashed rounded-lg cursor-pointer transition-colors duration-300 hover:border-gray-500"
+          className="flex bg-gray-100 flex-col w-full h-44 border-2 border-dashed rounded-lg cursor-pointer transition-colors duration-300 hover:border-gray-500"
         >
           <div className="flex flex-col justify-center items-center h-full text-gray-500">
             <h2 className="font-bold text-black">Files Types We Accept</h2>
-            <p className="text-gray-600 text-xs py-2">
+            <p className="text-gray-600 text-xs py-1">
               JPG, JPEG, PNG (Max file size: 5MB)
             </p>
-            <IoCloudUpload size={50} className="text-gray-500" />
+            <p className="text-blue-600 text-xs font-semibold">
+              Recommended Resolution: 420 x 840px
+            </p>
+            <IoCloudUpload size={50} className="text-gray-500 my-2" />
             <span>{uploadBoxMessage}</span>
           </div>
         </div>
