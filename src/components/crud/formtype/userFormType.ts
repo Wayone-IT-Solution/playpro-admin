@@ -23,7 +23,7 @@ export const userFormType: FormField[] = [
     required: true,
     label: "Employee Role",
     placeholder: "Select user role",
-    options: []
+    options: [],
   },
   {
     type: "text",
@@ -38,7 +38,6 @@ export const userFormType: FormField[] = [
     required: false,
   },
 ];
-
 
 export const ownerFormType: FormField[] = [
   {
@@ -111,7 +110,7 @@ export const ownerFormType: FormField[] = [
     type: "br",
     label: "Business Details",
     name: "Business Details",
-    widthFull: true
+    widthFull: true,
   },
   {
     type: "text",
@@ -135,7 +134,7 @@ export const ownerFormType: FormField[] = [
     type: "br",
     label: "Contact Details",
     name: "Contact Details",
-    widthFull: true
+    widthFull: true,
   },
   {
     type: "text",
@@ -178,7 +177,6 @@ export const ownerFormType: FormField[] = [
   //   ],
   // },
 ];
-
 
 export const coachFormType: FormField[] = [
   {
@@ -289,11 +287,15 @@ export const academyFormType: FormField[] = [
   },
   {
     type: "select",
-    name: "ground",
-    label: "Ground",
+    name: "status",
+    label: "Academy Status",
     required: true,
-    placeholder: "Select ground",
-    options: [], // Populate dynamically with available grounds
+    placeholder: "Select status",
+    options: [
+      { label: "active", value: "Active" },
+      { label: "inactive", value: "In Active" },
+      { label: "closed", value: "Closed" },
+    ],
   },
   {
     type: "textarea",
@@ -326,18 +328,6 @@ export const academyFormType: FormField[] = [
     label: "End Time",
     required: true,
     placeholder: "Select end time",
-  },
-  {
-    type: "select",
-    name: "status",
-    label: "Academy Status",
-    required: true,
-    placeholder: "Select status",
-    options: [
-      { label: "active", value: "Active" },
-      { label: "inactive", value: "In Active" },
-      { label: "closed", value: "Closed" },
-    ],
   },
   {
     type: "text",
@@ -394,6 +384,15 @@ export const academyFormType: FormField[] = [
     isMultiple: true,
     label: "Assigned Coaches",
     placeholder: "Select coaches",
+  },
+  {
+    options: [],
+    type: "select",
+    name: "grounds",
+    required: false,
+    isMultiple: true,
+    label: "Assigned Grounds",
+    placeholder: "Select Grounds",
   },
   {
     type: "file",

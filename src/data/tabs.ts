@@ -134,7 +134,7 @@ export const tabs = [
         id: 204,
         icon: MdManageAccounts,
         label: "Players & Attendance",
-        href: "/dashboard/player-attendance",
+        href: "/dashboard/registration-requests",
         pageTitle: "All Players & Attendance",
         permission: "Manage Players",
       },
@@ -148,14 +148,6 @@ export const tabs = [
     pageTitle: "Ground Slot Scheduling",
     permission: "Manage Slots",
     tabs: [],
-  },
-  {
-    id: 205,
-    icon: HiOutlineClipboardList,
-    label: "Registration Requests",
-    href: "/dashboard/registration-requests",
-    pageTitle: "All Registration Requests",
-    permission: "Manage Registrations",
   },
   {
     id: 5,
@@ -338,7 +330,7 @@ export const tabs = [
       },
       {
         id: 902,
-        icon: FaHandshake, 
+        icon: FaHandshake,
         label: "Sponsorships",
         href: "/dashboard/sponsor",
         pageTitle: "Sponsor Management",

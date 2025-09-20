@@ -31,7 +31,17 @@ const AcademyForm: React.FC<AcademyFormProps> = (props: any) => {
   );
 
   const [formData, setFormData] = useState<any>(
-    data._id ? populateFormData(academyFormType, flattenObject(data, "", ["sports", "workingDays", "coaches"])) : {}
+    data._id
+      ? populateFormData(
+          academyFormType,
+          flattenObject(data, "", [
+            "sports",
+            "workingDays",
+            "coaches",
+            "grounds",
+          ])
+        )
+      : {}
   );
 
   useEffect(() => {
@@ -60,8 +70,10 @@ const AcademyForm: React.FC<AcademyFormProps> = (props: any) => {
             : [];
 
         const updatedFormField = formField.map((field: any) => {
-          if (field.name === "ground") return { ...field, options: groundOptions };
-          if (field.name === "coaches") return { ...field, options: coachOptions };
+          if (field.name === "grounds")
+            return { ...field, options: groundOptions };
+          if (field.name === "coaches")
+            return { ...field, options: coachOptions };
           return field;
         });
         setFormField(updatedFormField);
@@ -78,8 +90,9 @@ const AcademyForm: React.FC<AcademyFormProps> = (props: any) => {
 
   const makeApiCall = async (updatedData: any) => {
     try {
-      const url = `${endpoints[formType].url}${!data._id ? "" : "/" + data._id
-        }`;
+      const url = `${endpoints[formType].url}${
+        !data._id ? "" : "/" + data._id
+      }`;
       setSubmitting(true);
       const response: any = data._id
         ? await Put(url, updatedData)
@@ -105,7 +118,7 @@ const AcademyForm: React.FC<AcademyFormProps> = (props: any) => {
       <h2 className="text-xl pb-4 font-semibold text-gray-800">
         {data?._id ? "Edit Academy Details" : "Add New Academy"}
       </h2>
-      {!loading &&
+      {!loading && (
         <DynamicForm
           id={data._id}
           returnAs="formData"
@@ -116,7 +129,7 @@ const AcademyForm: React.FC<AcademyFormProps> = (props: any) => {
           setFormData={setFormData}
           makeApiCall={makeApiCall}
         />
-      }
+      )}
     </div>
   );
 };
