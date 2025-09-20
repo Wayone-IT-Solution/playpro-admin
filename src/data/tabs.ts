@@ -24,7 +24,6 @@ import { GoTasklist } from "react-icons/go";
 import { TbBrandBebo } from "react-icons/tb";
 import { FaTags, FaHandshake } from "react-icons/fa";
 import { FaHome, FaProductHunt } from "react-icons/fa";
-import { HiOutlineClipboardList } from "react-icons/hi";
 import { HiOutlineBuildingOffice2 } from "react-icons/hi2";
 import { BiCategory, BiSolidCategory } from "react-icons/bi";
 import { GiEarthAsiaOceania, GiWhistle } from "react-icons/gi";
