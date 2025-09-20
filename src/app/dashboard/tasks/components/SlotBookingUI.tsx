@@ -81,26 +81,47 @@ const SlotBookingUI = ({
     return `${displayHour}:${minutes} ${ampm}`;
   };
 
+  const handleSubmit = async () => {
+    try {
+      if (!selectedDoctor) return toast.warn("Please select ground!");
+      const response: any = await Delete("/api/slot", {
+        groundId: selectedDoctor,
+        deleteAll: true,
+      });
+      if (response?.success) {
+        await fetchGroundSlots();
+      }
+    } catch (error) {
+      console.log("Error: ", error);
+    }
+  };
+
   return (
     <div className="pt-4">
-      <h2 className="text-xl mb-4 font-bold text-gray-800">Available Slots</h2>
+      <div className="flex justify-between mb-4 items-center">
+        <h2 className="text-xl font-bold text-gray-800">Available Slots</h2>
+        <button
+          type="button"
+          onClick={handleSubmit}
+          className="bg-red-500 text-white rounded-lg text-sm px-4 py-2">
+          Delete All Slots
+        </button>
+      </div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-2">
         {slots.map((slot) => (
           <div
             key={slot._id}
-            className={`p-2 border rounded-lg cursor-pointer transition-all duration-200 ${
-              slot.selected
-                ? "border-blue-500 bg-blue-50"
-                : "border-gray-200 hover:border-gray-300"
-            }`}
+            className={`p-2 border rounded-lg cursor-pointer transition-all duration-200 ${slot.selected
+              ? "border-blue-500 bg-blue-50"
+              : "border-gray-200 hover:border-gray-300"
+              }`}
           >
             <div className="flex justify-between items-start">
               <span
-                className={`px-2 py-1 rounded text-xs font-medium ${
-                  slot.selected
-                    ? "bg-blue-500 text-white"
-                    : "bg-gray-100 text-gray-800"
-                }`}
+                className={`px-2 py-1 rounded text-xs font-medium ${slot.selected
+                  ? "bg-blue-500 text-white"
+                  : "bg-gray-100 text-gray-800"
+                  }`}
               >
                 {getWeekDay(slot.date)}
               </span>
